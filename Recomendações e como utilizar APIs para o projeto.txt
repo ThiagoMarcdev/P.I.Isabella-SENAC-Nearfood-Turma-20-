@@ -1,0 +1,32 @@
+Olá! Para desenvolver um site ou aplicativo que permita aos usuários encontrar restaurantes próximos utilizando a API de localização do Waze, é importante entender as funcionalidades disponíveis e como integrá-las ao seu projeto.
+
+Funcionalidades da API do Waze:
+A API do Waze oferece recursos que permitem aos desenvolvedores abrir o aplicativo ou a página web do Waze por meio de um URL, facilitando ações como:
+Localizar um endereço;
+Marcar um endereço no mapa;
+Iniciar uma sessão de navegação até um destino.
+Essas funcionalidades são acessíveis por meio de "Deep Links" do Waze, que permitem a integração direta com o aplicativo. 
+DEVELOPERS.GOOGLE.COM
+
+Limitações da API do Waze:
+É importante notar que a API do Waze não fornece diretamente informações sobre pontos de interesse, como restaurantes próximos à localização do usuário. Portanto, para implementar a funcionalidade de busca por restaurantes próximos, seria necessário utilizar outra API que ofereça esses dados, como a API do Google Places.
+
+Solução Alternativa: API do Google Places
+A API do Google Places permite buscar pontos de interesse, incluindo restaurantes, próximos a uma determinada localização. Com ela, você pode:
+
+Obter uma lista de restaurantes próximos à localização do usuário;
+Exibir esses restaurantes em um mapa interativo;
+Fornecer detalhes como nome, endereço e avaliações dos restaurantes.
+Para integrar essa funcionalidade ao seu aplicativo, você pode seguir tutoriais como o "App de Busca de Restaurantes com React.JS e Google Maps", que orienta na construção de um sistema web de busca utilizando React.JS e a API do Google Maps. 
+DIO.ME
+
+Integração com o Waze para Navegação:
+Após listar os restaurantes próximos utilizando a API do Google Places, você pode integrar o Waze para fornecer rotas até o restaurante escolhido pelo usuário. Utilizando os "Deep Links" do Waze, é possível iniciar a navegação diretamente no aplicativo do Waze para o destino selecionado. 
+DEVELOPERS.GOOGLE.COM
+
+Passos para Implementação:
+Obtenha a localização do usuário: Utilize as funcionalidades de geolocalização disponíveis em navegadores ou dispositivos móveis para determinar a posição atual do usuário.
+Busque por restaurantes próximos: Utilize a API do Google Places para encontrar restaurantes próximos à localização obtida.
+Exiba os resultados: Mostre os restaurantes encontrados em uma interface amigável, como uma lista ou um mapa interativo.
+Integre com o Waze para navegação: Ofereça a opção de navegação até o restaurante selecionado utilizando os "Deep Links" do Waze.
+Seguindo esses passos, você conseguirá desenvolver um aplicativo que permite aos usuários encontrar e navegar até restaurantes próximos, combinando as funcionalidades das APIs do Google Places e do Waze.
