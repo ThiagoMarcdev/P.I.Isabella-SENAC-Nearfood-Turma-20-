@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
+from pathlib import Path # essa biblioteca faz a mesma função do 'os' mas estamos usando o os, pois é mais conhecido
+import os # biblioteca sistema operacional do python que permite concatenar diretorios, definindo um padrão de estrutura de diretórios
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent 
 
 
 # Quick-start development settings - unsuitable for production
@@ -65,8 +66,8 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # essa linha é responsavel para dizer ao django que a pasta templates estão os nossos arquivos de template (css, html, javascript)
+        'APP_DIRS': True, # quando 'true' o django reconhece outras arquivos de template em outros apps
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
