@@ -2,14 +2,14 @@ from django.db import models
 
 # Create your models here.
 class Restaurant(models.Model):
-    id = models.AutoField (primary_key=True)
+    #id = models.AutoField (primary_key=True) # o django cria automaticamente um campo id como uma pk autofield
     nome = models.CharField(max_length=100)
     description = models.TextField(max_length=200, blank=True, null=True)
     estado = models.CharField(max_length=100)
     endereco = models.CharField(max_length=100)
     hora_funcionamento = models.CharField(max_length=50)
-    delivery = models.BooleanField
-    telefone = models.IntegerField
+    delivery = models.BooleanField(default=False)
+    telefone = models.IntegerField()
     website = models.URLField(blank=True, null=True)
     avaliacao = models.FloatField(default=0.0) #precisa ser float porque pode ser decimal o numero
 
