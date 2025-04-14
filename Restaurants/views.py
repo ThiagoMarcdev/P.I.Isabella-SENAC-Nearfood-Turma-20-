@@ -4,4 +4,4 @@ from django.http import HttpResponse #função para retornar mensagem em http
 # Create your views here.
 # aqui vai estar toda a "logica do site"
 def acessar_home(request):
-    return render(request, '/home_restaurant.html')
+    return render(request, 'home_restaurant.html')

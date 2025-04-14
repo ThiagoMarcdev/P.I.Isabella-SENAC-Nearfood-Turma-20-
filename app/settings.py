@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path # essa biblioteca faz a mesma função do 'os' mas estamos usando o os, pois é mais conhecido
+from pathlib import Path # essa biblioteca faz a mesma função do 'os' mas estamos usando o 'os', pois é mais conhecido
 import os # biblioteca sistema operacional do python que permite concatenar diretorios, definindo um padrão de estrutura de diretórios
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
