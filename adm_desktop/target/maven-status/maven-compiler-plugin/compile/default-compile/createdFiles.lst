@@ -1,5 +1,8 @@
 br/com/nearfood/view/TelaLogin$2.class
 br/com/nearfood/view/TelaLogin$1.class
-TelaPrincipal.class
+br/com/nearfood/view/TelaLogin$4.class
 br/com/nearfood/view/TelaLogin$3.class
+br/com/nearfood/view/TelaCadastro.class
+br/com/nearfood/view/TelaPrincipal.class
 br/com/nearfood/view/TelaLogin.class
+br/com/nearfood/view/TelaResetSenha.class

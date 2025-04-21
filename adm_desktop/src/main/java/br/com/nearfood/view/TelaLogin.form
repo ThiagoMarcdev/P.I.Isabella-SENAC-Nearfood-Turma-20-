@@ -83,7 +83,7 @@
                           <Group type="102" attributes="0">
                               <Component id="lblEsqueceuSenha" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblEsqueceuSenha1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFazerCadastro" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
@@ -111,7 +111,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblEsqueceuSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblEsqueceuSenha1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFazerCadastro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="53" max="32767" attributes="0"/>
                   <Component id="btnBotaoEntrar" min="-2" max="-2" attributes="0"/>
@@ -168,7 +168,7 @@
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="&lt;html&gt;&#xa;&#x9;&lt;u&gt;Esqueceu sua senha?&lt;/u&gt;&#xa;&#xa;&lt;/html&gt;"/>
           </AccessibilityProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblEsqueceuSenha1">
+        <Component class="javax.swing.JLabel" name="lblFazerCadastro">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="13" style="2"/>
@@ -178,6 +178,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblFazerCadastroMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
