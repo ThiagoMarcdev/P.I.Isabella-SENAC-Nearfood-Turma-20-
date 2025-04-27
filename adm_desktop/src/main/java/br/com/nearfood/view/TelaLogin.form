@@ -77,20 +77,22 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btnBotaoEntrar" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="lblEsqueceuSenha" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="lblFazerCadastro" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="lblEsqueceuSenha" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtMensagem" max="32767" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblFazerCadastro" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBotaoEntrar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtSenha" alignment="0" pref="389" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSenha" alignment="0" pref="389" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="52" max="32767" attributes="0"/>
@@ -113,8 +115,18 @@
                       <Component id="lblEsqueceuSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblFazerCadastro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="53" max="32767" attributes="0"/>
-                  <Component id="btnBotaoEntrar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnBotaoEntrar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="txtMensagem" min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace pref="26" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -145,6 +157,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBotaoEntrar">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Liberation Sans" size="15" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Entrar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
@@ -159,7 +174,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Liberation Sans" size="13" style="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&#x9;&lt;U&gt; &#xa;&#x9;Esqueceu sua senha?&#xa;&#x9;&lt;/U&gt;&#xa;&#xa;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt; &#x9;&lt;U&gt;  &#x9;Esqueceu sua senha? &#x9;&lt;/U&gt;  "/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
@@ -167,6 +182,9 @@
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="&lt;html&gt;&#xa;&#x9;&lt;u&gt;Esqueceu sua senha?&lt;/u&gt;&#xa;&#xa;&lt;/html&gt;"/>
           </AccessibilityProperties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblEsqueceuSenhaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblFazerCadastro">
           <Properties>
@@ -181,6 +199,8 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblFazerCadastroMouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txtMensagem">
         </Component>
       </SubComponents>
     </Container>
