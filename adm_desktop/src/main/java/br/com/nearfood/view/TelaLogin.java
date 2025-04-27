@@ -12,6 +12,7 @@ public class TelaLogin extends javax.swing.JFrame {
     
     private LoginController loginController;
     
+    
     public TelaLogin() {
         initComponents();
         setTitle("Login");
@@ -205,8 +206,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private void lblFazerCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFazerCadastroMouseClicked
         // TODO add your handling code here:
         
-        dispose();//fecha janela atual
-        new TelaCadastro().setVisible(true); //abre tela de cadastro
+       loginController.cadastrarUsuario();
         
     }//GEN-LAST:event_lblFazerCadastroMouseClicked
 
