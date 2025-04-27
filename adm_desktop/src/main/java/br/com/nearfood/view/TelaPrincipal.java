@@ -29,7 +29,8 @@ public class TelaPrincipal extends JFrame {
         menuLateral.setPreferredSize(new Dimension(200, 0));
         menuLateral.setLayout(new BoxLayout(menuLateral, BoxLayout.Y_AXIS));
 
-        String[] opcoes = { "Início", "Produtos", "Pedidos", "Relatórios", "Sair" };
+        String[] opcoes = { "Início", "Gerenciar Cardápio", "Pedidos","Avaliações",
+                                    "Relatórios", "Configurações da Conta", "Sair" };
         for (String opcao : opcoes) {
             JButton btn = new JButton(opcao);
             btn.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
