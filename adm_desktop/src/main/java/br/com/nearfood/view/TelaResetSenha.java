@@ -17,7 +17,7 @@ public class TelaResetSenha extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//encerra o programa se fechada
         setResizable(false);
         setLayout(null);
-        initComponents();
+        //initComponents();
         
     }
 
