@@ -3,6 +3,11 @@ package br.com.nearfood.view;
 import javax.swing.*;
 
 import br.com.nearfood.controller.LoginController;
+import br.com.nearfood.model.Usuario;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class TelaLogin extends javax.swing.JFrame {
@@ -135,6 +140,27 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
         //onde o usuario digitara sua senha
+        
+         Usuario user = new Usuario();
+        
+        //USUÁRIO E SENHA
+        String email = txtEmail.getText();
+        String senha = txtSenha.getText();
+        
+        try {
+            if (user.login(email, senha)){
+                //String nome = user.getNome(email);
+                TelaPrincipal home = new TelaPrincipal();
+                home.setVisible(true);
+                this.dispose();
+            }
+            else{
+                txtMensagem.setForeground(Color.RED);
+                txtMensagem.setText("Usuário ou senha incorretos!");
+            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }//GEN-LAST:event_txtSenhaActionPerformed
