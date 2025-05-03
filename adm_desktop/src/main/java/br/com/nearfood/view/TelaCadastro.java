@@ -9,6 +9,7 @@ import br.com.nearfood.model.Conexao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.processing.Messager;
 
 /**
  *
@@ -189,7 +190,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 
                 //Envia ele para a tela de Login
                 TelaLogin login = new TelaLogin();
-                login.setVisible(true);
+                login.setVisible(true);                
                 this.dispose(); 
             }  
         } 

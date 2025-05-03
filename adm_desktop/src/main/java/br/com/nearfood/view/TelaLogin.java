@@ -141,6 +141,14 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         //onde o usuario digitara sua senha
         
+        
+        
+    }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void btnBotaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBotaoEntrarActionPerformed
+       //funções ao clicar no botão "entrar" na tela de login
+       
+       
          Usuario user = new Usuario();
         
         //USUÁRIO E SENHA
@@ -161,14 +169,6 @@ public class TelaLogin extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-    }//GEN-LAST:event_txtSenhaActionPerformed
-
-    private void btnBotaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBotaoEntrarActionPerformed
-       //funções ao clicar no botão "entrar" na tela de login
-       
-           
        
        
          
