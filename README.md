@@ -15,3 +15,4 @@ NearFood é um sistema inovador para encontrar restaurantes próximos com base n
 - Integração com APIs de mapas.
 - Avaliações e comentários sobre os restaurantes.
 - Interface responsiva para dispositivos móveis.
+# paulo
