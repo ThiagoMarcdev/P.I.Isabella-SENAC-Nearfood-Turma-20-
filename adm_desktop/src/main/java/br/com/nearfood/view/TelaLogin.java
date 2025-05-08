@@ -59,14 +59,14 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Email");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(54, 6, 38, 20);
+        jLabel1.setBounds(54, 6, 36, 20);
         jPanel1.add(txtEmail);
         txtEmail.setBounds(54, 38, 389, 30);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Senha");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(54, 86, 42, 20);
+        jLabel2.setBounds(54, 86, 40, 20);
 
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +85,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBotaoEntrar);
-        btnBotaoEntrar.setBounds(365, 209, 78, 28);
+        btnBotaoEntrar.setBounds(365, 209, 74, 27);
 
         lblEsqueceuSenha.setFont(new java.awt.Font("Liberation Sans", 2, 13)); // NOI18N
         lblEsqueceuSenha.setText("<html> \t<U>  \tEsqueceu sua senha? \t</U>  ");
@@ -96,19 +96,28 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(lblEsqueceuSenha);
-        lblEsqueceuSenha.setBounds(54, 154, 133, 16);
+        lblEsqueceuSenha.setBounds(54, 154, 133, 18);
         lblEsqueceuSenha.getAccessibleContext().setAccessibleName("<html>\n\t<u>Esqueceu sua senha?</u>\n\n</html>");
 
         lblFazerCadastro.setFont(new java.awt.Font("Liberation Sans", 2, 13)); // NOI18N
-        lblFazerCadastro.setText("<html> \t<U>  \tNão tem uma conta? Faça o Cadastro \t</U>  ");
+        lblFazerCadastro.setText("Não tem uma conta? Faça o Cadastro");
         lblFazerCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFazerCadastro.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                lblFazerCadastroAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         lblFazerCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblFazerCadastroMouseClicked(evt);
             }
         });
         jPanel1.add(lblFazerCadastro);
-        lblFazerCadastro.setBounds(205, 154, 225, 16);
+        lblFazerCadastro.setBounds(205, 154, 221, 18);
         jPanel1.add(txtMensagem);
         txtMensagem.setBounds(54, 198, 293, 27);
 
@@ -122,12 +131,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif CJK HK", 0, 24)); // NOI18N
         jLabel5.setText("Near Food");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(231, 90, 130, 35);
+        jLabel5.setBounds(231, 90, 130, 32);
 
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
         jLabel6.setText("Bem Vindo!");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(205, 6, 102, 22);
+        jLabel6.setBounds(205, 6, 102, 24);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/traced-logo-nearfood.png.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -187,6 +196,10 @@ public class TelaLogin extends javax.swing.JFrame {
         
         loginController.esqueceuSenha();
     }//GEN-LAST:event_lblEsqueceuSenhaMouseClicked
+
+    private void lblFazerCadastroAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblFazerCadastroAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblFazerCadastroAncestorAdded
 
     /**
      * @param args the command line arguments
