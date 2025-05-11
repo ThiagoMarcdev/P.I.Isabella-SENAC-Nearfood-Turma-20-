@@ -15,4 +15,13 @@ NearFood é um sistema inovador para encontrar restaurantes próximos com base n
 - Integração com APIs de mapas.
 - Avaliações e comentários sobre os restaurantes.
 - Interface responsiva para dispositivos móveis.
-# paulo
+
+# Gerenciamento de Branches
+
+| Branch               | Objetivo                     | Responsável   | Status     |
+|---------------------|------------------------------|---------------|------------|
+| main                | Código em produção           | Todos         | ✅ Estável |
+| develop             | Novas funcionalidades        | Time todo     | 🚧 Em dev  |
+| feature/login-page  | Tela de login                | João, Ana     | 🚧 Ativa   |
+| bugfix/login-crash  | Corrige crash no login       | Felipe        | ✅ Resolvido |
+
