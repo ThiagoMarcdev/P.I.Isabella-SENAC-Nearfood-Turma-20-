@@ -28,6 +28,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        iconeLogo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnInicio = new javax.swing.JToggleButton();
         btnGerenciarCardapio = new javax.swing.JToggleButton();
@@ -41,20 +43,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel1.setLayout(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 63, Short.MAX_VALUE)
-        );
+        iconeLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/traced-logo-nearfood.png.png"))); // NOI18N
+        iconeLogo.setText("NearFood");
+        jPanel1.add(iconeLogo);
+        iconeLogo.setBounds(10, 0, 80, 80);
+
+        jLabel1.setFont(new java.awt.Font("JetBrains Mono NL Medium", 1, 13)); // NOI18N
+        jLabel1.setText("Near Food");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(90, 30, 100, 18);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1280, 63);
+        jPanel1.setBounds(0, 0, 1280, 80);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -112,7 +114,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 60, 210, 610);
+        jPanel2.setBounds(0, 80, 210, 610);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,6 +163,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnPedidos;
     private javax.swing.JToggleButton btnRelatorios;
     private javax.swing.JToggleButton btnSair;
+    private javax.swing.JLabel iconeLogo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
