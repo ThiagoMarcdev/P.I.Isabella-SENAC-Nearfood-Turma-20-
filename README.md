@@ -20,8 +20,8 @@ NearFood é um sistema inovador para encontrar restaurantes próximos com base n
 
 | Branch               | Objetivo                     | Responsável   | Status     |
 |---------------------|------------------------------|---------------|------------|
-| main                | Código em produção           | Todos         | ✅ Estável |
-| develop             | Novas funcionalidades        | Time todo     | 🚧 Em dev  |
-| feature/login-page  | Tela de login                | João, Ana     | 🚧 Ativa   |
-| bugfix/login-crash  | Corrige crash no login       | Felipe        | ✅ Resolvido |
+| main                | Código estavel, funcionando perfeito          | Todos         | ✅ Estável |
+| develop             | Novas funcionalidades        | branch para merge das coisas funcionando sem teste     | 🚧 Em dev  |
+| feature/<alguma funcionalidade>  | branch temporaria para tentar desenvolver uma funcionalidade                | Todos     | 🚧 Ativa   |
+| bugfix/<algum bug>  | Branch para corigir bugs rapidos       | Testers     | 📜 temp |
 
