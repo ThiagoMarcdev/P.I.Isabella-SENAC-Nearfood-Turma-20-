@@ -43,11 +43,12 @@ public class TelaLogin extends javax.swing.JFrame {
         btnBotaoEntrar = new javax.swing.JButton();
         lblEsqueceuSenha = new javax.swing.JLabel();
         lblFazerCadastro = new javax.swing.JLabel();
-        txtMensagem = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -57,16 +58,16 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Email");
+        jLabel1.setText("Email:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(54, 6, 36, 20);
+        jLabel1.setBounds(54, 6, 50, 20);
         jPanel1.add(txtEmail);
         txtEmail.setBounds(54, 38, 389, 30);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Senha");
+        jLabel2.setText("Senha:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(54, 86, 40, 20);
+        jLabel2.setBounds(54, 86, 50, 20);
 
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,8 +119,10 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         jPanel1.add(lblFazerCadastro);
         lblFazerCadastro.setBounds(205, 154, 221, 18);
-        jPanel1.add(txtMensagem);
-        txtMensagem.setBounds(54, 198, 293, 27);
+
+        jCheckBox1.setText("Termos de uso");
+        jPanel1.add(jCheckBox1);
+        jCheckBox1.setBounds(50, 180, 110, 20);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 140, 495, 251);
@@ -131,17 +134,20 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif CJK HK", 0, 24)); // NOI18N
         jLabel5.setText("Near Food");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(231, 90, 130, 32);
-
-        jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
-        jLabel6.setText("Bem Vindo!");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(205, 6, 102, 24);
+        jLabel5.setBounds(260, 100, 130, 32);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/traced-logo-nearfood.png.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(140, 60, 90, 100);
+        jLabel4.setBounds(160, 70, 100, 90);
+
+        jPanel3.setBackground(new java.awt.Color(255, 153, 51));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel7.setText("BEM VINDO!");
+        jPanel3.add(jLabel7);
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(0, 0, 500, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -241,17 +247,18 @@ public class TelaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBotaoEntrar;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblEsqueceuSenha;
     private javax.swing.JLabel lblFazerCadastro;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JLabel txtMensagem;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

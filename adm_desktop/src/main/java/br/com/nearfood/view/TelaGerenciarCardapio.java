@@ -1,21 +1,20 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package br.com.nearfood.view;
 
 /**
  *
- * @author firmodev
+ * @author cauan.rsilva
  */
-public class TelaPrincipal extends javax.swing.JFrame {
+public class TelaGerenciarCardapio extends javax.swing.JPanel {
 
     /**
-     * Creates new form TelaPrinciapal
+     * Creates new form TelaGerenciarCardapio
      */
-    public TelaPrincipal() {
+    public TelaGerenciarCardapio() {
         initComponents();
-        setSize(1280, 720);
     }
 
     /**
@@ -28,11 +27,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
         iconeLogo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnInicio = new javax.swing.JToggleButton();
         btnSair = new javax.swing.JToggleButton();
@@ -42,46 +41,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         btnPedidos1 = new javax.swing.JToggleButton();
         btnGerenciarCardapio1 = new javax.swing.JToggleButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
         jPanel1.setLayout(null);
+
+        jLabel2.setText("Olá Nearfood!");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(780, 30, 80, 16);
+
+        jButton5.setText("sair");
+        jPanel1.add(jButton5);
+        jButton5.setBounds(810, 50, 50, 23);
 
         iconeLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/traced-logo-nearfood.png.png"))); // NOI18N
         iconeLogo.setText("NearFood");
         jPanel1.add(iconeLogo);
         iconeLogo.setBounds(0, 10, 80, 80);
 
-        jLabel1.setFont(new java.awt.Font("JetBrains Mono NL Medium", 1, 13)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Near Food");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(90, 30, 100, 18);
+        jLabel1.setBounds(80, 30, 60, 16);
 
-        jLabel2.setText("Olá Nearfood!");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(780, 30, 80, 16);
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel3.setText("Bem vindo!");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel3.setText("Gerenciamento de cardápios");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(370, 10, 150, 40);
+        jLabel3.setBounds(360, 30, 200, 20);
 
-        jButton5.setText("sair");
-        jPanel1.add(jButton5);
-        jButton5.setBounds(810, 50, 50, 23);
-
-        getContentPane().add(jPanel1);
+        add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 80);
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 0));
 
-        btnInicio.setBackground(new java.awt.Color(204, 204, 204));
         btnInicio.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         btnInicio.setText("Inicio");
 
@@ -123,6 +116,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnPedidos1.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         btnPedidos1.setText("Pedidos");
 
+        btnGerenciarCardapio1.setBackground(new java.awt.Color(204, 204, 204));
         btnGerenciarCardapio1.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         btnGerenciarCardapio1.setText("Gerenciar Cardápio");
 
@@ -166,26 +160,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2);
+        add(jPanel2);
         jPanel2.setBounds(0, 80, 210, 603);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Preços", "Mais caro", "Mais barato" }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(480, 130, 110, 40);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categorias", "Restaurantes", "Fast-foods" }));
-        getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(220, 130, 110, 40);
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Distância", "Mais longe", "Mais perto" }));
-        getContentPane().add(jComboBox3);
-        jComboBox3.setBounds(350, 130, 110, 40);
-
-        jTextField1.setText("O que seu apetite está pedindo?");
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(220, 90, 200, 22);
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -204,41 +180,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnGerenciarCardapio1;
@@ -251,14 +192,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
