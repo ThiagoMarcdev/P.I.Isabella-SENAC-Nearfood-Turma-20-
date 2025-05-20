@@ -23,3 +23,12 @@ Thumbs.db
 
 # Arquivos de credenciais (se houver)
 .env
+# Arquivos compilados Java
+*.class
+
+# Diretórios de build
+/target/
+/build/
+
+/*.form
+*.png
