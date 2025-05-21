@@ -1,34 +1,84 @@
+# === Python / Django ===
+
 # Ambientes virtuais
 venv/
 env/
 myvenv/
 
-# Arquivos compilados
-*.pyc
+# Byte-compiled / cache
+*.py[cod]
 __pycache__/
+*.so
 
 # IDEs e configurações locais
 .vscode/
 .idea/
 
-# Arquivos do sistema
+# Arquivos de sistema
 .DS_Store
 Thumbs.db
 
-# Banco SQLite (caso use)
+# Banco de dados SQLite
 *.sqlite3
+
+# Arquivos de log
+*.log
+
+# Arquivos de ambiente / variáveis sensíveis
+.env
+
+# Migrations (se quiser evitar versionar)
+**/migrations/
+!**/migrations/__init__.py
+
+# Arquivos estáticos e media gerados
+/staticfiles/
+/media/
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.bak
+
+# Arquivos de testes
+coverage.xml
+htmlcov/
+*.cover
+
+# Arquivos de pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# === Java ===
+
+# Arquivos compilados
+*.class
+
+# Diretórios de build
+/build/
+/target/
+
+# Arquivos de pacotes
+*.jar
+*.war
+*.ear
+
+# Arquivos de IDEs
+*.iml
+*.ipr
+*.iws
+.idea/
+*.classpath
+*.project
+*.settings/
 
 # Arquivos temporários
 *.log
 
-# Arquivos de credenciais (se houver)
-.env
-# Arquivos compilados Java
-*.class
-
-# Diretórios de build
-/target/
-/build/
-
-/*.form
+# Arquivos de formulário ou imagens (opcional)
+*.form
 *.png
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
