@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'Users', # app sobre usuarios do nosso sistema
     'Restaurants', #app para gerenciamento de restaurantes
     'Menu', # app para gerenciamento de cardapio
+    'app',
     'Reviews' # app para gerenciamento de avaliações de prato, restaurantes,
 ]
 

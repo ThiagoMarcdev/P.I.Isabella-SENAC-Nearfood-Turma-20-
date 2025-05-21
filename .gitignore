@@ -80,5 +80,5 @@ pip-delete-this-directory.txt
 *.png
 
 # Arquivos de sistema
-.DS_Store
+.DS_Store   
 Thumbs.db
