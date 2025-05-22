@@ -9,6 +9,7 @@ myvenv/
 *.py[cod]
 __pycache__/
 *.so
+*.pyc 
 
 # IDEs e configurações locais
 .vscode/
@@ -20,6 +21,7 @@ Thumbs.db
 
 # Banco de dados SQLite
 *.sqlite3
+db.sqlite3
 
 # Arquivos de log
 *.log
