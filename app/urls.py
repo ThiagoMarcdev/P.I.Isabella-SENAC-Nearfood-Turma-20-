@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import buscar_restaurantes
+from Restaurants.views import buscar_restaurantes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('buscar/', buscar_restaurantes, name='buscar_restaurantes'),
+    path('buscar/', include ('Restaurants.urls'), name='buscar_restaurantes'),
     path('restaurantes/', include('Restaurants.urls')) # quando o usuario acessar o endereço restaurantes ele vai ser redirecionado para o app "Restaurants" e o arquivo que gerenciara isso é o urls do app restaurants
     
 ]
