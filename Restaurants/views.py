@@ -1,6 +1,6 @@
 from django.shortcuts import render #função para renderizar templates ou seja: renderizar interfaces (html, css...)
 from django.http import HttpResponse #função para retornar mensagem em http
-from .models import Restaurants #importando models de restaurantes
+from .models import Restaurant #importando models de restaurantes
 
 
 # Create your views here.
@@ -9,5 +9,11 @@ from .models import Restaurants #importando models de restaurantes
 def acessar_home(request):
     return render(request, 'home_restaurant.html')
 
-def buscar_restaurantes():
-    restaurant = Restaurant.objects.filter()
+def buscar_restaurantes(request):
+    return render(
+        request,
+        'busca2.html',
+        {'Restaurant': {'nome': '*'}}
+
+    
+    )
