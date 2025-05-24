@@ -1,10 +1,12 @@
 package br.com.nearfood.model;
 
-import java.awt.List;
+//import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
 
 public class Usuario {
     //#region Atributos de usuario
@@ -21,7 +23,6 @@ public class Usuario {
     private String localizacao;
     
     private List<Prato> pratosfavoritos;
-    
 
     public Integer getId() {
         return id;
@@ -71,16 +72,14 @@ public class Usuario {
         this.localizacao = localizacao;
     }
 
-    public String getPratosfavoritos() {
+    public List<Prato> getPratosfavoritos() {
         return pratosfavoritos;
     }
 
-    public void setPratosfavoritos(String pratosfavoritos) {
+    public void setPratosfavoritos(List<Prato> pratosfavoritos) {
         this.pratosfavoritos = pratosfavoritos;
     }
-    //#endregion
-    
-    
+        
     
 
     //MÉTODO PARA CADASTRO DE USUÁRIO

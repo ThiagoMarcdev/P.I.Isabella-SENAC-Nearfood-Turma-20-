@@ -1,7 +1,9 @@
 
 package br.com.nearfood.model;
 
-import java.awt.List;
+//import java.awt.List;
+import java.util.List;
+
 
 
 class Restaurant {

@@ -1,6 +1,9 @@
 
 package br.com.nearfood.model;
 
+//import java.awt.List;
+import java.util.List;
+
 
 public class Prato {
     
@@ -11,6 +14,8 @@ public class Prato {
     private String descricao;
     
     private List<String> tags; //vegano, doce, etc..
+    
+    private double preco;
     
     private Restaurant restaurant; //aqui sera uma foreing key
 
