@@ -1,0 +1,58 @@
+CREATE DATABASE NearFoodDB
+
+use NearFoodDB
+--Tabela usuários--
+CREATE TABLE tbl_Usuarios 
+(
+id_usuario int primary key identity not null,
+nome varchar(60),
+senha varchar (20),
+email varchar (255),
+)
+
+--Tabela Preferência de usuários--
+CREATE TABLE tbl_PreferenciaUsuarios
+(
+id_tbl_PreferenciaUsuarios int primary key identity not null,
+idUsuario int,
+pratoFavorito varchar(255),
+tipoCulinaria varchar (100),
+FOREIGN KEY  (idUsuario) REFERENCES tbl_Usuarios(id_usuario)
+)
+
+--Tabela Preferência de usuários--
+CREATE TABLE tbl_restaurantes
+(
+id_tbl_restaurantes int primary key identity not null,
+nome varchar (100),
+endereco VARCHAR(255),
+tipoCulinaria varchar (100),
+notMedia float
+
+)
+--Tabela avaliação-- 
+CREATE TABLE tbl_avaliacao
+(
+id_tbl_avaliacao int primary key identity not null,
+idUsuario int,
+idRestaurante int,
+nota int,
+comentario varchar(255),
+datta date,
+FOREIGN KEY (idUsuario) REFERENCES tbl_Usuarios(id_usuario),
+FOREIGN KEY (idRestaurante) REFERENCES tbl_Restaurantes(id_tbl_Restaurantes)
+)
+--Tabela pratos--
+CREATE TABLE tbl_pratos
+(
+id_tbl_pratos int primary key identity not null,
+nome varchar (100),
+descricao varchar (255),
+tipoCulinaria varchar (255),
+idRestaurantes int,
+FOREIGN KEY (idRestaurantes) REFERENCES tbl_restaurantes (id_tbl_restaurantes)
+)
+
+
+select * from tblUsuarios
+
