@@ -41,11 +41,13 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         btnPedidos1 = new javax.swing.JToggleButton();
         btnGerenciarCardapio1 = new javax.swing.JToggleButton();
-        conteinerCardapios = new javax.swing.JPanel();
+        fundoListaCardapio = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        conteinerCardapio = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -157,21 +159,28 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
         add(jPanel2);
         jPanel2.setBounds(0, 80, 210, 640);
 
-        conteinerCardapios.setBackground(new java.awt.Color(255, 255, 255));
+        fundoListaCardapio.setBackground(new java.awt.Color(255, 255, 255));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total de itens" }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrar por status" }));
 
-        javax.swing.GroupLayout conteinerCardapiosLayout = new javax.swing.GroupLayout(conteinerCardapios);
-        conteinerCardapios.setLayout(conteinerCardapiosLayout);
-        conteinerCardapiosLayout.setHorizontalGroup(
-            conteinerCardapiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(conteinerCardapiosLayout.createSequentialGroup()
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel4.setText("jLabel4");
+        jPanel3.add(jLabel4);
+
+        conteinerCardapio.setViewportView(jPanel3);
+
+        javax.swing.GroupLayout fundoListaCardapioLayout = new javax.swing.GroupLayout(fundoListaCardapio);
+        fundoListaCardapio.setLayout(fundoListaCardapioLayout);
+        fundoListaCardapioLayout.setHorizontalGroup(
+            fundoListaCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoListaCardapioLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(conteinerCardapiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(conteinerCardapiosLayout.createSequentialGroup()
+                .addGroup(fundoListaCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(conteinerCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(fundoListaCardapioLayout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,21 +188,21 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
-        conteinerCardapiosLayout.setVerticalGroup(
-            conteinerCardapiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(conteinerCardapiosLayout.createSequentialGroup()
+        fundoListaCardapioLayout.setVerticalGroup(
+            fundoListaCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoListaCardapioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(conteinerCardapiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(fundoListaCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(conteinerCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        add(conteinerCardapios);
-        conteinerCardapios.setBounds(240, 110, 900, 590);
+        add(fundoListaCardapio);
+        fundoListaCardapio.setBounds(240, 110, 900, 590);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -214,7 +223,8 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
     private javax.swing.JToggleButton btnInicio;
     private javax.swing.JToggleButton btnPedidos1;
     private javax.swing.JToggleButton btnSair;
-    private javax.swing.JPanel conteinerCardapios;
+    private javax.swing.JScrollPane conteinerCardapio;
+    private javax.swing.JPanel fundoListaCardapio;
     private javax.swing.JLabel iconeLogo;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -225,9 +235,10 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
