@@ -15,6 +15,7 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
      */
     public TelaGerenciarCardapio() {
         initComponents();
+        setSize(1170, 717); //dimensoes
     }
 
     /**
@@ -35,12 +36,18 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         btnInicio = new javax.swing.JToggleButton();
         btnSair = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnPedidos1 = new javax.swing.JToggleButton();
         btnGerenciarCardapio1 = new javax.swing.JToggleButton();
+        fundoListaCardapio = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        conteinerCardapio = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -49,11 +56,11 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
 
         jLabel2.setText("Olá Nearfood!");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(780, 30, 80, 16);
+        jLabel2.setBounds(1070, 10, 80, 16);
 
         jButton5.setText("sair");
         jPanel1.add(jButton5);
-        jButton5.setBounds(810, 50, 50, 23);
+        jButton5.setBounds(1090, 40, 50, 23);
 
         iconeLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/traced-logo-nearfood.png.png"))); // NOI18N
         iconeLogo.setText("NearFood");
@@ -68,7 +75,7 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel3.setText("Gerenciamento de cardápios");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(360, 30, 200, 20);
+        jLabel3.setBounds(560, 20, 200, 20);
 
         add(jPanel1);
         jPanel1.setBounds(0, 0, 1280, 80);
@@ -80,14 +87,6 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
 
         btnSair.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         btnSair.setText("Sair");
-
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jButton1.setText("O que somos?");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jButton2.setText("Configurações da Conta");
@@ -128,7 +127,6 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGerenciarCardapio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -152,21 +150,60 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addGap(366, 366, 366)
+                .addGap(412, 412, 412)
                 .addComponent(btnSair)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(jPanel2);
-        jPanel2.setBounds(0, 80, 210, 603);
-    }// </editor-fold>//GEN-END:initComponents
+        jPanel2.setBounds(0, 80, 210, 640);
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        fundoListaCardapio.setBackground(new java.awt.Color(255, 255, 255));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total de itens" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrar por status" }));
+
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel4.setText("jLabel4");
+        jPanel3.add(jLabel4);
+
+        conteinerCardapio.setViewportView(jPanel3);
+
+        javax.swing.GroupLayout fundoListaCardapioLayout = new javax.swing.GroupLayout(fundoListaCardapio);
+        fundoListaCardapio.setLayout(fundoListaCardapioLayout);
+        fundoListaCardapioLayout.setHorizontalGroup(
+            fundoListaCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoListaCardapioLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(fundoListaCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(conteinerCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(fundoListaCardapioLayout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        fundoListaCardapioLayout.setVerticalGroup(
+            fundoListaCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoListaCardapioLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(fundoListaCardapioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(conteinerCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        add(fundoListaCardapio);
+        fundoListaCardapio.setBounds(240, 110, 900, 590);
+    }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -186,16 +223,22 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
     private javax.swing.JToggleButton btnInicio;
     private javax.swing.JToggleButton btnPedidos1;
     private javax.swing.JToggleButton btnSair;
+    private javax.swing.JScrollPane conteinerCardapio;
+    private javax.swing.JPanel fundoListaCardapio;
     private javax.swing.JLabel iconeLogo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
