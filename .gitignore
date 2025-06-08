@@ -79,7 +79,7 @@ pip-delete-this-directory.txt
 
 # Arquivos de formulário ou imagens (opcional)
 *.form
-*.png
+#*.png
 
 # Arquivos de sistema
 .DS_Store   

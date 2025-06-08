@@ -50,7 +50,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="1090" y="40" width="50" height="-1"/>
+              <AbsoluteConstraints x="1070" y="40" width="70" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -305,11 +305,6 @@
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel4">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\guilherme.ffsousa\Pictures\Nearfood\food-and-restaurant (1).png"/>
-                    </Property>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

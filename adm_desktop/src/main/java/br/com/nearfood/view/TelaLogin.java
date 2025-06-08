@@ -1,6 +1,5 @@
 
 package br.com.nearfood.view;
-import javax.swing.*;
 
 import br.com.nearfood.controller.LoginController;
 import br.com.nearfood.model.Usuario;
@@ -44,6 +43,7 @@ public class TelaLogin extends javax.swing.JFrame {
         lblEsqueceuSenha = new javax.swing.JLabel();
         lblFazerCadastro = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
+        txtMensagem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -86,7 +86,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnBotaoEntrar);
-        btnBotaoEntrar.setBounds(365, 209, 74, 27);
+        btnBotaoEntrar.setBounds(365, 209, 74, 24);
 
         lblEsqueceuSenha.setFont(new java.awt.Font("Liberation Sans", 2, 13)); // NOI18N
         lblEsqueceuSenha.setText("<html> \t<U>  \tEsqueceu sua senha? \t</U>  ");
@@ -97,7 +97,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(lblEsqueceuSenha);
-        lblEsqueceuSenha.setBounds(54, 154, 133, 18);
+        lblEsqueceuSenha.setBounds(54, 154, 133, 16);
         lblEsqueceuSenha.getAccessibleContext().setAccessibleName("<html>\n\t<u>Esqueceu sua senha?</u>\n\n</html>");
 
         lblFazerCadastro.setFont(new java.awt.Font("Liberation Sans", 2, 13)); // NOI18N
@@ -118,11 +118,13 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(lblFazerCadastro);
-        lblFazerCadastro.setBounds(205, 154, 221, 18);
+        lblFazerCadastro.setBounds(205, 154, 221, 16);
 
         jCheckBox1.setText("Termos de uso");
         jPanel1.add(jCheckBox1);
-        jCheckBox1.setBounds(50, 180, 110, 20);
+        jCheckBox1.setBounds(50, 180, 110, 21);
+        jPanel1.add(txtMensagem);
+        txtMensagem.setBounds(60, 210, 240, 0);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 140, 495, 251);
@@ -134,7 +136,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif CJK HK", 0, 24)); // NOI18N
         jLabel5.setText("Near Food");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(260, 100, 130, 32);
+        jLabel5.setBounds(260, 100, 130, 35);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/traced-logo-nearfood.png.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -259,6 +261,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblEsqueceuSenha;
     private javax.swing.JLabel lblFazerCadastro;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JLabel txtMensagem;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

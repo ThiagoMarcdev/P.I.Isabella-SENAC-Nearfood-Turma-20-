@@ -4,18 +4,160 @@
  */
 package br.com.nearfood.view;
 
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.table.*;
+import java.util.Vector;
+
 /**
  *
  * @author cauan.rsilva
  */
 public class TelaGerenciarCardapio extends javax.swing.JPanel {
+    private JTable tableProdutos;
+    private DefaultTableModel tableModel;
+    private JPanel panelFiltros;
+    private JPanel panelLista;
+    private JPanel panelPaginacao;
+    private JButton btnAcaoMassa;
+    private JComboBox<String> cmbTodosItens;
+    private JComboBox<String> cmbFiltrarStatus;
+    private JTextField txtBusca;
+    private JLabel lblPaginaAtual;
+    private JButton btnAnterior;
+    private JButton btnProximo;
 
     /**
      * Creates new form TelaGerenciarCardapio
      */
     public TelaGerenciarCardapio() {
         initComponents();
-        setSize(1170, 717); //dimensoes
+        setSize(1170, 717);
+        setupMenuLateral();
+        setupPainelPrincipal();
+    }
+
+    private void setupMenuLateral() {
+        jPanel2.setBackground(new Color(255, 102, 0));
+        jPanel2.setLayout(new BoxLayout(jPanel2, BoxLayout.Y_AXIS));
+        jPanel2.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        String[] menuItems = {
+            "Meus pedidos", "Pedidos locais", "Gestor de cardápio",
+            "Edição em massa", "Pedidos balcão", "Robô",
+            "QR Code", "Recuperador de vendas"
+        };
+
+        for (String item : menuItems) {
+            JToggleButton btn = new JToggleButton(item);
+            btn.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            btn.setAlignmentX(Component.CENTER_ALIGNMENT);
+            btn.setMaximumSize(new Dimension(190, 40));
+            btn.setBackground(new Color(255, 102, 0));
+            btn.setForeground(Color.WHITE);
+            btn.setFocusPainted(false);
+            btn.setBorderPainted(false);
+            
+            if (item.equals("Edição em massa")) {
+                btn.setSelected(true);
+                btn.setBackground(new Color(255, 82, 0));
+            }
+            
+            jPanel2.add(btn);
+            jPanel2.add(Box.createVerticalStrut(10));
+        }
+    }
+
+    private void setupPainelPrincipal() {
+        // Configuração do painel principal
+        fundoListaCardapio.setBackground(Color.WHITE);
+        fundoListaCardapio.setLayout(new BorderLayout(10, 10));
+        fundoListaCardapio.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Título
+        JLabel lblTitulo = new JLabel("Edição em massa");
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        fundoListaCardapio.add(lblTitulo, BorderLayout.NORTH);
+
+        // Painel de filtros
+        panelFiltros = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelFiltros.setBackground(Color.WHITE);
+
+        cmbTodosItens = new JComboBox<>(new String[]{"Todos itens"});
+        cmbFiltrarStatus = new JComboBox<>(new String[]{"Filtrar por status"});
+        txtBusca = new JTextField(20);
+        btnAcaoMassa = new JButton("Ação em massa");
+        
+        // Estilização dos componentes
+        cmbTodosItens.setPreferredSize(new Dimension(150, 35));
+        cmbFiltrarStatus.setPreferredSize(new Dimension(150, 35));
+        txtBusca.setPreferredSize(new Dimension(300, 35));
+        btnAcaoMassa.setPreferredSize(new Dimension(120, 35));
+        btnAcaoMassa.setBackground(new Color(0, 123, 255));
+        btnAcaoMassa.setForeground(Color.WHITE);
+        btnAcaoMassa.setFocusPainted(false);
+
+        panelFiltros.add(cmbTodosItens);
+        panelFiltros.add(Box.createHorizontalStrut(10));
+        panelFiltros.add(cmbFiltrarStatus);
+        panelFiltros.add(Box.createHorizontalStrut(10));
+        panelFiltros.add(txtBusca);
+        panelFiltros.add(Box.createHorizontalStrut(10));
+        panelFiltros.add(btnAcaoMassa);
+
+        fundoListaCardapio.add(panelFiltros, BorderLayout.CENTER);
+
+        // Configuração da tabela
+        String[] colunas = {"", "Item", "Categoria", "Disponibilidade", "Status"};
+        tableModel = new DefaultTableModel(colunas, 0) {
+            @Override
+            public Class<?> getColumnClass(int column) {
+                return column == 0 ? Boolean.class : String.class;
+            }
+        };
+
+        tableProdutos = new JTable(tableModel);
+        tableProdutos.setRowHeight(60);
+        tableProdutos.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tableProdutos.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tableProdutos.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tableProdutos.getColumnModel().getColumn(3).setPreferredWidth(200);
+        tableProdutos.getColumnModel().getColumn(4).setPreferredWidth(100);
+
+        JScrollPane scrollPane = new JScrollPane(tableProdutos);
+        fundoListaCardapio.add(scrollPane, BorderLayout.CENTER);
+
+        // Painel de paginação
+        panelPaginacao = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelPaginacao.setBackground(Color.WHITE);
+        
+        btnAnterior = new JButton("Anterior");
+        lblPaginaAtual = new JLabel("Página 1 de 10");
+        btnProximo = new JButton("Próximo");
+        
+        panelPaginacao.add(btnAnterior);
+        panelPaginacao.add(Box.createHorizontalStrut(10));
+        panelPaginacao.add(lblPaginaAtual);
+        panelPaginacao.add(Box.createHorizontalStrut(10));
+        panelPaginacao.add(btnProximo);
+        
+        fundoListaCardapio.add(panelPaginacao, BorderLayout.SOUTH);
+
+        // Adicionar alguns dados de exemplo
+        adicionarDadosExemplo();
+    }
+
+    private void adicionarDadosExemplo() {
+        // Adicionar alguns itens de exemplo à tabela
+        Object[] row1 = {false, "Baurus por R$10,00", "Lanches", "D S T Q Q S S", "Ativo"};
+        Object[] row2 = {false, "X-Burger por R$15,00", "Lanches", "D S T Q Q S S", "Ativo"};
+        Object[] row3 = {false, "Batata Frita por R$8,00", "Acompanhamentos", "D S T Q Q S S", "Inativo"};
+        
+        tableModel.addRow(row1);
+        tableModel.addRow(row2);
+        tableModel.addRow(row3);
     }
 
     /**
@@ -56,11 +198,11 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
 
         jLabel2.setText("Olá Nearfood!");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(1070, 10, 80, 16);
+        jLabel2.setBounds(1070, 10, 80, 17);
 
         btnBotaoSair.setText("Sair");
         jPanel1.add(btnBotaoSair);
-        btnBotaoSair.setBounds(1090, 40, 50, 23);
+        btnBotaoSair.setBounds(1070, 40, 70, 23);
 
         iconeLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/traced-logo-nearfood.png.png"))); // NOI18N
         iconeLogo.setText("NearFood");
@@ -70,7 +212,7 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Near Food");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(80, 30, 60, 16);
+        jLabel1.setBounds(80, 30, 60, 17);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel3.setText("Gerenciamento de cardápios");
@@ -124,7 +266,7 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,8 +309,6 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
         txtCampoDeBuscaProdutos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\guilherme.ffsousa\\Pictures\\Nearfood\\food-and-restaurant (1).png")); // NOI18N
         jPanel3.add(jLabel4);
 
         conteinerCardapio.setViewportView(jPanel3);
@@ -242,4 +382,9 @@ public class TelaGerenciarCardapio extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtCampoDeBuscaProdutos;
     // End of variables declaration//GEN-END:variables
+
+    public static void main(String[] args) {
+        TelaGerenciarCardapio tela = new TelaGerenciarCardapio();
+        tela.setVisible(true);
+    }
 }
