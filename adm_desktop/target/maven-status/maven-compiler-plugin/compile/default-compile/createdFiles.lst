@@ -1,14 +1,10 @@
 br/com/nearfood/view/Pedidos$1.class
 br/com/nearfood/model/Produto.class
 br/com/nearfood/controller/LoginController.class
-br/com/nearfood/view/TelaCadastroProduto$6.class
 br/com/nearfood/view/TelaResetSenha.class
 br/com/nearfood/view/TelaPrincipal$4.class
-br/com/nearfood/view/TelaCadastroProduto.class
 br/com/nearfood/view/TelaBackup$3.class
-br/com/nearfood/view/TelaCadastroProduto$3.class
 br/com/nearfood/model/Prato.class
-br/com/nearfood/view/TelaCadastroProduto$2.class
 br/com/nearfood/view/TelaOqueSomos$3.class
 br/com/nearfood/model/Conexao.class
 br/com/nearfood/view/Pedidos.class
@@ -18,11 +14,9 @@ br/com/nearfood/model/Busca.class
 br/com/nearfood/view/TelaPrincipal.class
 br/com/nearfood/view/TelaBackup$1.class
 br/com/nearfood/view/TelaOqueSomos$4.class
-br/com/nearfood/view/TelaCadastroProduto$1.class
 br/com/nearfood/view/Pedidos$3.class
 br/com/nearfood/model/Restaurant.class
 br/com/nearfood/view/TelaPrincipal$5.class
-br/com/nearfood/view/TelaCadastroProduto$5.class
 br/com/nearfood/view/TelaOqueSomos.class
 br/com/nearfood/view/TelaPrincipal$2.class
 br/com/nearfood/view/TelaOqueSomos$1.class
@@ -33,4 +27,3 @@ br/com/nearfood/view/TelaBackup.class
 br/com/nearfood/view/TelaOqueSomos$2.class
 br/com/nearfood/model/Usuario.class
 br/com/nearfood/view/TelaBackup$2.class
-br/com/nearfood/view/TelaCadastroProduto$4.class
