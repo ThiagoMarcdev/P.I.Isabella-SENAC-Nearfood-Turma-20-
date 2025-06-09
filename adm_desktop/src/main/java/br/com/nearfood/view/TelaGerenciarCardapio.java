@@ -164,7 +164,7 @@ public class TelaGerenciarCardapio extends JFrame {
 
         return panel;
     }
-
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new TelaGerenciarCardapio().setVisible(true));
     }

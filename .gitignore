@@ -48,7 +48,9 @@ htmlcov/
 *.cover
 
 # === Java ===
-
+# Para ignorar a pasta target dentro do projeto desktop
+/adm_desktop/target/
+*.class
 # Classes compiladas
 *.class
 
