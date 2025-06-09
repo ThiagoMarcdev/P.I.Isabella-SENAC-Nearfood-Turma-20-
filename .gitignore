@@ -1,0 +1,89 @@
+# === Python / Django ===
+
+# Ambientes virtuais
+venv/
+env/
+myvenv/
+
+# Byte-compiled / cache
+*.py[cod]
+__pycache__/
+*.so
+*.pyc 
+
+# IDEs e configurações locais
+.vscode/
+.idea/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Banco de dados SQLite
+*.sqlite3
+db.sqlite3
+
+# Arquivos de log
+*.log
+
+# Arquivos de ambiente / variáveis sensíveis
+.env
+
+# Migrations do Django
+**/migrations/
+!**/migrations/__init__.py
+
+# Arquivos estáticos e de mídia
+/staticfiles/
+/media/
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.bak
+
+# Arquivos de testes
+coverage.xml
+htmlcov/
+*.cover
+
+# === Java ===
+
+# Classes compiladas
+*.class
+
+# Diretórios de build
+/build/
+/bin/
+/out/
+/target/
+
+# Pacotes Java
+*.jar
+*.war
+*.ear
+
+# Arquivos de IDEs (Eclipse, IntelliJ, NetBeans)
+*.iml
+*.ipr
+*.iws
+.idea/
+*.classpath
+*.project
+*.settings/
+.nb-gradle/
+*.nb-gradle-properties
+
+# Logs
+*.log
+
+# Formulários e arquivos de interface (opcional)
+*.form
+
+# Imagens opcionais (ativar se quiser ignorar)
+#/*.png
+#/*.jpg
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
