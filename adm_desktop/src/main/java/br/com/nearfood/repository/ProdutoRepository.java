@@ -26,7 +26,7 @@ public class ProdutoRepository {
     }
     
     public void atualizar (Produto produto){
-        delete(produto.getId());
+        delete((int) produto.getId());
         salvar(produto);
         
         
