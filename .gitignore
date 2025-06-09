@@ -29,11 +29,11 @@ db.sqlite3
 # Arquivos de ambiente / variáveis sensíveis
 .env
 
-# Migrations (se quiser evitar versionar)
+# Migrations do Django
 **/migrations/
 !**/migrations/__init__.py
 
-# Arquivos estáticos e media gerados
+# Arquivos estáticos e de mídia
 /staticfiles/
 /media/
 
@@ -47,25 +47,23 @@ coverage.xml
 htmlcov/
 *.cover
 
-# Arquivos de pip
-pip-log.txt
-pip-delete-this-directory.txt
-
 # === Java ===
 
-# Arquivos compilados
+# Classes compiladas
 *.class
 
 # Diretórios de build
 /build/
+/bin/
+/out/
 /target/
 
-# Arquivos de pacotes
+# Pacotes Java
 *.jar
 *.war
 *.ear
 
-# Arquivos de IDEs
+# Arquivos de IDEs (Eclipse, IntelliJ, NetBeans)
 *.iml
 *.ipr
 *.iws
@@ -73,14 +71,19 @@ pip-delete-this-directory.txt
 *.classpath
 *.project
 *.settings/
+.nb-gradle/
+*.nb-gradle-properties
 
-# Arquivos temporários
+# Logs
 *.log
 
-# Arquivos de formulário ou imagens (opcional)
+# Formulários e arquivos de interface (opcional)
 *.form
-#*.png
+
+# Imagens opcionais (ativar se quiser ignorar)
+#/*.png
+#/*.jpg
 
 # Arquivos de sistema
-.DS_Store   
+.DS_Store
 Thumbs.db
