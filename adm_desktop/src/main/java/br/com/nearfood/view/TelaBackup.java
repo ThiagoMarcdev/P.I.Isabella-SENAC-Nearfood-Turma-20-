@@ -10,9 +10,12 @@ package br.com.nearfood.view;
  */
 public class TelaBackup extends javax.swing.JFrame {
 
+<<<<<<< HEAD
     private boolean True;
     private boolean False;
 
+=======
+>>>>>>> develop
     /**
      * Creates new form TelaBackup
      */
@@ -30,6 +33,7 @@ public class TelaBackup extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+<<<<<<< HEAD
         txtBotao = new javax.swing.JButton();
         txtCancelar = new javax.swing.JButton();
 
@@ -61,10 +65,76 @@ public class TelaBackup extends javax.swing.JFrame {
         });
         getContentPane().add(txtCancelar);
         txtCancelar.setBounds(230, 210, 100, 26);
+=======
+        txtSim = new javax.swing.JButton();
+        txtNao = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Deseja fazer um backup?");
+
+        txtSim.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        txtSim.setText("SIM");
+        txtSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSimActionPerformed(evt);
+            }
+        });
+
+        txtNao.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        txtNao.setText("NÃO");
+        txtNao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNaoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Nirmala UI", 3, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("      NearFood");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(txtSim)
+                        .addGap(95, 95, 95)
+                        .addComponent(txtNao))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(100, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNao)
+                    .addComponent(txtSim))
+                .addGap(61, 61, 61)
+                .addComponent(jLabel2)
+                .addGap(14, 14, 14))
+        );
+>>>>>>> develop
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void txtBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBotaoActionPerformed
         // Botão "SIM"
         txtBotao.setEnabled(True);
@@ -74,6 +144,18 @@ public class TelaBackup extends javax.swing.JFrame {
         // Botão de "CANCELAR"
         txtCancelar.setEnabled(False);
     }//GEN-LAST:event_txtCancelarActionPerformed
+=======
+    private void txtSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSimActionPerformed
+        // BOTÃO DO "SIM"
+        txtSim.setEnabled(true);
+    }//GEN-LAST:event_txtSimActionPerformed
+
+    private void txtNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNaoActionPerformed
+        // BOTÃO DO "NÃO"
+        txtNao.setEnabled(false);
+        
+    }//GEN-LAST:event_txtNaoActionPerformed
+>>>>>>> develop
 
     /**
      * @param args the command line arguments
@@ -112,7 +194,13 @@ public class TelaBackup extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+<<<<<<< HEAD
     private javax.swing.JButton txtBotao;
     private javax.swing.JButton txtCancelar;
+=======
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton txtNao;
+    private javax.swing.JButton txtSim;
+>>>>>>> develop
     // End of variables declaration//GEN-END:variables
 }

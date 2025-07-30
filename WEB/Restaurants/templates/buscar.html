@@ -1,0 +1,15 @@
+<!-- templates/buscar.html -->
+
+<form method="post">
+  {% csrf_token %}
+  <input type="text" name="prato" placeholder="Digite o prato" required>
+  <button type="submit">Buscar</button>
+</form>
+
+<hr>
+
+<ul>
+  {% for r in restaurantes %}
+    <li><strong>{{ r.nome }}</strong> — {{ r.endereco }} (Nota: {{ r.nota }})</li>
+  {% endfor %}
+</ul>
