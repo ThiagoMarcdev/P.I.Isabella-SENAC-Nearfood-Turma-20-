@@ -4,53 +4,54 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class TelaGerenciarCardapios extends JFrame {
+public class TelaGerenciarCardapio extends JFrame {
 
     CardLayout cardLayout = new CardLayout();
     JPanel painelPrincipal = new JPanel(cardLayout);
 
-    public TelaGerenciarCardapios() {
+    public TelaGerenciarCardapio() {
         setTitle("NearFood - Gerenciamento de Cardápios");
         setSize(1000, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Painel Lateral (menu) =================================================
+        // Painel Lateral (menu)
         JPanel menuLateral = new JPanel();
         menuLateral.setLayout(new BoxLayout(menuLateral, BoxLayout.Y_AXIS));
         menuLateral.setBackground(new Color(255, 102, 0));
         menuLateral.setPreferredSize(new Dimension(200, 0));
 
-        // Botões principais do menu =================================================
+        // Botões principais do menu
         JButton btnInicio = new JButton("Início");
         JButton btnGerenciarCardapio = new JButton("Gerenciar Cardápio");
         JButton btnPedidos = new JButton("Pedidos");
+        JButton btnConfiguracoes = new JButton("Configurações da Cozinha");
         JButton btnAvaliacoes = new JButton("Avaliações");
         JButton btnRelatorios = new JButton("Relatórios");
 
-        // Submenu de "Gerenciar Cardápio" (inicialmente oculto) =================================================
+        // Submenu de "Gerenciar Cardápio" (inicialmente oculto)
         JPanel subMenuCardapio = new JPanel();
         subMenuCardapio.setLayout(new BoxLayout(subMenuCardapio, BoxLayout.Y_AXIS));
         subMenuCardapio.setBackground(new Color(255, 153, 51));
         subMenuCardapio.setVisible(false);
 
-        // Sub-abas =================================================
+        // Sub-abas
         JButton btnCadastroProdutos = new JButton("Cadastrar Produto");
         JButton btnVerProdutos = new JButton("Ver Produtos");
 
         subMenuCardapio.add(btnCadastroProdutos);
         subMenuCardapio.add(btnVerProdutos);
 
-        // Adiciona os botões ao menu lateral =================================================
+        // Adiciona os botões ao menu lateral
         menuLateral.add(btnInicio);
         menuLateral.add(btnGerenciarCardapio);
         menuLateral.add(subMenuCardapio); // Submenu que aparece/desaparece
         menuLateral.add(btnPedidos);
-        
+        menuLateral.add(btnConfiguracoes);
         menuLateral.add(btnAvaliacoes);
         menuLateral.add(btnRelatorios);
 
-        // Telas principais =================================================
+        // Telas principais
         JPanel telaInicio = new JPanel();
         telaInicio.add(new JLabel("Bem-vindo ao NearFood"));
 
@@ -59,11 +60,11 @@ public class TelaGerenciarCardapios extends JFrame {
         painelPrincipal.add(telaInicio, "inicio");
         painelPrincipal.add(telaCadastroProdutos, "cadastro");
 
-        // Ações dos botões =================================================
+        // Ações dos botões
         btnInicio.addActionListener(e -> cardLayout.show(painelPrincipal, "inicio"));
 
         btnGerenciarCardapio.addActionListener(e -> {
-            // Alterna a visibilidade do submenu =================================================
+            // Alterna a visibilidade do submenu
             subMenuCardapio.setVisible(!subMenuCardapio.isVisible());
             revalidate();
             repaint();
@@ -71,7 +72,7 @@ public class TelaGerenciarCardapios extends JFrame {
 
         btnCadastroProdutos.addActionListener(e -> cardLayout.show(painelPrincipal, "cadastro"));
 
-        // Layout final da tela =================================================
+        // Layout final da tela
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(criarTopo(), BorderLayout.NORTH);
         getContentPane().add(menuLateral, BorderLayout.WEST);
@@ -84,20 +85,21 @@ public class TelaGerenciarCardapios extends JFrame {
         topo.setPreferredSize(new Dimension(0, 60));
         topo.setBackground(new Color(255, 240, 230));
 
-        // Esquerda: logo =================================================
+        // Esquerda: logo
+        //JLabel lblLogo = new JLabel(new ImageIcon("adm_desktop/src/main/java/resources/images/traced-logo-nearfood.png.png"));
         ImageIcon icon = new ImageIcon(getClass().getResource("/images/traced-logo-nearfood.png.png"));
-        Image img = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        Image img = icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(img);
 
         JLabel lblLogo = new JLabel(" NearFood", resizedIcon, JLabel.LEFT);
         lblLogo.setFont(new Font("SansSerif", Font.BOLD, 18));
         lblLogo.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 
-        // Centro: nome da página =================================================
+        // Centro: nome da página
         JLabel lblTitulo = new JLabel("Gerenciamento de Cardápios", SwingConstants.CENTER);
         lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 16));
 
-        // Direita: nome do restaurante + ícone =================================================
+        // Direita: nome do restaurante + ícone
         JPanel painelDireita = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         painelDireita.setOpaque(false);
         JLabel lblUsuario = new JLabel("Restaurante Exemplo  ");
@@ -113,7 +115,7 @@ public class TelaGerenciarCardapios extends JFrame {
         return topo;
     }
 
-    // Painel da tela de cadastro de produtos =================================================
+    // Painel da tela de cadastro de produtos
     private JPanel criarTelaCadastro() {
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -162,8 +164,8 @@ public class TelaGerenciarCardapios extends JFrame {
 
         return panel;
     }
-
+    
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new TelaGerenciarCardapios().setVisible(true));
+        SwingUtilities.invokeLater(() -> new TelaGerenciarCardapio().setVisible(true));
     }
 }
