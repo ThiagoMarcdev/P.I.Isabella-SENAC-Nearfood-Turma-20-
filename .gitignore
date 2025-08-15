@@ -175,6 +175,10 @@ cython_debug/
 # Compiled class file
 *.class
 
+# pasta target
+target/
+
+
 # Log file
 
 # BlueJ files
