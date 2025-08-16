@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package br.com.nearfood.view;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author firmodev
- */
-public class TelaResetSenha extends javax.swing.JFrame {
+
+public class TelaResetSenha extends TelaBaseComVoltar {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaResetSenha.class.getName());
 
@@ -18,13 +12,14 @@ public class TelaResetSenha extends javax.swing.JFrame {
      * Creates new form TelaResetSenhaJanela
      */
     public TelaResetSenha() {
+        super();
         initComponents();
         setSize(454, 351);
         setTitle("Redefinir Senha");
         setLocationRelativeTo(null); //centraliza a janela na tela
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//encerra o programa se fechada
         setResizable(false);
-        setLayout(null);
+        
     }
 
     /**
@@ -44,7 +39,7 @@ public class TelaResetSenha extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -53,7 +48,7 @@ public class TelaResetSenha extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 454, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,13 +85,25 @@ public class TelaResetSenha extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(330, 280, 100, 24);
 
-        jButton2.setBackground(new java.awt.Color(255, 51, 51));
-        jButton2.setText("Voltar");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(20, 280, 72, 24);
+        btnVoltar.setBackground(new java.awt.Color(255, 51, 51));
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar);
+        btnVoltar.setBounds(20, 280, 72, 24);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+        //voltar para tela login
+        voltarParaLogin();
+        
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,8 +131,8 @@ public class TelaResetSenha extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
