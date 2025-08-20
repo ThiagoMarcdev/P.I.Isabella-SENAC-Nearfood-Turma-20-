@@ -49,6 +49,7 @@ public class TelaResetSenha extends TelaBaseComVoltar {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 454, Short.MAX_VALUE)
+            .addGap(0, 454, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,29 +62,29 @@ public class TelaResetSenha extends TelaBaseComVoltar {
         jLabel1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         jLabel1.setText("Email: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 90, 45, 18);
+        jLabel1.setBounds(20, 90, 45, 19);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(80, 90, 290, 24);
+        jTextField1.setBounds(80, 90, 290, 22);
 
         jLabel2.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         jLabel2.setText("Nova Senha:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 150, 85, 18);
+        jLabel2.setBounds(20, 150, 88, 19);
 
         jLabel3.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         jLabel3.setText("Confirmar Senha:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 210, 130, 18);
+        jLabel3.setBounds(20, 210, 130, 19);
         getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(150, 210, 230, 24);
+        jPasswordField1.setBounds(150, 210, 230, 22);
         getContentPane().add(jPasswordField2);
-        jPasswordField2.setBounds(110, 150, 230, 24);
+        jPasswordField2.setBounds(110, 150, 230, 22);
 
         jButton1.setBackground(new java.awt.Color(0, 255, 0));
         jButton1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         jButton1.setText("Redefinir");
         getContentPane().add(jButton1);
-        jButton1.setBounds(330, 280, 100, 24);
+        jButton1.setBounds(330, 280, 100, 26);
 
         btnVoltar.setBackground(new java.awt.Color(255, 51, 51));
         btnVoltar.setText("Voltar");
