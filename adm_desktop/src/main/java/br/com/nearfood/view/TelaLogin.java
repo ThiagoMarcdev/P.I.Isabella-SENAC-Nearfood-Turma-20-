@@ -181,7 +181,7 @@ public class TelaLogin extends javax.swing.JFrame {
         try {
             if (user.login(email, senha)){
                 //String nome = user.getNome(email);
-                TelaPrincipal home = new TelaPrincipal();
+                TelaInicio home = new TelaInicio();
                 home.setVisible(true);
                 this.dispose();
             }
