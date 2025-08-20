@@ -1,5 +1,6 @@
 
 package br.com.nearfood.view;
+import javax.swing.*;
 
 import br.com.nearfood.controller.LoginController;
 import br.com.nearfood.model.Usuario;
@@ -15,7 +16,7 @@ public class TelaLogin extends javax.swing.JFrame {
      * Creates new form TelaLogin
      */
     
-    private LoginController loginController;
+    private final LoginController loginController;
     
     
     public TelaLogin() {
@@ -120,11 +121,16 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1.add(lblFazerCadastro);
         lblFazerCadastro.setBounds(205, 154, 221, 16);
 
-        jCheckBox1.setText("Termos de uso");
+        jCheckBox1.setText("Aceitar Termos de Uso");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jCheckBox1);
-        jCheckBox1.setBounds(50, 180, 110, 21);
+        jCheckBox1.setBounds(50, 180, 172, 22);
         jPanel1.add(txtMensagem);
-        txtMensagem.setBounds(60, 210, 240, 0);
+        txtMensagem.setBounds(60, 210, 280, 0);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 140, 495, 251);
@@ -136,9 +142,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif CJK HK", 0, 24)); // NOI18N
         jLabel5.setText("Near Food");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(260, 100, 130, 35);
+        jLabel5.setBounds(260, 100, 130, 33);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/traced-logo-nearfood.png.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/traced-logo-nearfood.png.png"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(160, 70, 100, 90);
 
@@ -175,7 +181,7 @@ public class TelaLogin extends javax.swing.JFrame {
         try {
             if (user.login(email, senha)){
                 //String nome = user.getNome(email);
-                TelaPrincipal home = new TelaPrincipal();
+                TelaInicio home = new TelaInicio();
                 home.setVisible(true);
                 this.dispose();
             }
@@ -208,6 +214,10 @@ public class TelaLogin extends javax.swing.JFrame {
     private void lblFazerCadastroAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblFazerCadastroAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_lblFazerCadastroAncestorAdded
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
