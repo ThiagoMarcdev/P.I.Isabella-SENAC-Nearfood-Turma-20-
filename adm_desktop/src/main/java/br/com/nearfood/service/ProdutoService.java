@@ -1,16 +1,16 @@
 
 
-package br.com.nearfood.services;
+package br.com.nearfood.service;
 
 import br.com.nearfood.model.Produto;
-import br.com.nearfood.repository.ProdutoRepository;
+import br.com.nearfood.dao.ProdutoDao;
 import java.util.List;
 
 public class ProdutoService {
     
-    private ProdutoRepository repository;
+    private ProdutoDao repository;
     
-    public ProdutoService(ProdutoRepository repository){
+    public ProdutoService(ProdutoDao repository){
         this.repository = repository;
         
     }

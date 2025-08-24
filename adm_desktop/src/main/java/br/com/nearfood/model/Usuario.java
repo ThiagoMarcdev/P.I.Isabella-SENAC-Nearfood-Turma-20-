@@ -1,6 +1,7 @@
 package br.com.nearfood.model;
 
 //import java.awt.List;
+import br.com.nearfood.config.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -2,7 +2,7 @@
 package br.com.nearfood.view;
 
 import br.com.nearfood.model.Usuario;
-import br.com.nearfood.model.Conexao;
+import br.com.nearfood.config.Conexao;
 import br.com.nearfood.controller.CadastrarUsuarioController;
 import br.com.nearfood.controller.LoginController;
 

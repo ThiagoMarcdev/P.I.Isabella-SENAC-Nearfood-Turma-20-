@@ -1,4 +1,4 @@
-package br.com.nearfood.model;
+package br.com.nearfood.config;
 
 /*Essa classe é para fazer toda a configuração do nosso banco de dados
     utilizado. Objetivo é centralizar configurações referentes a isso

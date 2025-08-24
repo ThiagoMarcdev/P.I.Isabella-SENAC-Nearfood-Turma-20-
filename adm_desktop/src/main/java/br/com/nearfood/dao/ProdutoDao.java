@@ -1,10 +1,10 @@
-package br.com.nearfood.repository;
+package br.com.nearfood.dao;
 
 import br.com.nearfood.model.Produto;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ProdutoRepository {
+public class ProdutoDao {
 
     private final List<Produto> produtos = new ArrayList<>();
 

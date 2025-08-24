@@ -4,18 +4,24 @@
  */
 package br.com.nearfood.view;
 
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import org.netbeans.lib.awtextra.AbsoluteLayout;
+
 /**
  *
  * @author firmodev
  */
-public class TelaInicio extends javax.swing.JFrame {
+public class TelaEstoque extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaPrinciapal
      */
-    public TelaInicio() {
+    public TelaEstoque() {
         initComponents();
         //setSize(1280, 720);
+        PainelEstoque painelEstoque = new PainelEstoque();
+        pnlMain.add(painelEstoque, "cadastroProduto"); //adicionando painel de cadastro de estoque
     }
 
     /**
@@ -27,63 +33,76 @@ public class TelaInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        pnlPainelDeNavegacao = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+        pnlHeader = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnInicio = new javax.swing.JButton();
         btnVender = new javax.swing.JButton();
         btnProdutos = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
         btnHistorico = new javax.swing.JButton();
-        btnUsuarios = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
         lblProfileImage = new javax.swing.JLabel();
+        pnlMain = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio");
-        setBackground(new java.awt.Color(0, 0, 0));
+        setBackground(new java.awt.Color(255, 255, 153));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(255, 124, 38));
-        jPanel2.setAlignmentY(10.0F);
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
+        pnlPainelDeNavegacao.setBackground(new java.awt.Color(255, 124, 38));
+        pnlPainelDeNavegacao.setAlignmentY(10.0F);
+        pnlPainelDeNavegacao.setLayout(new javax.swing.BoxLayout(pnlPainelDeNavegacao, javax.swing.BoxLayout.Y_AXIS));
 
-        jButton1.setText("Vendas do dia");
-        jPanel2.add(jButton1);
+        jButton1.setText("Cadastrar Produto");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        pnlPainelDeNavegacao.add(jButton1);
 
-        jButton2.setText("Status de Mesas");
-        jPanel2.add(jButton2);
+        jButton2.setText("Ver Produtos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        pnlPainelDeNavegacao.add(jButton2);
 
-        jButton3.setText("Alertas");
-        jPanel2.add(jButton3);
-
-        jButton4.setText("jButton4");
-        jPanel2.add(jButton4);
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 43, 200, 680);
+        getContentPane().add(pnlPainelDeNavegacao);
+        pnlPainelDeNavegacao.setBounds(0, 93, 200, 630);
         getContentPane().add(jLabel5);
         jLabel5.setBounds(330, 170, 0, 0);
         getContentPane().add(filler1);
         filler1.setBounds(710, 390, 0, 0);
+
+        pnlHeader.setBackground(new java.awt.Color(255, 204, 153));
+
+        jLabel1.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/traced-logo-nearfood.png.png"))); // NOI18N
+        jLabel1.setText("NearFood");
+
+        jPanel4.setBackground(new java.awt.Color(255, 204, 153));
 
         btnInicio.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
         btnInicio.setText("Inicio");
         jPanel4.add(btnInicio);
 
         btnVender.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnVender.setText("Vender");
+        btnVender.setText("Novo Pedido");
         jPanel4.add(btnVender);
 
         btnProdutos.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnProdutos.setText("Produtos");
+        btnProdutos.setText("Cardapío");
         jPanel4.add(btnProdutos);
 
         btnClientes.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
@@ -94,37 +113,64 @@ public class TelaInicio extends javax.swing.JFrame {
         btnHistorico.setText("Histórico");
         jPanel4.add(btnHistorico);
 
-        btnUsuarios.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnUsuarios.setText("Usuarios");
-        jPanel4.add(btnUsuarios);
-
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(0, 0, 620, 39);
+        jButton3.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
+        jButton3.setText("Estoque");
+        jPanel4.add(jButton3);
 
         lblProfileImage.setText("Icon-profile");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(206, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
+        pnlHeader.setLayout(pnlHeaderLayout);
+        pnlHeaderLayout.setHorizontalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(lblProfileImage)
-                .addGap(19, 19, 19))
+                .addGap(28, 28, 28))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblProfileImage)
+        pnlHeaderLayout.setVerticalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
+                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlHeaderLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(lblProfileImage))
+                    .addGroup(pnlHeaderLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel5);
-        jPanel5.setBounds(900, 0, 300, 30);
+        getContentPane().add(pnlHeader);
+        pnlHeader.setBounds(0, 0, 1200, 90);
+
+        pnlMain.setLayout(new java.awt.CardLayout());
+        getContentPane().add(pnlMain);
+        pnlMain.setBounds(210, 100, 980, 620);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // carregar painel de cadastro de produtos
+        // 1. Pega o layout do pnlMain e faz o cast para CardLayout
+    CardLayout cardLayout = (CardLayout) pnlMain.getLayout();
+
+    // 2. Usa o método .show() do CardLayout para mostrar o painel desejado
+    cardLayout.show(pnlMain, "cadastroProduto");
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,14 +189,26 @@ public class TelaInicio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEstoque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -159,7 +217,7 @@ public class TelaInicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaInicio().setVisible(true);
+                new TelaEstoque().setVisible(true);
             }
         });
     }
@@ -169,17 +227,19 @@ public class TelaInicio extends javax.swing.JFrame {
     private javax.swing.JButton btnHistorico;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnProdutos;
-    private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVender;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JLabel lblProfileImage;
+    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JPanel pnlMain;
+    private javax.swing.JPanel pnlPainelDeNavegacao;
     // End of variables declaration//GEN-END:variables
 }

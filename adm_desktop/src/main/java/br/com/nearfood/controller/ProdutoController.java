@@ -1,7 +1,7 @@
 package br.com.nearfood.controller;
 
 import br.com.nearfood.model.Produto;
-import br.com.nearfood.services.ProdutoService;
+import br.com.nearfood.service.ProdutoService;
 import java.math.BigDecimal;
 
 public class ProdutoController {

@@ -27,64 +27,72 @@ public class TelaInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        pnlPainelDeNavegacao = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+        jPanel5 = new javax.swing.JPanel();
+        pnlHeader = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnInicio = new javax.swing.JButton();
-        btnVender = new javax.swing.JButton();
-        btnProdutos = new javax.swing.JButton();
+        btnNovoPedido = new javax.swing.JButton();
+        btnCadapio = new javax.swing.JButton();
         btnClientes = new javax.swing.JButton();
         btnHistorico = new javax.swing.JButton();
+        btnEstoque = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
         lblProfileImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio");
-        setBackground(new java.awt.Color(0, 0, 0));
+        setBackground(new java.awt.Color(255, 255, 153));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(255, 124, 38));
-        jPanel2.setAlignmentY(10.0F);
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
-
-        jButton1.setText("Vendas do dia");
-        jPanel2.add(jButton1);
-
-        jButton2.setText("Status de Mesas");
-        jPanel2.add(jButton2);
-
-        jButton3.setText("Alertas");
-        jPanel2.add(jButton3);
-
-        jButton4.setText("jButton4");
-        jPanel2.add(jButton4);
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 43, 200, 680);
+        pnlPainelDeNavegacao.setBackground(new java.awt.Color(255, 124, 38));
+        pnlPainelDeNavegacao.setAlignmentY(10.0F);
+        pnlPainelDeNavegacao.setLayout(new javax.swing.BoxLayout(pnlPainelDeNavegacao, javax.swing.BoxLayout.Y_AXIS));
+        getContentPane().add(pnlPainelDeNavegacao);
+        pnlPainelDeNavegacao.setBounds(0, 93, 200, 630);
         getContentPane().add(jLabel5);
         jLabel5.setBounds(330, 170, 0, 0);
         getContentPane().add(filler1);
         filler1.setBounds(710, 390, 0, 0);
 
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel5);
+        jPanel5.setBounds(1020, 240, 130, 40);
+
+        pnlHeader.setBackground(new java.awt.Color(255, 204, 153));
+
+        jLabel1.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/traced-logo-nearfood.png.png"))); // NOI18N
+        jLabel1.setText("NearFood");
+
+        jPanel4.setBackground(new java.awt.Color(255, 204, 153));
+
         btnInicio.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
         btnInicio.setText("Inicio");
         jPanel4.add(btnInicio);
 
-        btnVender.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnVender.setText("Vender");
-        jPanel4.add(btnVender);
+        btnNovoPedido.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
+        btnNovoPedido.setText("Novo Pedido");
+        jPanel4.add(btnNovoPedido);
 
-        btnProdutos.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnProdutos.setText("Produtos");
-        jPanel4.add(btnProdutos);
+        btnCadapio.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
+        btnCadapio.setText("Cardápio");
+        jPanel4.add(btnCadapio);
 
         btnClientes.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
         btnClientes.setText("Clientes");
@@ -94,34 +102,46 @@ public class TelaInicio extends javax.swing.JFrame {
         btnHistorico.setText("Histórico");
         jPanel4.add(btnHistorico);
 
+        btnEstoque.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
+        btnEstoque.setText("Estoque");
+        jPanel4.add(btnEstoque);
+
         btnUsuarios.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
         btnUsuarios.setText("Usuarios");
         jPanel4.add(btnUsuarios);
 
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(0, 0, 620, 39);
-
         lblProfileImage.setText("Icon-profile");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(206, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
+        pnlHeader.setLayout(pnlHeaderLayout);
+        pnlHeaderLayout.setHorizontalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(99, 99, 99)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addComponent(lblProfileImage)
-                .addGap(19, 19, 19))
+                .addGap(28, 28, 28))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblProfileImage)
+        pnlHeaderLayout.setVerticalGroup(
+            pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHeaderLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlHeaderLayout.createSequentialGroup()
+                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlHeaderLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlHeaderLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(lblProfileImage)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel5);
-        jPanel5.setBounds(900, 0, 300, 30);
+        getContentPane().add(pnlHeader);
+        pnlHeader.setBounds(0, 0, 1200, 90);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,21 +185,20 @@ public class TelaInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadapio;
     private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnEstoque;
     private javax.swing.JButton btnHistorico;
     private javax.swing.JButton btnInicio;
-    private javax.swing.JButton btnProdutos;
+    private javax.swing.JButton btnNovoPedido;
     private javax.swing.JButton btnUsuarios;
-    private javax.swing.JButton btnVender;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblProfileImage;
+    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JPanel pnlPainelDeNavegacao;
     // End of variables declaration//GEN-END:variables
 }
