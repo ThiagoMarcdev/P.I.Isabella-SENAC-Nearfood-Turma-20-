@@ -8,12 +8,12 @@ package br.com.nearfood.view;
  *
  * @author firmodev
  */
-public class TelaInicio extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaPrinciapal
      */
-    public TelaInicio() {
+    public TelaPrincipal() {
         initComponents();
         //setSize(1280, 720);
     }
@@ -42,6 +42,7 @@ public class TelaInicio extends javax.swing.JFrame {
         btnEstoque = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
         lblProfileImage = new javax.swing.JLabel();
+        pnlPainelPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio");
@@ -143,6 +144,20 @@ public class TelaInicio extends javax.swing.JFrame {
         getContentPane().add(pnlHeader);
         pnlHeader.setBounds(0, 0, 1200, 90);
 
+        javax.swing.GroupLayout pnlPainelPrincipalLayout = new javax.swing.GroupLayout(pnlPainelPrincipal);
+        pnlPainelPrincipal.setLayout(pnlPainelPrincipalLayout);
+        pnlPainelPrincipalLayout.setHorizontalGroup(
+            pnlPainelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 970, Short.MAX_VALUE)
+        );
+        pnlPainelPrincipalLayout.setVerticalGroup(
+            pnlPainelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(pnlPainelPrincipal);
+        pnlPainelPrincipal.setBounds(210, 90, 970, 620);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -163,14 +178,18 @@ public class TelaInicio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -179,7 +198,7 @@ public class TelaInicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaInicio().setVisible(true);
+                new TelaPrincipal().setVisible(true);
             }
         });
     }
@@ -200,5 +219,6 @@ public class TelaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblProfileImage;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlPainelDeNavegacao;
+    private javax.swing.JPanel pnlPainelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
