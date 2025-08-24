@@ -8,15 +8,14 @@ package br.com.nearfood.view;
  *
  * @author firmodev
  */
-public class TelaVender extends javax.swing.JFrame {
+public class TelaInicio extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaPrinciapal
      */
-    public TelaVender() {
+    public TelaInicio() {
         initComponents();
-        setSize(1280, 720);
-        setLocationRelativeTo(null);
+        //setSize(1280, 720);
     }
 
     /**
@@ -28,11 +27,11 @@ public class TelaVender extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpnPainelDeFuncionalidades = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         jPanel4 = new javax.swing.JPanel();
@@ -44,36 +43,32 @@ public class TelaVender extends javax.swing.JFrame {
         btnUsuarios = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         lblProfileImage = new javax.swing.JLabel();
-        jpnPainelFuncionalidades2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inicio");
         setBackground(new java.awt.Color(0, 0, 0));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(null);
 
-        jpnPainelDeFuncionalidades.setBackground(new java.awt.Color(255, 124, 38));
-        jpnPainelDeFuncionalidades.setAlignmentY(10.0F);
-        jpnPainelDeFuncionalidades.setName(""); // NOI18N
-        jpnPainelDeFuncionalidades.setLayout(new javax.swing.BoxLayout(jpnPainelDeFuncionalidades, javax.swing.BoxLayout.Y_AXIS));
+        jPanel2.setBackground(new java.awt.Color(255, 124, 38));
+        jPanel2.setAlignmentY(10.0F);
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
 
-        jButton5.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        jButton5.setText("Novo Pedido");
-        jpnPainelDeFuncionalidades.add(jButton5);
+        jButton1.setText("Vendas do dia");
+        jPanel2.add(jButton1);
 
-        jButton6.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        jButton6.setText("Pedidos em Aberto");
-        jpnPainelDeFuncionalidades.add(jButton6);
+        jButton2.setText("Status de Mesas");
+        jPanel2.add(jButton2);
 
-        jButton7.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        jButton7.setText("Pagamentos");
-        jpnPainelDeFuncionalidades.add(jButton7);
+        jButton3.setText("Alertas");
+        jPanel2.add(jButton3);
 
-        jButton8.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        jButton8.setText("Cancelamentos");
-        jpnPainelDeFuncionalidades.add(jButton8);
+        jButton4.setText("jButton4");
+        jPanel2.add(jButton4);
 
-        getContentPane().add(jpnPainelDeFuncionalidades);
-        jpnPainelDeFuncionalidades.setBounds(0, 43, 200, 230);
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 43, 200, 680);
         getContentPane().add(jLabel5);
         jLabel5.setBounds(330, 170, 0, 0);
         getContentPane().add(filler1);
@@ -126,32 +121,7 @@ public class TelaVender extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel5);
-        jPanel5.setBounds(980, 0, 300, 30);
-
-        jpnPainelFuncionalidades2.setBackground(new java.awt.Color(255, 124, 38));
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Gears.png"))); // NOI18N
-        jButton2.setText("Configuração");
-
-        javax.swing.GroupLayout jpnPainelFuncionalidades2Layout = new javax.swing.GroupLayout(jpnPainelFuncionalidades2);
-        jpnPainelFuncionalidades2.setLayout(jpnPainelFuncionalidades2Layout);
-        jpnPainelFuncionalidades2Layout.setHorizontalGroup(
-            jpnPainelFuncionalidades2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnPainelFuncionalidades2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jButton2)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-        jpnPainelFuncionalidades2Layout.setVerticalGroup(
-            jpnPainelFuncionalidades2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnPainelFuncionalidades2Layout.createSequentialGroup()
-                .addContainerGap(381, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(20, 20, 20))
-        );
-
-        getContentPane().add(jpnPainelFuncionalidades2);
-        jpnPainelFuncionalidades2.setBounds(0, 270, 200, 450);
+        jPanel5.setBounds(900, 0, 300, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -173,18 +143,14 @@ public class TelaVender extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaVender.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaVender.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaVender.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaVender.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -193,7 +159,7 @@ public class TelaVender extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaVender().setVisible(true);
+                new TelaInicio().setVisible(true);
             }
         });
     }
@@ -206,16 +172,14 @@ public class TelaVender extends javax.swing.JFrame {
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton btnVender;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jpnPainelDeFuncionalidades;
-    private javax.swing.JPanel jpnPainelFuncionalidades2;
     private javax.swing.JLabel lblProfileImage;
     // End of variables declaration//GEN-END:variables
 }
