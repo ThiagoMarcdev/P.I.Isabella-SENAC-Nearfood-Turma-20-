@@ -2,7 +2,7 @@
 package br.com.nearfood.view;
 
 import br.com.nearfood.model.Usuario;
-import br.com.nearfood.model.Conexao;
+import br.com.nearfood.config.Conexao;
 import br.com.nearfood.controller.CadastrarUsuarioController;
 import br.com.nearfood.controller.LoginController;
 
@@ -62,6 +62,7 @@ public class TelaCadastro extends TelaBaseComVoltar {
         txtMensagem = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        chkTermosDeUso = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,6 +131,13 @@ public class TelaCadastro extends TelaBaseComVoltar {
                 .addContainerGap())
         );
 
+        chkTermosDeUso.setText("Aceito Termos de Uso");
+        chkTermosDeUso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkTermosDeUsoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -138,6 +146,7 @@ public class TelaCadastro extends TelaBaseComVoltar {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chkTermosDeUso)
                     .addComponent(jLabel1)
                     .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -160,7 +169,7 @@ public class TelaCadastro extends TelaBaseComVoltar {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(6, 6, 6)
                 .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,7 +185,9 @@ public class TelaCadastro extends TelaBaseComVoltar {
                 .addComponent(jLabel4)
                 .addGap(12, 12, 12)
                 .addComponent(txtConfirmaNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(14, 14, 14)
+                .addComponent(chkTermosDeUso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtMensagem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,6 +260,16 @@ public class TelaCadastro extends TelaBaseComVoltar {
 
     }//GEN-LAST:event_btnVoltaParaLoginActionPerformed
 
+    private void chkTermosDeUsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkTermosDeUsoActionPerformed
+        // cadastro somente será realizado após aceitar termos de uso
+        if(chkTermosDeUso.isSelected()){            
+            System.out.println("Usuario aceitou termos");
+        }else{
+            System.out.println("Usuario negou termos de uso");            
+        }
+        
+    }//GEN-LAST:event_chkTermosDeUsoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,6 +308,7 @@ public class TelaCadastro extends TelaBaseComVoltar {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalvarCadastro;
     private javax.swing.JButton btnVoltaParaLogin;
+    private javax.swing.JCheckBox chkTermosDeUso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

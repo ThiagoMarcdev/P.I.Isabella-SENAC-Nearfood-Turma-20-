@@ -43,7 +43,6 @@ public class TelaLogin extends javax.swing.JFrame {
         btnBotaoEntrar = new javax.swing.JButton();
         lblEsqueceuSenha = new javax.swing.JLabel();
         lblFazerCadastro = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
         txtMensagem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -61,7 +60,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Email:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(54, 6, 50, 20);
+        jLabel1.setBounds(54, 6, 60, 20);
         jPanel1.add(txtEmail);
         txtEmail.setBounds(54, 38, 389, 30);
 
@@ -78,6 +77,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1.add(txtSenha);
         txtSenha.setBounds(54, 118, 389, 30);
 
+        btnBotaoEntrar.setBackground(new java.awt.Color(153, 255, 153));
         btnBotaoEntrar.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         btnBotaoEntrar.setText("Entrar");
         btnBotaoEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -102,7 +102,7 @@ public class TelaLogin extends javax.swing.JFrame {
         lblEsqueceuSenha.getAccessibleContext().setAccessibleName("<html>\n\t<u>Esqueceu sua senha?</u>\n\n</html>");
 
         lblFazerCadastro.setFont(new java.awt.Font("Liberation Sans", 2, 13)); // NOI18N
-        lblFazerCadastro.setText("Não tem uma conta? Faça o Cadastro");
+        lblFazerCadastro.setText("<html>\n<U>Não tem uma conta? Faça o Cadastro</U>\n</html>");
         lblFazerCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblFazerCadastro.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -120,15 +120,6 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         jPanel1.add(lblFazerCadastro);
         lblFazerCadastro.setBounds(205, 154, 221, 16);
-
-        jCheckBox1.setText("Aceitar Termos de Uso");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jCheckBox1);
-        jCheckBox1.setBounds(50, 180, 172, 22);
         jPanel1.add(txtMensagem);
         txtMensagem.setBounds(60, 210, 280, 0);
 
@@ -181,7 +172,7 @@ public class TelaLogin extends javax.swing.JFrame {
         try {
             if (user.login(email, senha)){
                 //String nome = user.getNome(email);
-                TelaInicio home = new TelaInicio();
+                TelaPrincipal home = new TelaPrincipal();
                 home.setVisible(true);
                 this.dispose();
             }
@@ -214,10 +205,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private void lblFazerCadastroAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblFazerCadastroAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_lblFazerCadastroAncestorAdded
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,7 +246,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBotaoEntrar;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
