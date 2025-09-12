@@ -28,19 +28,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlPainelDeNavegacao = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         jPanel5 = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        btnInicio = new javax.swing.JButton();
-        btnNovoPedido = new javax.swing.JButton();
-        btnCadapio = new javax.swing.JButton();
-        btnClientes = new javax.swing.JButton();
-        btnHistorico = new javax.swing.JButton();
-        btnEstoque = new javax.swing.JButton();
-        btnUsuarios = new javax.swing.JButton();
         lblProfileImage = new javax.swing.JLabel();
         pnlPainelPrincipal = new javax.swing.JPanel();
 
@@ -54,6 +51,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pnlPainelDeNavegacao.setBackground(new java.awt.Color(255, 124, 38));
         pnlPainelDeNavegacao.setAlignmentY(10.0F);
         pnlPainelDeNavegacao.setLayout(new javax.swing.BoxLayout(pnlPainelDeNavegacao, javax.swing.BoxLayout.Y_AXIS));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Purchase Order.png"))); // NOI18N
+        jButton1.setText("Pedidos");
+        pnlPainelDeNavegacao.add(jButton1);
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Plus Math_1.png"))); // NOI18N
+        jButton2.setText("Novo Pedido");
+        pnlPainelDeNavegacao.add(jButton2);
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Menu.png"))); // NOI18N
+        jButton3.setText("Cardapio");
+        pnlPainelDeNavegacao.add(jButton3);
+
+        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Box.png"))); // NOI18N
+        jButton4.setText("Estoque");
+        pnlPainelDeNavegacao.add(jButton4);
+
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Bar Chart.png"))); // NOI18N
+        jButton5.setText("Relatório");
+        pnlPainelDeNavegacao.add(jButton5);
+
         getContentPane().add(pnlPainelDeNavegacao);
         pnlPainelDeNavegacao.setBounds(0, 93, 200, 630);
         getContentPane().add(jLabel5);
@@ -81,36 +104,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/traced-logo-nearfood.png.png"))); // NOI18N
         jLabel1.setText("NearFood");
 
-        jPanel4.setBackground(new java.awt.Color(255, 204, 153));
-
-        btnInicio.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnInicio.setText("Inicio");
-        jPanel4.add(btnInicio);
-
-        btnNovoPedido.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnNovoPedido.setText("Novo Pedido");
-        jPanel4.add(btnNovoPedido);
-
-        btnCadapio.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnCadapio.setText("Cardápio");
-        jPanel4.add(btnCadapio);
-
-        btnClientes.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnClientes.setText("Clientes");
-        jPanel4.add(btnClientes);
-
-        btnHistorico.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnHistorico.setText("Histórico");
-        jPanel4.add(btnHistorico);
-
-        btnEstoque.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnEstoque.setText("Estoque");
-        jPanel4.add(btnEstoque);
-
-        btnUsuarios.setFont(new java.awt.Font("Inter", 0, 18)); // NOI18N
-        btnUsuarios.setText("Usuarios");
-        jPanel4.add(btnUsuarios);
-
         lblProfileImage.setText("Icon-profile");
 
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
@@ -119,9 +112,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHeaderLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(99, 99, 99)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 921, Short.MAX_VALUE)
                 .addComponent(lblProfileImage)
                 .addGap(28, 28, 28))
         );
@@ -131,13 +122,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlHeaderLayout.createSequentialGroup()
-                .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlHeaderLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlHeaderLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(lblProfileImage)))
+                .addGap(33, 33, 33)
+                .addComponent(lblProfileImage)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -201,20 +187,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 new TelaPrincipal().setVisible(true);
             }
         });
+                
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadapio;
-    private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnEstoque;
-    private javax.swing.JButton btnHistorico;
-    private javax.swing.JButton btnInicio;
-    private javax.swing.JButton btnNovoPedido;
-    private javax.swing.JButton btnUsuarios;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel lblProfileImage;
     private javax.swing.JPanel pnlHeader;
