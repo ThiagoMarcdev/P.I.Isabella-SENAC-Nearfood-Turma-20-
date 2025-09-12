@@ -1,0 +1,76 @@
+body {
+    display: flex;
+    font-family: sans-serif;
+    margin: 0;
+    margin-left: 80px;
+    background-color: #f4f4f4;
+}
+
+.nav-list {
+    flex-direction: column;
+    list-style: none;
+    /* Remove os marcadores de lista */
+    padding: 0;
+    margin: 0;
+
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100vh;
+    background-color: #dbdbdb;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    /* Remove os pontos da lista */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    text-align: center;
+    /* Centraliza o conteúdo (o link com o ícone) */
+}
+
+.sidebar ul li a {
+    display: block;
+    /* Faz o link ocupar todo o espaço do <li> */
+    padding: 20px 0;
+    /* Espaçamento interno (20px em cima/baixo, 0 nos lados) */
+    color: #bdc3c7;
+    /* Cor dos ícones */
+    font-size: 24px;
+    /* Tamanho dos ícones */
+    text-decoration: none;
+    /* Remove o sublinhado dos links */
+    transition: all 0.3s ease;
+    /* Adiciona uma transição suave para efeitos */
+}
+
+.sidebar ul li a:hover {
+    background-color: #34495e;
+    /* Muda a cor de fundo ao passar o mouse */
+    color: #ffffff;
+    /* Muda a cor do ícone para branco */
+}
+
+.sidebar ul li a.active {
+    background-color: #1abc9c;
+    /* Uma cor de destaque para o item ativo */
+    color: #ffffff;
+    /* Ícone branco para o item ativo */
+    /* Você pode adicionar uma borda também, se quiser */
+    /* border-left: 4px solid #ffffff; */
+}
+
+.content {
+    padding: 30px;
+}

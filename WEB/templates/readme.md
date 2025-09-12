@@ -1,0 +1,1 @@
+Essa pasta templates na raiz funciona para alocar arquivos `HTML` globais do site.
