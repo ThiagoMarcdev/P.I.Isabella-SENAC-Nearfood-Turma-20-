@@ -4,7 +4,7 @@ import br.com.nearfood.model.Produto;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ProdutoDao {
+public class ProdutoDAO {
 
     private final List<Produto> produtos = new ArrayList<>();
 

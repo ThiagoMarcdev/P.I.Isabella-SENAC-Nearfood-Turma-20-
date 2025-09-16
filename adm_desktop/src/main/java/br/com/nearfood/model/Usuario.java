@@ -14,10 +14,6 @@ public class Usuario {
     private String email;
     
     private String senha;
-    
-    private String localizacao;
-    
-    private List<Prato> pratosfavoritos;
 
     public Integer getId() {
         return id;
@@ -58,22 +54,6 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public List<Prato> getPratosfavoritos() {
-        return pratosfavoritos;
-    }
-
-    public void setPratosfavoritos(List<Prato> pratosfavoritos) {
-        this.pratosfavoritos = pratosfavoritos;
-    }     
     
 
     

@@ -4,11 +4,21 @@
  */
 package br.com.nearfood.view;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import br.com.nearfood.view.panelNovoPedido;
+
 /**
  *
  * @author firmodev
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    
+     // O JPanel principal que irá conter os outros painéis.
+
+    // O gerenciador de layout que irá controlar a troca de painéis.
+    private CardLayout cardLayout;
+    
 
     /**
      * Creates new form TelaPrinciapal
@@ -16,6 +26,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         //setSize(1280, 720);
+        cardLayout = new CardLayout();
+        pnlPainelPrincipal.setLayout(cardLayout); // Aplique o CardLayout ao pnlPainelPrincipal
+        
+       pnlPainelPrincipal.add(new panelNovoPedido(), "novoPedido");
+        
     }
 
     /**
@@ -28,11 +43,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlPainelDeNavegacao = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnPedidos = new javax.swing.JButton();
+        btnNovoPedido = new javax.swing.JButton();
+        btnCardapio = new javax.swing.JButton();
+        btnEstoque = new javax.swing.JButton();
+        btnRelatorio = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
         jPanel5 = new javax.swing.JPanel();
@@ -52,30 +67,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pnlPainelDeNavegacao.setAlignmentY(10.0F);
         pnlPainelDeNavegacao.setLayout(new javax.swing.BoxLayout(pnlPainelDeNavegacao, javax.swing.BoxLayout.Y_AXIS));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Purchase Order.png"))); // NOI18N
-        jButton1.setText("Pedidos");
-        pnlPainelDeNavegacao.add(jButton1);
+        btnPedidos.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Purchase Order.png"))); // NOI18N
+        btnPedidos.setText("Pedidos");
+        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPedidosActionPerformed(evt);
+            }
+        });
+        pnlPainelDeNavegacao.add(btnPedidos);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Plus Math_1.png"))); // NOI18N
-        jButton2.setText("Novo Pedido");
-        pnlPainelDeNavegacao.add(jButton2);
+        btnNovoPedido.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        btnNovoPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Plus Math_1.png"))); // NOI18N
+        btnNovoPedido.setText("Novo Pedido");
+        btnNovoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoPedidoActionPerformed(evt);
+            }
+        });
+        pnlPainelDeNavegacao.add(btnNovoPedido);
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Menu.png"))); // NOI18N
-        jButton3.setText("Cardapio");
-        pnlPainelDeNavegacao.add(jButton3);
+        btnCardapio.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        btnCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Menu.png"))); // NOI18N
+        btnCardapio.setText("Cardapio");
+        pnlPainelDeNavegacao.add(btnCardapio);
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Box.png"))); // NOI18N
-        jButton4.setText("Estoque");
-        pnlPainelDeNavegacao.add(jButton4);
+        btnEstoque.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        btnEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Box.png"))); // NOI18N
+        btnEstoque.setText("Estoque");
+        pnlPainelDeNavegacao.add(btnEstoque);
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Bar Chart.png"))); // NOI18N
-        jButton5.setText("Relatório");
-        pnlPainelDeNavegacao.add(jButton5);
+        btnRelatorio.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        btnRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Bar Chart.png"))); // NOI18N
+        btnRelatorio.setText("Relatório");
+        pnlPainelDeNavegacao.add(btnRelatorio);
 
         getContentPane().add(pnlPainelDeNavegacao);
         pnlPainelDeNavegacao.setBounds(0, 93, 200, 630);
@@ -147,6 +172,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPedidosActionPerformed
+
+    private void btnNovoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoPedidoActionPerformed
+        // quando o usuario clicar nesse botão, aparecerá o panelNovoPedido
+        pnlPainelPrincipal.add(btnNovoPedido);
+        
+    }//GEN-LAST:event_btnNovoPedidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -192,12 +227,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCardapio;
+    private javax.swing.JButton btnEstoque;
+    private javax.swing.JButton btnNovoPedido;
+    private javax.swing.JButton btnPedidos;
+    private javax.swing.JButton btnRelatorio;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel5;

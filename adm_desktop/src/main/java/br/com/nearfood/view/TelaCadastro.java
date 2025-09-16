@@ -223,26 +223,24 @@ public class TelaCadastro extends TelaBaseComVoltar {
         String senha = txtCriaSenhaUsuario.getText();
         String confirmaSenha = txtConfirmaNovaSenha.getText();
 
-        Usuario user = new Usuario();
-        try {
-
-            if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-                txtMensagem.setText("Preencha os campos!");
-            } else if (nome.isBlank() || email.isBlank() || senha.isBlank()) {
-                txtMensagem.setText("Campos em branco. Preencha por favor!");
-            } else if (!confirmaSenha.equals(senha)) {
-                txtMensagem.setText("Senhas diferentes!");
-            } else {
-                //Cadastro do usuário
-                user.cadastrar(nome, email, senha);
-
-                //Envia ele para a tela de Login
-                TelaLogin login = new TelaLogin();
-                login.setVisible(true);
-                this.dispose();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        Usuario usuario = new Usuario();
+        
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+            txtMensagem.setText("Preencha os campos!");
+        } else if (nome.isBlank() || email.isBlank() || senha.isBlank()) {
+            txtMensagem.setText("Campos em branco. Preencha por favor!");
+        } else if (!confirmaSenha.equals(senha)) {
+            txtMensagem.setText("Senhas diferentes!");
+        } else {
+            //Cadastro do usuário
+            CadastrarUsuarioController cadastroUsuario = new CadastrarUsuarioController();
+            cadastroUsuario.
+            
+            
+            //Envia ele para a tela de Login
+            TelaLogin login = new TelaLogin();
+            login.setVisible(true);
+            this.dispose();
         }
 
 
