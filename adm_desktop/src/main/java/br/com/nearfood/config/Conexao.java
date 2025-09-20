@@ -14,7 +14,8 @@ public class Conexao {
         final String SERVIDOR = "jdbc:sqlserver://127.0.0.1:1433;databaseName=NearFoodDB;"
                 + "encrypt=false;trustServerCertificate=true";
         final String USUARIO = "sa";
-        final String SENHA = "pw_user_app";
+        final String SENHA = "NearFood1234#"; //mudando a senha para senha mais forte paa testes
+                                            //senha antiga para usar na apresentaçao: pw_user_app
 
         return DriverManager.getConnection(SERVIDOR, USUARIO, SENHA);
     }

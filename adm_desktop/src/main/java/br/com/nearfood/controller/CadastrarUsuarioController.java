@@ -18,4 +18,10 @@ public class CadastrarUsuarioController extends BaseController {
     public void voltarTelaLogin() {
         super.voltarTelaLogin(telaCadastro);
     }
+    
+    public void fazerLogin(){
+        
+        
+    }
+        
 }

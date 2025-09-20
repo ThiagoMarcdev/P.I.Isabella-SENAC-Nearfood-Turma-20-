@@ -2,11 +2,11 @@ package br.com.nearfood.controller;
 
 import br.com.nearfood.view.TelaResetSenha;
 
-/**
+/*
  * Controlador para reset de senha
  * Extende BaseController para reutilizar comportamento de voltar à tela de login
  */
-public class ResetSenhaController extends BaseController {
+public class ResetSenhaController {
 
     private TelaResetSenha telaResetSenha;
 

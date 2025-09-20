@@ -36,7 +36,7 @@ public class TelaPedidos extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Pedidos");
         add(jLabel1);
-        jLabel1.setBounds(80, 50, 140, 47);
+        jLabel1.setBounds(80, 50, 141, 50);
 
         jTable1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
