@@ -1,44 +1,129 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Inicial</title>
+    <title>NearFood</title>
     <link rel="stylesheet" href="../static/css/base.css">
-    <script src="../static/js/base.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body>
 
-    <header class="header">
-        <div>
-            <img src="../static/img/Menu.png">
-            <img src="../static/img/nearfood_logo.png">
-        </div>
+    <div class="container">
 
-    </header>
+        <nav class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-bars"></i> <!--ICON PARA COMPACTAR E DESCOMPACTAR SIDEBAR-->
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fa-solid fa-house"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-utensils"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-calendar-days"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-bookmark"></i></a></li>
+            </ul>
+            <div class="sidebar-config">
+                <a href="#"><i class="fa-solid fa-gear"></i></a>
+            </div>
+        </nav>
 
-    <!--NAVEGAÇÃO LATERAL-->
-    <nav class="sidebar">
-        
-            <ul>
-                <li> <a href=""><img src="../static/img/Home.png"> </a></li>
-                <li> <a href=""><img src="../static/img/Cutlery.png"> </a></li>
-                <li> <a href=""><img src="../static/img/Activity History.png"> </a></li>
-                <li> <a href=""><img src="../static/img/Bookmark.png"> </a> </li>
-                <li> <a href=""><img src="../static/img/Settings.png"> </a> </li>
-            </ul>            
-           
-        
+        <main class="main-content">
 
-    </nav>
+            <header>
+                <img class="logo" src="../static/img/nearfood_logo.png">
 
-    <main class="conteudo">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar">
+                </div>
+                <div class="user-actions">
+                    <button class="theme-toggle"><i class="fa-solid fa-sun"></i></button>
+                    <button class="login-btn">Fazer Login</button>
+                </div>
+            </header>
 
-    </main>
+            <section class="promo-banner">
+                <div class="promo-content">
+                    <div class="promo-text">
+                        <span>Promoção</span>
+                        <h2>NA SUA PRÓXIMA RESERVA</h2>
+                    </div>
+                    <div class="discount-circle">
+                        50% OFF
+                    </div>
+                    <button class="reserve-btn">RESERVE AGORA</button>
+                </div>
+            </section>
 
+            <section class="nearby-restaurants">
+                <h2>Restaurantes Próximos</h2>
+                <div class="restaurants-grid">
+                    <div class="restaurant-card">
+                        <img src="https://i.imgur.com/2s04K2G.png" alt="Bella Cucina Logo">
+                        <h3>Bella Cucina</h3>
+                        <p>Italiano</p>
+                    </div>
+                    <div class="restaurant-card">
+                        <img src="https://i.imgur.com/GHYG8ZR.png" alt="Zen Bites Logo">
+                        <h3>Zen Bites</h3>
+                        <p>Chinês</p>
+                    </div>
+                    <div class="restaurant-card">
+                        <img src="https://i.imgur.com/lM6i92t.png" alt="The Grill House Logo">
+                        <h3>The Grill House</h3>
+                        <p>Churrascaria</p>
+                    </div>
+                    <div class="restaurant-card">
+                        <img src="https://i.imgur.com/x4aIZ6S.png" alt="Ocean Harvest Logo">
+                        <h3>Ocean Harvest</h3>
+                        <p>Frutos do mar</p>
+                    </div>
+                    <div class="restaurant-card">
+                        <img src="https://i.imgur.com/J8zLw3G.png" alt="Green Plate Logo">
+                        <h3>Green Plate</h3>
+                        <p>Vegano</p>
+                    </div>
+                    <div class="restaurant-card active-card">
+                        <img src="https://i.imgur.com/B9T8LhO.png" alt="Fiesta Cantina Logo">
+                        <h3>Fiesta Cantina</h3>
+                        <p>Mexicano</p>
+                    </div>
+                </div>
+            </section>
 
+            <section class="categories">
+                <h2>Categorias</h2>
+                <div class="category-buttons">
+                    <button><i class="fa-solid fa-burger"></i> Lanches</button>
+                    <button><i class="fa-solid fa-pizza-slice"></i> Pizza</button>
+                    <button><i class="fa-solid fa-shrimp"></i> Japonês</button>
+                    <button><i class="fa-solid fa-leaf"></i> Saudável</button>
+                </div>
+            </section>
+
+            <section class="recommendations">
+                <h2>Recomendações para você</h2>
+                <div class="recommendations-grid">
+                    <div class="recommendation-card" id="card1">
+                        <div class="card-content">
+                            <h3>Golden Harvest</h3>
+                            <p>Alta Classe</p>
+                        </div>
+                    </div>
+                    <div class="recommendation-card" id="card2">
+                        <div class="card-content">
+                            <h3>Urban Bites</h3>
+                            <p>Comida de Rua</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
 </body>
 
