@@ -21,6 +21,7 @@ from Restaurants.views import buscar_restaurantes
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('buscar/', include ('Restaurants.urls'), name='buscar_restaurantes'),
-    path('restaurantes/', include('Restaurants.urls')) # quando o usuario acessar o endereço restaurantes ele vai ser redirecionado para o app "Restaurants" e o arquivo que gerenciara isso é o urls do app restaurants
-    
+    path('restaurantes/', include('Restaurants.urls')), # quando o usuario acessar o endereço restaurantes ele vai ser redirecionado para o app "Restaurants" e o arquivo que gerenciara isso é o urls do app restaurants
+    path('home/', include('Restaurants.urls')),
+    path('auth/', include('Users.urls') )
 ]

@@ -1,0 +1,166 @@
+body{
+    background-color: #FF9837;
+}
+
+.quadrado-meio{
+    background-color: white;
+    width: 70%;
+    height: 633px;
+    display: flex;
+    align-items: center;
+    margin: 50px auto;
+    border-radius: 20px;
+
+}
+
+.form-section{
+    margin-left: 200px;
+    margin-bottom: 10px;
+}
+
+.bemvindo{
+    color: black; 
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 300px;
+    height: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+}
+
+input:focus {
+    box-shadow: 0 0 8px rgba(247, 75, 56, 0.6); 
+    border-color: #F74B38;
+    outline: none;
+}
+
+.entrar-btn {
+    background-color: #F74B38;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* sombra padrão */
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+
+}
+
+.entrar-btn:hover {
+    background-color: #e63a2a;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.3); /* aumenta a sombra no hover */
+    transform: translateY(-2px); /* sobe levemente */
+}
+
+.user{
+    color: black;
+    background: url('https://cdn-icons-png.flaticon.com/512/747/747376.png') no-repeat 10px center;
+    background-size: 20px;
+    padding-left: 40px; 
+    
+}
+
+.marrom{
+    background-color: #DFAD74;
+    width: 45%;
+    height: 100%;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.esqueceu-btn {
+    display: inline-block;
+    margin-top: 15px;
+    color: black;
+    font-size: 1em;
+    text-decoration: none;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.esqueceu-btn:hover {
+    border-bottom: 2px solid black;
+    cursor: pointer;
+    width: fit-content; /*fica com a underline só debaixo do texto */
+    margin: 15px auto 0; /*centraliza a underline*/
+    display: block;
+}
+
+.criar-btn {
+    display: inline-block;
+    margin-top: 15px;
+    color: black;
+    font-size: 1em;
+    text-decoration: none;
+    font-family: 'Lucida Sans';
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.criar-btn:hover {
+    border-bottom: 2px solid black;
+    cursor: pointer;
+    width: fit-content; /*fica com a underline só debaixo do texto */
+    margin: 15px auto 0; /*centraliza a underline*/
+    display: block;
+}
+
+.logo{
+    display: block;
+    margin: 0px auto 20px;
+    width: 120px;
+    height: auto;
+}
+
+.logo-container{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.circulo{
+    background-color:#FFDD9D;
+    width: 250px;
+    height: 250px;
+    pointer-events: none;
+    border-radius: 150px;
+    margin-top: 150px;
+    margin-left: 150px;
+}
+
+.boneco{
+    margin-top: 15px;
+}
+
+
+.senha1{
+    background: url('https://cdn-icons-png.flaticon.com/512/3064/3064155.png') no-repeat 10px center;
+    background-size: 20px;
+    padding-left: 40px;
+}
+   
+

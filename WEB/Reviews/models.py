@@ -42,4 +42,4 @@ class Feedback(models.Model):
     def __str__(self):
         if self.usuario:
             return f"Feedback de {self.usuario.username} - {self.assunto}"
-        return f"Feedback
+        
