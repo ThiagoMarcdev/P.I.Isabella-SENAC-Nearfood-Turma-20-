@@ -1,0 +1,156 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #FF9837;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Quadrado central */
+.quadrado-meio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 66%;
+  height: 620px;
+  margin: 50px auto;
+  background-color: #ffff;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Formulário */
+.form-section {
+  padding: 40px;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título */
+.titulo-cadastro {
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Botão Google */
+.google-btn {
+  background-color: #ebe9e9;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 20px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.google-btn img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+/* Campos */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+input {
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1em;
+  box-shadow: 3px 2px 5px rgb(89, 89, 89);
+  width: 80%;
+}
+
+/* Botão cadastrar */
+.register-btn {
+  background-color: #F74B38;
+  color: #fff;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  height: 50px;
+  width: 300px;
+  margin-top: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+  background-color: #e63a2a;
+}
+
+/* Link abaixo do botão */
+.links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.links a {
+  color: black;
+  text-decoration: none;
+}
+
+.links a:hover {
+  border-bottom: 2px solid black;
+  cursor: pointer;
+  width: fit-content;
+}
+
+/* Área da imagem e círculo */
+.image-section {
+  width: 35%;
+  background-color: #F5DEB3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.image-section img {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Círculo decorativo mais para cima */
+.circulo {
+  background-color: #FFDD9D;
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  z-index: 1;
+  top: 15%; /* Agora está mais para cima */
+  left: 28%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Quadrado decorativo */
+.quadrado {
+  background-color: #DFAD74;
+  position: absolute;
+  width: 500px;
+  height: 3000px;
+  pointer-events: none;
+  margin: 700px 0px 0px 500px;
+  transform: translate(-50%, -50%);
+}
