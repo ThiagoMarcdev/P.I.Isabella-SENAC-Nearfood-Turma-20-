@@ -88,8 +88,16 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', #mudar banco de dados
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql', # USANDO SQL SERVER
+        'NAME': 'NearFoodDB',
+        'USER': 'sa',
+        'PASSWORD': 'NearFoodNearFood1234#', # USANDO UMA SENHA MAIS FORTE PARA TESTES ||| SENHA QUE VAI SER USADA NO FINAL: pw_user_app
+        'HOST': 'localhost',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 18 for SQL Server',
+            'extra_params': 'Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30',
+        }
     }
 }
 
