@@ -1,8 +1,13 @@
-Django==4.2.7
-djangorestframework==3.14.0
-mssql-django==1.4.0  # Backend para SQL Server
-pyodbc==5.1.0       # Driver de conexão ODBC
-# mysqlclient==2.2.4  # Driver de conexão para MySQL
-Pillow==10.2.0
+asgiref==3.9.1
+Django==2.1.15
 django-environ==0.11.2
-
+django-pyodbc-azure==2.1.0.0
+djangorestframework==3.14.0
+geographiclib==2.1
+geopy==2.4.1
+mssql-django==1.4
+pillow==10.2.0
+pyodbc==5.1.0
+pytz==2025.2
+sqlparse==0.5.3
+typing_extensions==4.15.0
