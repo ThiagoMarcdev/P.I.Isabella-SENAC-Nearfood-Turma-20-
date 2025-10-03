@@ -12,8 +12,8 @@ html, body {
   justify-content: space-between;
   align-items: center;
   width: 66%;
-  height: 620px;
-  margin: 50px auto;
+  height: 80vh;
+  margin: 5vh auto;
   background-color: #ffff;
   border-radius: 20px;
   overflow: hidden;
@@ -22,8 +22,8 @@ html, body {
 
 /* Formulário */
 .form-section {
-  padding: 40px;
-  width: 65%;
+  padding: 5vh;
+  width: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,10 +31,10 @@ html, body {
 
 /* Título */
 .titulo-cadastro {
-  font-size: 30px;
+  font-size: 3vh;
   font-weight: 900;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 5vh;
   color: #333;
 }
 
@@ -42,19 +42,19 @@ html, body {
 .google-btn {
   background-color: #ebe9e9;
   border: 1px solid #ccc;
-  padding: 10px 20px;
+  padding: 1.5vh 3vh;
   border-radius: 20px;
-  width: 300px;
+  width: 40vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 5vh;
 }
 
 .google-btn img {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
+  width: 4vh;
+  height: 4vh;
+  margin-right: 1.5vh;
 }
 
 /* Campos */
@@ -66,10 +66,10 @@ form {
 }
 
 input {
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 2vh;
+  margin-bottom: 2vh;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 1vh;
   font-size: 1em;
   box-shadow: 3px 2px 5px rgb(89, 89, 89);
   width: 80%;
@@ -79,26 +79,26 @@ input {
 .register-btn {
   background-color: #F74B38;
   color: #fff;
-  padding: 15px;
+  padding: 2vh;
   border: none;
-  border-radius: 10px;
-  font-size: 1.2em;
+  border-radius: 2vh;
+  font-size: 2vh;
   cursor: pointer;
-  height: 50px;
-  width: 300px;
-  margin-top: 10px;
+  height: 7vh;
+  width: 40vh;
+  margin-top: 1.5vh;
   transition: all 0.2s ease-in-out;
 }
 
 .register-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+  transform: translateY(-0.3vh);
+  box-shadow: 0 0.8vh 1.5vh rgba(0,0,0,0.3);
   background-color: #e63a2a;
 }
 
 /* Link abaixo do botão */
 .links {
-  margin-top: 20px;
+  margin-top: 3vh;
   text-align: center;
 }
 
@@ -108,14 +108,14 @@ input {
 }
 
 .links a:hover {
-  border-bottom: 2px solid black;
+  border-bottom: 0.3vh solid black;
   cursor: pointer;
   width: fit-content;
 }
 
 /* Área da imagem e círculo */
 .image-section {
-  width: 35%;
+  width: 25%;
   background-color: #F5DEB3;
   display: flex;
   justify-content: center;
@@ -128,18 +128,20 @@ input {
   height: auto;
   position: relative;
   z-index: 2;
+  left: -3vh;
+  top: -2vh;
 }
 
 /* Círculo decorativo mais para cima */
 .circulo {
   background-color: #FFDD9D;
-  position: relative;
-  width: 250px;
-  height: 250px;
+  position: absolute;
+  width: 25vh;
+  height: 25vh;
   border-radius: 50%;
-  z-index: 1;
-  top: 15%; /* Agora está mais para cima */
-  left: 28%;
+  z-index: 1; 
+  top: 5vh;
+  left: 12vh;
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
@@ -148,9 +150,9 @@ input {
 .quadrado {
   background-color: #DFAD74;
   position: absolute;
-  width: 500px;
-  height: 3000px;
+  width: 60vh;
+  height: 300vh;
   pointer-events: none;
-  margin: 700px 0px 0px 500px;
+  margin: 90vh 0px 0px 60vh;
   transform: translate(-50%, -50%);
 }
