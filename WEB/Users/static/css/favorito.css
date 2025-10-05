@@ -1,0 +1,115 @@
+html {
+    height: 100%;
+    overflow: hidden;
+}body {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "aside main";
+    grid-template-columns: 5vw 95vw;
+    grid-template-rows: 10vh 1fr; 
+    gap: 0.5vh;
+    height: 100vh;
+    box-sizing: border-box;
+    transition: grid-template-columns 0.3s ease;
+}body.expanded {
+    grid-template-columns: 17.5vw 82.5vw;
+}.header {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}.aside {
+    grid-area: aside;
+    background-color: #FFC27C;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+}.main {
+    grid-area: main;
+    overflow: auto;
+}.icones {
+    width: 2vw;
+    height: auto;
+    display: flex;
+    margin-left: 4vh;
+    cursor: pointer; 
+    transition: opacity 0.3s ease; 
+}.icones:hover {
+    opacity: 0.7;
+}.logo {
+    display: flex;
+    margin-left: 3vh;
+}.barra-pesquisa {
+    display: flex;
+    width: 20vw;
+    height: 3vh;
+    background-color: #D9D9D9;
+    margin-left: 20vh;
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 1vh 4vw 1vh 3vw;
+    background: url('resource/procurar.png') no-repeat 1vw center;
+    background-size: 2vh;
+}.login{
+  display: flex;             
+  align-items: center;        
+  justify-content: center;    
+  width: 150px;
+  height: 50px;
+  background-color: #F74B38;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-left: 55vh;
+}.menu-vertical {
+    list-style: none;
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    margin-top: 12vh;
+}.menu-vertical li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 10px; 
+}.menu-vertical img {
+    width: 2vw;
+    margin-right: 0;
+    display: block;
+    transition: margin-right 0.3s ease;
+}.menu-vertical li a {
+    color: black;
+    text-decoration: none;
+    display: flex; 
+    align-items: center; 
+    font-size: 0; 
+    line-height: 1.2;
+    padding: 20px 10px;
+    width: 100%;
+    transition: font-size 0.3s ease, padding 0.3s ease, justify-content 0.3s ease;
+}body.expanded .menu-vertical li a {
+    font-size: 3vh;
+    padding: 15px 10px;
+    justify-content: flex-start; 
+}body.expanded .menu-vertical li {
+    justify-content: flex-start; 
+    padding: 0 15px;
+}body.expanded .menu-vertical img {
+    margin-right: 1vw;
+}aside ul li.mover {
+    position: relative;
+    margin-top: 31vh;
+}.menu-vertical li a:hover {
+    background-color: #ffd0a4;
+    cursor: pointer;
+    border-radius: 10px;
+}.atual{
+    background-color: #ffd0a4;
+}

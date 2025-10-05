@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos</title>
+    <link rel="stylesheet" href="../static/css/favorito.css">
+</head>
+<body class="expanded">
+    
+
+    <header class="header">
+        <img class="icones" src="/resource/hamburguer.png">
+        <img class="logo" src="../static/img/Logo__icone__nearFood.png">
+        <input class="barra-pesquisa" type="text" placeholder="Buscar">
+        <button onclick="window.location.href='login.html';"class="login">
+            Fazer Login
+        </button>
+    </header>
+    <aside class="aside">
+        <nav>
+            <ul class="menu-vertical">
+                <li>
+                    <a href="index.html">
+                    <img src="/resource/casa.png">
+                    Ínicio
+                    </a>
+                </li>
+                <li>
+                    <a href="restaurantes.html">
+                    <img src="/resource/utensilios.png">
+                    Restaurantes 
+                    </a>
+                </li>
+                <li>
+                    <a href="historico.html">
+                    <img src="/resource/historico.png">
+                    Histórico
+                    </a>
+                </li>
+                <li>
+                    <a class="atual" href="favoritos.html">
+                    <img src="/resource/salvar.png">
+                    Favoritos
+                    </a>
+                </li>
+                <li class="mover">
+                    <a href="Configuracoes.html">
+                    <img src="/resource/configurações.png">
+                    Configurações
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="main"></main>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.icones');
+            const body = document.body;
+            
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                body.classList.toggle('expanded'); 
+            });
+        });
+    </script>
+    
+</body>
+</html>
