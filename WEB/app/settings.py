@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Users', # app sobre usuarios do nosso sistema
-    'Restaurants', #app para gerenciamento de restaurantes
-    'Menu', # app para gerenciamento de cardapio
+    #'Restaurants', #app para gerenciamento de restaurantes
+    #'django_rename_app', # usado para refatorar nome de app no django
+    'core',
     'app',
-    'Reviews' # app para gerenciamento de avaliações de prato, restaurantes,
+    
 ]
 
 MIDDLEWARE = [

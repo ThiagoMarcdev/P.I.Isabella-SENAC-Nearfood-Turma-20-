@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NearFood</title>
+    <link rel="stylesheet" href="../../../../resources/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <nav class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-bars"></i> <!--ICON PARA COMPACTAR E DESCOMPACTAR SIDEBAR-->
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fa-solid fa-house"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-utensils"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-calendar-days"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-bookmark"></i></a></li>
+            </ul>
+            <div class="sidebar-config">
+                <a href="#"><i class="fa-solid fa-gear"></i></a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+
+            <header>
+                <!--Logo nearfood-->
+                <img class="logo" src="../../../../resources/img/logos/nearfood_logo.png">
+
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar">
+                </div>
+                <div class="user-actions">
+                    <button class="theme-toggle"><i class="fa-solid fa-sun"></i></button>
+                    <button class="login-btn">Fazer Login</button>
+                </div>
+            </header>
+
+            <section class="promo-banner">
+                {% if promocao %}
+                <div class="promo-content">
+                    <div class="promo-text">
+                        <span>Promoção</span>
+                        <h2>{{ promocao.titulo }}</h2>
+                    </div>
+                    <div class="discount-circle">
+                        {{ promocao.desconto_percentual }}% OFF
+                    </div>
+                    <a href="#" class="reserve-btn">RESERVE AGORA</a>
+                </div>
+                {% else %}
+                <p>Nenhuma promoção ativa no momento.</p>
+                {% endif %}
+            </section>
+
+            <section class="nearby-restaurants">
+                <h2>Restaurantes Próximos</h2>
+                <div class="restaurants-grid">
+                    {% for restaurante in restaurantes_proximos %}
+                    <div class="restaurant-card">
+                        <img src="{{ restaurante.imagem_url }}" alt="{{ restaurante.nome }} Logo">
+                        <h3>{{ restaurante.nome }}</h3>
+                        <p>{{ restaurante.categorias.first.nome }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="categories">
+                <h2>Categorias</h2>
+                <div class="category-buttons">
+                    {% for categoria in categorias %}
+                    <button><i class="{{ categoria.icone }}"></i> {{ categoria.nome }}</button>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="recommendations">
+                <h2>Recomendações para você</h2>
+                <div class="recommendations-grid">
+                    {% for rec in recomendacoes %}
+                    <div class="recommendation-card" style="background-image: url('{{ rec.imagem_url }}');">
+                        <div class="card-content">
+                            <h3>{{ rec.nome }}</h3>
+                            <p>{{ rec.descricao|truncatewords:5 }}</p> </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+
+</html>
