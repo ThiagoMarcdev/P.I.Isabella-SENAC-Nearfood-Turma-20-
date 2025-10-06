@@ -1,7 +1,7 @@
 
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Restaurante, Promocao, Categoria 
+from .models import Restaurant, Promocao, Categoria 
 from geopy.distance import geodesic
 import json
 
@@ -12,8 +12,8 @@ def acessar_home(request):
     """
     promocao_ativa = Promocao.objects.filter(ativo=True).first()
     todas_as_categorias = Categoria.objects.all()
-    restaurantes_recomendados = Restaurante.objects.filter(recomendado=True)[:2]
-    restaurantes_gerais = Restaurante.objects.order_by('?')[:6]
+    restaurantes_recomendados = Restaurant.objects.filter(recomendado=True)[:2]
+    restaurantes_gerais = Restaurant.objects.order_by('?')[:6]
 
     contexto = {
         'promocao': promocao_ativa,
@@ -21,7 +21,7 @@ def acessar_home(request):
         'recomendacoes': restaurantes_recomendados,
         'restaurantes_proximos': restaurantes_gerais,
     }
-    return render(request, 'restaurantes/index.html', contexto)
+    return render(request, 'templates/restaurants/index.html', contexto)
 
 
 def buscar_restaurantes(request):
@@ -44,7 +44,7 @@ def api_restaurantes_proximos(request):
             return JsonResponse({'error': 'Coordenadas faltando'}, status=400)
 
         user_location = (user_lat, user_lon)
-        restaurantes = Restaurante.objects.all()
+        restaurantes = Restaurant.objects.all()
         restaurantes_proximos = []
 
         for restaurante in restaurantes:
