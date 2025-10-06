@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     #'django_rename_app', # usado para refatorar nome de app no django
     'core',
     'app',
+    'Usuarios',
+    'Restaurantes'
     
 ]
 

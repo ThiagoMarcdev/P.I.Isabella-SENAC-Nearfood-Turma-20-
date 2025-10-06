@@ -66,4 +66,7 @@ function getCookie(name) {
         }
     }
     return cookieValue;
+
+    alert("Codigo rodou!");
+    console.log("rodou");
 }
