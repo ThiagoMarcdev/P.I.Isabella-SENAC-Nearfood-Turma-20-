@@ -59,25 +59,6 @@ class Cliente(models.Model):
         return self.usuario.nome_usuario
 
 
-class Fornecedor(models.Model):
-    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
-    
-    validador_cnpj = RegexValidator(
-        regex=r'^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$',
-        message='CNPJ deve estar no formato XX.XXX.XXX/XXXX-XX'
-    )
-    cnpj = models.CharField(max_length=18, unique=True, validators=[validador_cnpj])
-    telefone = models.CharField(max_length=20, blank=True)
-    empresa = models.CharField(max_length=100)
-    endereco = models.TextField(blank=True)
-    
-    
-    class Meta:
-        db_table='tbl_Fornecedores'
-
-    def __str__(self):
-        return self.empresa
-
 
 class Administrador(models.Model):
     usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)

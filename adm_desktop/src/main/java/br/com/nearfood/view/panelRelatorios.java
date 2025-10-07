@@ -74,7 +74,7 @@ public class panelRelatorios extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Relatórios do Restaurante");
         add(jLabel1);
-        jLabel1.setBounds(140, 70, 440, 110);
+        jLabel1.setBounds(140, 70, 550, 110);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Período:");
@@ -83,7 +83,7 @@ public class panelRelatorios extends javax.swing.JPanel {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoje", "Ontem", "Últimos 7 dias", "Últimos 30 dias", "Este mês", "Mês passado", " " }));
         add(jComboBox1);
-        jComboBox1.setBounds(210, 190, 280, 22);
+        jComboBox1.setBounds(210, 190, 280, 23);
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setText("Filtrar");
@@ -91,7 +91,7 @@ public class panelRelatorios extends javax.swing.JPanel {
         jButton1.setBounds(500, 190, 90, 23);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Total Vendas");
@@ -122,10 +122,10 @@ public class panelRelatorios extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(150, 250, 150, 100);
+        jPanel1.setBounds(150, 250, 150, 94);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Pedidos");
@@ -155,10 +155,10 @@ public class panelRelatorios extends javax.swing.JPanel {
         );
 
         add(jPanel2);
-        jPanel2.setBounds(320, 250, 150, 100);
+        jPanel2.setBounds(320, 250, 159, 94);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Mais Vendido");
@@ -191,10 +191,10 @@ public class panelRelatorios extends javax.swing.JPanel {
         );
 
         add(jPanel3);
-        jPanel3.setBounds(490, 250, 150, 100);
+        jPanel3.setBounds(490, 250, 176, 94);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
+        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("ID Pedido");
@@ -245,7 +245,7 @@ public class panelRelatorios extends javax.swing.JPanel {
         jPanel4.setBounds(150, 380, 490, 30);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setText("1");
@@ -296,7 +296,7 @@ public class panelRelatorios extends javax.swing.JPanel {
         jPanel5.setBounds(150, 410, 490, 30);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel19.setText("2");
@@ -344,10 +344,10 @@ public class panelRelatorios extends javax.swing.JPanel {
         );
 
         add(jPanel6);
-        jPanel6.setBounds(150, 440, 490, 30);
+        jPanel6.setBounds(150, 440, 508, 30);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel24.setText("3");
@@ -395,7 +395,7 @@ public class panelRelatorios extends javax.swing.JPanel {
         );
 
         add(jPanel7);
-        jPanel7.setBounds(150, 470, 490, 30);
+        jPanel7.setBounds(150, 470, 510, 30);
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -445,7 +445,7 @@ public class panelRelatorios extends javax.swing.JPanel {
         );
 
         add(jPanel9);
-        jPanel9.setBounds(330, 520, 130, 40);
+        jPanel9.setBounds(330, 520, 135, 37);
 
         jPanel10.setBackground(new java.awt.Color(204, 204, 204));
 

@@ -163,11 +163,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         pnlPainelPrincipalLayout.setVerticalGroup(
             pnlPainelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addGap(0, 610, Short.MAX_VALUE)
         );
 
         getContentPane().add(pnlPainelPrincipal);
-        pnlPainelPrincipal.setBounds(210, 90, 970, 620);
+        pnlPainelPrincipal.setBounds(210, 100, 970, 610);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

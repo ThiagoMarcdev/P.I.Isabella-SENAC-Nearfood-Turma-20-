@@ -15,6 +15,7 @@ public class ResetSenhaController {
     }
 
     public void voltarTelaLogin() {
-        super.voltarTelaLogin(telaResetSenha);
+        //super.voltarTelaLogin(telaResetSenha);
+        return;
     }
 }

@@ -4,7 +4,6 @@ package br.com.nearfood.view;
 import br.com.nearfood.model.Usuario;
 import br.com.nearfood.config.Conexao;
 import br.com.nearfood.controller.CadastrarUsuarioController;
-import br.com.nearfood.controller.LoginController;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -233,9 +232,8 @@ public class TelaCadastro extends TelaBaseComVoltar {
             txtMensagem.setText("Senhas diferentes!");
         } else {
             //Cadastro do usuário
-            CadastrarUsuarioController cadastroUsuario = new CadastrarUsuarioController();
-            cadastroUsuario.
-            
+            CadastrarUsuarioController controller = new CadastrarUsuarioController(this);
+
             
             //Envia ele para a tela de Login
             TelaLogin login = new TelaLogin();

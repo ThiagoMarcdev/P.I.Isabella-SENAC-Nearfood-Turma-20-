@@ -23,7 +23,7 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
         setTitle("Login");
         setSize(500, 450);
-        cadastroUsuario = new CadastrarUsuarioController();         
+        //cadastroUsuario = new CadastrarUsuarioController();         
     }
 
     /**
