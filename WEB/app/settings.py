@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #'Restaurants', #app para gerenciamento de restaurantes
     #'django_rename_app', # usado para refatorar nome de app no django
-    'core',
     'app',
     'Usuarios',
     'Restaurantes'
