@@ -4,10 +4,10 @@ NearFood é um sistema inovador para encontrar restaurantes próximos com base n
 
 ## Tecnologias Utilizadas
 - **Back-end:** Django (Python)
-- **Front-end:** HTML, CSS, JavaScript, Bootstrap
-- **Banco de Dados:** PostgreSQL
+- **Front-end:** HTML, CSS, JavaScript
+- **Banco de Dados:** SQL Server
 - **Versionamento:** Git e GitHub
-- **Outras Ferramentas:** Docker, API de Geolocalização
+- **Outras Ferramentas:** API de Geolocalização
 
 ## Funcionalidades Principais
 - Busca de restaurantes baseada nos pratos favoritos do usuário.
