@@ -15,10 +15,13 @@ dbus-python==1.2.18
 defer==1.0.6
 distro==1.7.0
 Django==5.2.7
+djangorestframework==3.16.1
 docker==5.0.3
 docker-compose==1.29.2
 dockerpty==0.4.1
 docopt==0.6.2
+geographiclib==2.1
+geopy==2.4.1
 hidpidaemon==18.4.6
 httplib2==0.20.2
 idna==3.3

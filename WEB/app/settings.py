@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     #'django_rename_app', # usado para refatorar nome de app no django
     'app',
     'Usuarios',
-    'Restaurantes'
+    'Restaurantes',
+    'rest_framework', # permite usar API rest no django
     
 ]
 
