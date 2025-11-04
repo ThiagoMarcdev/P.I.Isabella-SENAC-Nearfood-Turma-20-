@@ -42,3 +42,9 @@ class ClienteSerializer(serializers.ModelSerializer):
         user = Usuario.objects.create_user(**usuario_data)
         cliente = Cliente.objects.create(usuario=user, **validated_data)
         return cliente
+
+
+class UsuarioRetornoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']  # ajuste conforme seu model

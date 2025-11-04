@@ -50,7 +50,7 @@
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblNaoTemConta" min="-2" max="-2" attributes="0"/>
-                          <Component id="inputEmail" min="-2" pref="486" max="-2" attributes="0"/>
+                          <Component id="txtUser" min="-2" pref="486" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -58,7 +58,7 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="esqueceuSenha" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="inputSenha" min="-2" pref="486" max="-2" attributes="0"/>
+                              <Component id="txtPassword" min="-2" pref="486" max="-2" attributes="0"/>
                               <Component id="chkManterLogin" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -82,9 +82,9 @@
               <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
               <Component id="lblNaoTemConta" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="inputEmail" min="-2" pref="48" max="-2" attributes="0"/>
+              <Component id="txtUser" min="-2" pref="48" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-              <Component id="inputSenha" min="-2" pref="50" max="-2" attributes="0"/>
+              <Component id="txtPassword" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="esqueceuSenha" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
@@ -140,11 +140,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="N&#xe3;o tem login? Crie sua conta"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="inputEmail">
       <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="inputEmailFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="inputEmailFocusLost"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblNaoTemContaMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUser">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtUserFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtUserFocusLost"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="esqueceuSenha">
@@ -154,6 +157,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Esqueceu sua senha?"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="esqueceuSenhaMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkManterLogin">
       <Properties>
@@ -173,7 +179,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAvancarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="inputSenha">
+    <Component class="javax.swing.JPasswordField" name="txtPassword">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>

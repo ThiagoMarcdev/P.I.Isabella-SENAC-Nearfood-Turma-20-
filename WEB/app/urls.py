@@ -23,6 +23,7 @@ urlpatterns = [
     path('buscar/', include ('Restaurantes.urls'), name='buscar_restaurantes'),
     path('restaurantes/', include('Restaurantes.urls')), # quando o usuario acessar o endereço restaurantes ele vai ser redirecionado para o app "Restaurantes" e o arquivo que gerenciara isso é o urls do app Restaurantes
     path('home/', include('Restaurantes.urls')),
-    path('auth/', include('Usuarios.urls') ),
+    #path('auth/', include('Usuarios.urls') ),
     path('', include('Usuarios.urls')),
+    path('api/usuarios', include('Usuarios.urls'), name='logar_usuario'),
 ]

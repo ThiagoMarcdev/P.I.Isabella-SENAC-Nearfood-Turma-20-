@@ -178,8 +178,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         if (sucesso) {
             JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!");
             
-            TelaPrincipal principal = new TelaPrincipal();
-            principal.setVisible(true);
+            telaLogin login = new telaLogin();
+            login.setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao cadastrar usuário. Verifique a API.");

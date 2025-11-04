@@ -4,7 +4,9 @@
  */
 package br.com.nearfood.views;
 
+import br.com.nearfood.service.LoginService;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,11 +36,11 @@ public class telaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblNaoTemConta = new javax.swing.JLabel();
-        inputEmail = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         esqueceuSenha = new javax.swing.JLabel();
         chkManterLogin = new javax.swing.JCheckBox();
         btnAvancar = new javax.swing.JButton();
-        inputSenha = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -56,18 +58,28 @@ public class telaLogin extends javax.swing.JFrame {
 
         lblNaoTemConta.setFont(new java.awt.Font("Lato", 1, 15)); // NOI18N
         lblNaoTemConta.setText("Não tem login? Crie sua conta");
+        lblNaoTemConta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNaoTemContaMouseClicked(evt);
+            }
+        });
 
-        inputEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                inputEmailFocusGained(evt);
+                txtUserFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                inputEmailFocusLost(evt);
+                txtUserFocusLost(evt);
             }
         });
 
         esqueceuSenha.setFont(new java.awt.Font("Lato", 1, 15)); // NOI18N
         esqueceuSenha.setText("Esqueceu sua senha?");
+        esqueceuSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                esqueceuSenhaMouseClicked(evt);
+            }
+        });
 
         chkManterLogin.setFont(new java.awt.Font("Lato", 0, 13)); // NOI18N
         chkManterLogin.setText("Manter Login");
@@ -119,13 +131,13 @@ public class telaLogin extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblNaoTemConta)
-                            .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(esqueceuSenha)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(chkManterLogin)))))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
@@ -142,9 +154,9 @@ public class telaLogin extends javax.swing.JFrame {
                 .addGap(83, 83, 83)
                 .addComponent(lblNaoTemConta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
-                .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(esqueceuSenha)
                 .addGap(6, 6, 6)
@@ -168,27 +180,58 @@ public class telaLogin extends javax.swing.JFrame {
 
     private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
         // TODO add your handling code here:
+        String username = txtUser.getText();
+        String password = new String(txtPassword.getPassword());
+        
+        boolean logado = LoginService.autenticar(username, password);
+        
+        if (logado) {
+            JOptionPane.showMessageDialog(this, "✅ Login realizado com sucesso!");
+            this.dispose();
+            new TelaPrincipal().setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(this, "❌ Usuário ou senha incorretos.");
+        }
     }//GEN-LAST:event_btnAvancarActionPerformed
 
-    private void inputEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputEmailFocusGained
+    private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
         
-        if (inputEmail.getText().equals("Insira seu email")) {
+        if (txtUser.getText().equals("Insira seu email")) {
             
-            inputEmail.setText("");
-            inputEmail.setForeground(new Color(153, 153, 153));
+            txtUser.setText("");
+            txtUser.setForeground(new Color(153, 153, 153));
             
         }
-    }//GEN-LAST:event_inputEmailFocusGained
+    }//GEN-LAST:event_txtUserFocusGained
 
-    private void inputEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputEmailFocusLost
+    private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
         // TODO add your handling code here:
-         if (inputEmail.getText().equals("")) {
+         if (txtUser.getText().equals("")) {
             
-            inputEmail.setText("Insira seu email");
-            inputEmail.setForeground(new Color(153, 153, 153));
+            txtUser.setText("Insira seu email");
+            txtUser.setForeground(new Color(153, 153, 153));
             
         }
-    }//GEN-LAST:event_inputEmailFocusLost
+    }//GEN-LAST:event_txtUserFocusLost
+
+    private void lblNaoTemContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNaoTemContaMouseClicked
+        // TODO add your handling code here:
+        
+        this.dispose();
+        
+        TelaCadastro telaCadastro = new TelaCadastro();
+        telaCadastro.setVisible(true);
+    }//GEN-LAST:event_lblNaoTemContaMouseClicked
+
+    private void esqueceuSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_esqueceuSenhaMouseClicked
+        // TODO add your handling code here:
+        // tela esqueceu sua senha
+        this.dispose();
+        
+        TelaResetSenha resetSenha = new TelaResetSenha();
+        resetSenha.setVisible(true);
+        
+    }//GEN-LAST:event_esqueceuSenhaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -219,8 +262,6 @@ public class telaLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnAvancar;
     private javax.swing.JCheckBox chkManterLogin;
     private javax.swing.JLabel esqueceuSenha;
-    private javax.swing.JTextField inputEmail;
-    private javax.swing.JPasswordField inputSenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -229,5 +270,7 @@ public class telaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblNaoTemConta;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
