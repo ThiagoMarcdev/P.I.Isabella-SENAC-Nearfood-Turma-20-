@@ -13,16 +13,21 @@
             <button class="google-btn" onclick="simularGoogle()">
                 <img src="https://imagepng.org/wp-content/uploads/2019/08/google-icon-1024x1024.png" alt="Google Icon"> Continuar com Google
             </button>
-            <form>
-                <input type="text" placeholder="Nome" required>
-                <input type="email" placeholder="Digite seu E-mail" required>
-                <input type="tel" placeholder="Telefone" required>
-                <input type="password" placeholder="Senha" required>
-                <input type="password" placeholder="Confirme sua senha" required>
-                <button type="submit" class="register-btn">CADASTRAR</button>
-                <a> </a>
-            </form>
-                   <p>Já tem conta? <a href="index.html">Login</a></p>
+            
+       
+    <form id="formCadastro">
+        <input id="nome" type="text" placeholder="Nome" required>
+        <input id="email" type="email" placeholder="Digite seu E-mail" required>
+        <input id="telefone" type="tel" placeholder="Telefone" required>
+        <input id="senha" type="password" placeholder="Senha" required>
+        <input id="confirmSenha" type="password" placeholder="Confirme sua senha" required>
+        <button type="submit" class="register-btn">CADASTRAR</button>
+    </form>
+        <p id="mensagem"></p>
+
+
+        <p>Já tem conta? <a href="../templates/login.html">Login</a></p>
+        <script src="../../resources/js/cadastro.js"></script>
 
         </div>
         <div class="image-section">
@@ -31,12 +36,6 @@
             <img src="../../resources/img/logos/entregador__imagem.png" alt="">
         </div>
     </div>
-    <script>
-        function simularGoogle() {
-            alert('Simulação: Continuar com Google! Configure a API para autenticação real.');
-        }
-    </script>
-
-</form>
+    
 </body>
 </html>
