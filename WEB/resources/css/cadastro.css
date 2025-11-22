@@ -1,0 +1,158 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #FF9837;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Quadrado central */
+.quadrado-meio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 66%;
+  height: 80vh;
+  margin: 5vh auto;
+  background-color: #ffff;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Formulário */
+.form-section {
+  padding: 5vh;
+  width: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título */
+.titulo-cadastro {
+  font-size: 3vh;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 5vh;
+  color: #333;
+}
+
+/* Botão Google */
+.google-btn {
+  background-color: #ebe9e9;
+  border: 1px solid #ccc;
+  padding: 1.5vh 3vh;
+  border-radius: 20px;
+  width: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+.google-btn img {
+  width: 4vh;
+  height: 4vh;
+  margin-right: 1.5vh;
+}
+
+/* Campos */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+input {
+  padding: 2vh;
+  margin-bottom: 2vh;
+  border: 1px solid #ccc;
+  border-radius: 1vh;
+  font-size: 1em;
+  box-shadow: 3px 2px 5px rgb(89, 89, 89);
+  width: 80%;
+}
+
+/* Botão cadastrar */
+.register-btn {
+  background-color: #F74B38;
+  color: #fff;
+  padding: 2vh;
+  border: none;
+  border-radius: 2vh;
+  font-size: 2vh;
+  cursor: pointer;
+  height: 7vh;
+  width: 40vh;
+  margin-top: 1.5vh;
+  transition: all 0.2s ease-in-out;
+}
+
+.register-btn:hover {
+  transform: translateY(-0.3vh);
+  box-shadow: 0 0.8vh 1.5vh rgba(0,0,0,0.3);
+  background-color: #e63a2a;
+}
+
+/* Link abaixo do botão */
+.links {
+  margin-top: 3vh;
+  text-align: center;
+}
+
+.links a {
+  color: black;
+  text-decoration: none;
+}
+
+.links a:hover {
+  border-bottom: 0.3vh solid black;
+  cursor: pointer;
+  width: fit-content;
+}
+
+/* Área da imagem e círculo */
+.image-section {
+  width: 25%;
+  background-color: #F5DEB3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.image-section img {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  left: -3vh;
+  top: -2vh;
+}
+
+/* Círculo decorativo mais para cima */
+.circulo {
+  background-color: #FFDD9D;
+  position: absolute;
+  width: 25vh;
+  height: 25vh;
+  border-radius: 50%;
+  z-index: 1; 
+  top: 5vh;
+  left: 12vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Quadrado decorativo */
+.quadrado {
+  background-color: #DFAD74;
+  position: absolute;
+  width: 60vh;
+  height: 300vh;
+  pointer-events: none;
+  margin: 90vh 0px 0px 60vh;
+  transform: translate(-50%, -50%);
+}

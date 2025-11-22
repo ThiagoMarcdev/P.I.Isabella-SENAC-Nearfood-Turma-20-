@@ -1,0 +1,339 @@
+/* --- ESTILOS GERAIS E RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* LAYOUT PRINCIPAL */
+.container {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    /* Coluna 1 (sidebar) fixa, Coluna 2 (main) flexível */
+    grid-template-areas: "sidebar main";
+    height: 100vh;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #FFF3E0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.main-content {
+    grid-area: main;
+    padding: 0px 30px;
+    overflow-y: auto;
+    /* Permite rolagem apenas no conteúdo principal */
+}
+
+/* --- BARRA LATERAL (SIDEBAR) --- */
+.sidebar-logo {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #555;
+    padding: 10px 10px;
+}
+
+.sidebar-logo:hover{
+    cursor: pointer;
+    color: #ff5722;
+}
+
+.sidebar-menu {
+    list-style-type: none;
+    width: 100%;
+}
+
+.sidebar-menu li a {
+    display: block;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 22px;
+    color: #a0a0a0;
+    transition: color 0.3s, border-left 0.3s;
+}
+
+.sidebar-menu li a.active {
+    color: #ff5722;
+    border-left: 4px solid #ff5722;
+}
+
+.sidebar-config {
+    margin-top: auto;
+    /* Empurra para o final */
+    font-size: 22px;
+}
+
+.sidebar-settings a {
+    color: #555;
+}
+
+/* --- CABEÇALHO (HEADER) --- */
+/* --- CABEÇALHO (HEADER) --- */
+header {
+    /* Estilos que já existiam */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* --- NOVAS PROPRIEDADES PARA O CABEÇALHO FIXO --- */
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
+    /* Garante que o cabeçalho fique sobreposto ao conteúdo */
+    background-color: #f8f9fa;
+    /* Mesma cor de fundo do body para cobrir o conteúdo que rola */
+    padding-top: 24px;
+    /* Adiciona um respiro acima do conteúdo */
+    padding-bottom: 16px;
+    /* Adiciona um respiro abaixo do conteúdo */
+    margin-bottom: 20px;
+    /* Ajuste leve na margem */
+}
+
+.logo {
+    width: 200px;
+}
+
+.search-bar {
+    flex-grow: 1;
+    margin: 0 40px;
+    position: relative;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+    font-size: 16px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.login-btn {
+    background-color: #FF5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #e64a19;
+}
+
+/* --- BANNER DE PROMOÇÃO --- */
+.promo-banner {
+    background-color: #FF5722;
+    color: white;
+    border-radius: 20px;
+    padding: 20px 40px;
+    margin-bottom: 30px;
+}
+
+.promo-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.promo-text span {
+    font-weight: 500;
+}
+
+.promo-text h2 {
+    font-size: 2rem;
+}
+
+.discount-circle {
+    background-color: white;
+    color: #FF5722;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reserve-btn {
+    background-color: white;
+    color: #FF5722;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.reserve-btn:hover {
+    transform: scale(1.05);
+}
+
+/* --- SEÇÕES GENÉRICAS --- */
+section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* --- RESTAURANTES PRÓXIMOS --- */
+.restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    /* Cria 6 colunas de tamanho igual */
+    gap: 20px;
+    text-align: center;
+}
+
+.restaurant-card {
+    background-color: #fff;
+    padding: 20px 10px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.restaurant-card.active-card {
+    border: 2px solid #FF5722;
+    box-shadow: 0 4px 20px rgba(255, 87, 34, 0.3);
+}
+
+.restaurant-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.restaurant-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.restaurant-card p {
+    font-size: 14px;
+    color: #777;
+}
+
+/* --- CATEGORIAS --- */
+.categories {
+    margin: 30px 0;
+}
+
+.category-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.category-buttons button {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.category-buttons button:hover {
+    background-color: #e0e0e0;
+}
+
+/* --- RECOMENDAÇÕES --- */
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Duas colunas de tamanho igual */
+    gap: 25px;
+}
+
+.recommendation-card {
+    height: 200px;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    color: white;
+    overflow: hidden;
+}
+
+/* Overlay para escurecer a imagem e melhorar a legibilidade do texto */
+.recommendation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+    z-index: 1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.card-content h3 {
+    font-size: 22px;
+}
+
+/* Imagens de fundo para os cards de recomendação */
+#card1 {
+    background-image: url('https://i.imgur.com/uW8aJdF.png');
+}
+
+#card2 {
+    background-image: url('https://i.imgur.com/4z8gYoD.png');
+}

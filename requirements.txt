@@ -1,8 +1,0 @@
-Django==4.2.7
-djangorestframework==3.14.0
-mssql-django==1.4.0  # Backend para SQL Server
-pyodbc==5.1.0       # Driver de conexão ODBC
-# mysqlclient==2.2.4  # Driver de conexão para MySQL
-Pillow==10.2.0
-django-environ==0.11.2
-

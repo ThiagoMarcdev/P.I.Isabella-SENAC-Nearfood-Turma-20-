@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar</title>
+     <link rel="stylesheet" href="../../resources/css/cadastro.css">
+</head>
+<body>
+    <div class="quadrado-meio">
+        <div class="form-section">
+            <h1>Cadastrar</h1>
+            <button class="google-btn" onclick="simularGoogle()">
+                <img src="https://imagepng.org/wp-content/uploads/2019/08/google-icon-1024x1024.png" alt="Google Icon"> Continuar com Google
+            </button>
+            
+       
+    <form id="formCadastro">
+        <input id="nome" type="text" placeholder="Nome" required>
+        <input id="email" type="email" placeholder="Digite seu E-mail" required>
+        <input id="telefone" type="tel" placeholder="Telefone" required>
+        <input id="senha" type="password" placeholder="Senha" required>
+        <input id="confirmSenha" type="password" placeholder="Confirme sua senha" required>
+        <button type="submit" class="register-btn">CADASTRAR</button>
+    </form>
+        <p id="mensagem"></p>
+
+
+        <p>Já tem conta? <a href="../templates/login.html">Login</a></p>
+        <script src="../../resources/js/cadastro.js"></script>
+
+        </div>
+        <div class="image-section">
+            <div class="quadrado"></div>
+            <div class="circulo"></div>
+            <img src="../../resources/img/logos/entregador__imagem.png" alt="">
+        </div>
+    </div>
+    
+</body>
+</html>

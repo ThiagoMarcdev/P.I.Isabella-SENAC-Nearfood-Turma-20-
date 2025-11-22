@@ -45,11 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Users', # app sobre usuarios do nosso sistema
-    'Restaurants', #app para gerenciamento de restaurantes
-    'Menu', # app para gerenciamento de cardapio
+    #'Restaurants', #app para gerenciamento de restaurantes
+    #'django_rename_app', # usado para refatorar nome de app no django
     'app',
-    'Reviews' # app para gerenciamento de avaliações de prato, restaurantes,
+    'Usuarios',
+    'Restaurantes',
+    'rest_framework', # permite usar API rest no django
+    
 ]
 
 MIDDLEWARE = [
@@ -88,8 +90,16 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', #mudar banco de dados
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql', # USANDO SQL SERVER
+        'NAME': 'NearFoodDB',
+        'USER': 'sa',
+        'PASSWORD': 'NearFoodNearFood1234#', # USANDO UMA SENHA MAIS FORTE PARA TESTES ||| SENHA QUE VAI SER USADA NO FINAL: pw_user_app
+        'HOST': 'localhost',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 18 for SQL Server',
+            'extra_params': 'Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30',
+        }
     }
 }
 
@@ -134,3 +144,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTH_USER_MODEL = 'Usuarios.Usuario'
+
