@@ -35,7 +35,7 @@ class ClienteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cliente
-        fields = ['usuario', 'cpf', 'telefone']
+        fields = ['usuario',  'telefone']
 
     def create(self, validated_data):
         usuario_data = validated_data.pop('usuario')
