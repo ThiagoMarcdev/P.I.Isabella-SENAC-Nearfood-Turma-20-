@@ -7,7 +7,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Usuario
-        fields = ['id', 'username', 'first_name', 'last_name','password', 'email', 'tipo', 'telefone']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'password', 'telefone', 'tipo']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -18,15 +18,13 @@ class UsuarioSerializer(serializers.ModelSerializer):
         
         user = Usuario.objects.create_user(
             username=validated_data['username'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', ''),
+            email=validated_data.get('email', ''),
             password=validated_data['password'],
-            email=validated_data.get('email', ''),           
-            tipo=validated_data.get('tipo', 'cliente'),           
+            telefone=validated_data.get('telefone', ''),
+            tipo=validated_data.get('tipo', 'cliente'),          
         )
-        
-        if user.tipo == 'cliente':
-            Cliente.objects.create(usuario=user, telefone=telefone) #endereco=endereco)
         return user
 
 

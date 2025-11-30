@@ -8,7 +8,11 @@ class Usuario(AbstractUser):
         ('root', 'Root'),
     ]
 
+    email = models.EmailField(unique=True)
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
     tipo = models.CharField(max_length=20, choices=TIPOS_USUARIO, default='cliente')
+    telefone = models.CharField(max_length=20, blank=True) 
 
     groups = models.ManyToManyField(
         Group,
