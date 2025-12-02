@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NearFood - Detalhes do Restaurante</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="/" class="nav-icon"><i class="icon-home">🏠</i></a>
+            <a href="/favoritos" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
+            <a href="#" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="/config" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button class="menu-btn" id="menuBtn">☰</button>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span class="heart">❤️</span></span>d</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar" id="searchInput">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle">☀️</button>
+                <button class="login-btn">Fazer Login</button>
+            </header>
+
+            <!-- Restaurant Details -->
+            <section class="restaurant-details">
+                <div class="details-content">
+                    <div class="details-info">
+                        <button class="back-btn" onclick="history.back()">← Voltar</button>
+                        <button class="favorite-btn" id="favoritoBtn" data-restaurante-id="">
+                            <span class="star">⭐</span> Reportar
+                        </button>
+                        
+                        <h1 class="restaurant-name" id="restauranteName">NOME DO RESTAURANTE</h1>
+                        <p class="restaurant-rating">
+                            <span class="rating-number" id="avaliacaoNumero">4.5</span>
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                        </p>
+                        <p class="restaurant-address" id="restauranteEndereco">Avenida João Celos</p>
+
+                        <div class="restaurant-description" id="restauranteDescricao">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac lectus at turpis hendrerit porta sit amet ut quam. Nam mattis lacinia metus, ut tristique risus pretium dictum. Praesent vel velit augue. Aliquam lobortis velit a cursus mattis. Donec sagittis, lectus sed gravida convallis. Morbi bibendum pretium felis, eget elefend turpis auctor sit amet. In nec sodales urna. urna nibh, ultricies sit amet teuigiat luctus, semper quis enim. Pellentesque facilisis et mi eget placerat.</p>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn-primary reserve-detail-btn">FAZER RESERVA</button>
+                            <button class="btn-secondary favorite-toggle-btn" id="adicionarFavoritoBtn">
+                                <span id="favoritoIcone">🤍</span> ADICIONAR AOS FAVORITOS
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="details-image">
+                        <img src="/images/captura-20de-20tela-202025-12-02-20095902.png" alt="Restaurante" id="restauranteImagem">
+                    </div>
+                </div>
+
+                <!-- Reviews Section -->
+                <section class="reviews-section">
+                    <h2>Avaliações</h2>
+                    <div class="reviews-list" id="avaliacoesList">
+                        <!-- Avaliações serão carregadas via JavaScript -->
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="{% static 'js/detalhes.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NearFood - Tela Inicial</title>
+    <link rel="stylesheet" href="../../resources/css/style1.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="index1.html" class="nav-icon active"><i class="icon-home">🏠</i></a>
+            <a href="favorito1.html" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
+            <a href="#" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="config.html" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button class="menu-btn" id="menuBtn">☰</button>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span class="heart">❤️</span></span>d</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar" id="searchInput">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle">☀️</button>
+                <button class="login-btn">Fazer Login</button>
+            </header>
+
+            <!-- Promotion Banner -->
+            <section class="promotion-banner">
+                <div class="promo-badge">Promoção</div>
+                <div class="promo-content">
+                    <div class="promo-text">
+                        <div class="promo-icons">
+                            <span>🍽️</span>
+                            <span>🍷</span>
+                            <span>🍔</span>
+                            <span>🍕</span>
+                        </div>
+                        <h2>50% OFF</h2>
+                        <p>NA SUA PRÓXIMA RESERVA</p>
+                    </div>
+                    <button class="reserve-btn">RESERVE AGORA</button>
+                </div>
+            </section>
+
+            <!-- Nearby Restaurants -->
+            <section class="restaurants-section">
+                <h3>Restaurantes Próximos</h3>
+                <div class="restaurants-grid" id="restaurantesGrid">
+                    <!-- Restaurantes serão carregados via JavaScript -->
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <section class="categories-section">
+                <h3>Categorias</h3>
+                <div class="categories-grid">
+                    <button class="category-btn">🍔 Lanches</button>
+                    <button class="category-btn">🍕 Pizza</button>
+                    <button class="category-btn">🍱 Japonês</button>
+                    <button class="category-btn">🥪 Sanduíche</button>
+                </div>
+            </section>
+
+            <!-- Recommendations -->
+            <section class="recommendations-section">
+                <h3>Recomendações para você</h3>
+                <div class="recommendations-grid" id="recomendacoesGrid">
+                    <!-- Recomendações serão carregadas via JavaScript -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../../resources/js/main1.js"></script>
+</body>
+</html>
