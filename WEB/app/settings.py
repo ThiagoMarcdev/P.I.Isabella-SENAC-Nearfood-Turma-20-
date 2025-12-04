@@ -102,26 +102,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Modelo customizado
 AUTH_USER_MODEL = 'Usuarios.Usuario'
 
-# Django REST Framework
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
+STATIC_URL = '/static/'
 
-# JWT
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'AUTH_HEADER_TYPES': ('Bearer',)
-}
+STATICFILES_DIRS = [
+    BASE_DIR / 'WEB/resources'
+]
 
-# CORS (desenvolvimento)
-CORS_ALLOW_ALL_ORIGINS = True
 
-# Configuração de Email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # ou seu provedor
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'seu_email@gmail.com'
-EMAIL_HOST_PASSWORD = 'sua_senha_app'  # Use senha de app do Gmail
