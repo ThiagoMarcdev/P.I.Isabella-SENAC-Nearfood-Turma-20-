@@ -1,8 +1,8 @@
-document.getElementById("formLogin").addEventListener("submit", function(event) {
+document.getElementById("formLogin").addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const email = document.getElementById("email").value.trim();
-    const senha = document.getElementById("senha").value.trim();
+    const senha = document.getElementById("password").value.trim();
     const mensagem = document.getElementById("mensagem");
 
     if (!email || !senha) {
@@ -11,24 +11,36 @@ document.getElementById("formLogin").addEventListener("submit", function(event) 
         return;
     }
 
-    if (!email.includes("@")) {
-        mensagem.textContent = "E-mail inválido!";
-        mensagem.style.color = "red";
-        return;
-    }
+    const dados = {
+        email: email,
+        password: senha
+    };
 
-    if (senha.length < 6) {
-        mensagem.textContent = "Senha inválida!";
-        mensagem.style.color = "red";
-        return;
-    }
+    try {
+        const response = await fetch("http://localhost:8000/api/usuarios/login-api/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+        });
 
-    // Aqui você pode validar a senha correta (exemplo simples)
-    if (senha === "123456") { // Substitua por lógica real ou integração com backend
-        alert("Login realizado com sucesso!");
-        window.location.href = "../templates/home.html"; // Redireciona para a tela home
-    } else {
-        mensagem.textContent = "Senha incorreta!";
+        const data = await response.json();
+
+        if (!response.ok) {
+            mensagem.textContent = data.detail || "E-mail ou senha inválidos!";
+            mensagem.style.color = "red";
+            return;
+        }
+
+        mensagem.textContent = "Login realizado com sucesso!";
+        mensagem.style.color = "green";
+
+        setTimeout(() => {
+            window.location.href = "../../Restaurantes/templates/index.html";
+        }, 1500);
+
+    } catch (error) {
+        mensagem.textContent = "Erro ao se comunicar com o servidor!";
         mensagem.style.color = "red";
+        console.error(error);
     }
 });

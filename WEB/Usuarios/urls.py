@@ -1,10 +1,10 @@
 from django.urls import path
-from . import views
-from .views import cadastrar_usuario
-from .views import LoginView
+from .views import cadastrar_usuario, LoginView
 
 urlpatterns = [
-    path('login-interno/', views.login, name='login'),
-    path('api/usuarios/', views.cadastrar_usuario, name='cadastrar_usuario'),
-    path('/login/', views.LoginView.as_view(), name='LoginView'),
+    # Rotas HTML
+
+    # Rotas da API
+    path('cadastro/', cadastrar_usuario, name="cadastro_usuario"),
+    path('login-api/', LoginView.as_view(), name="login_api"),
 ]

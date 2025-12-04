@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Definir Nova Senha - Restaurante</title>
+    <link rel="stylesheet" href="../../resources/css/resetSenha.css">
+</head>
+<body>
+    <div class="container">
+        <div class="reset-box">
+            <div class="logo-section">
+                <div class="logo-circle">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h1>Definir Nova Senha</h1>
+                <p class="subtitle">Crie uma senha forte e segura</p>
+            </div>
+
+            <form id="newPasswordForm" method="POST">
+                
+                <input type="hidden" name="token" id="tokenField">
+                
+                <div class="form-group">
+                    <label for="password">Nova Senha</label>
+                    <div class="password-input-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Digite sua nova senha"
+                            required
+                            minlength="8"
+                        >
+                        <button type="button" class="toggle-password" data-target="password">
+                            <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="password-requirements">
+                        <p class="requirement" id="req-length">
+                            <span class="check">✓</span> Mínimo 8 caracteres
+                        </p>
+                        <p class="requirement" id="req-uppercase">
+                            <span class="check">✓</span> Uma letra maiúscula
+                        </p>
+                        <p class="requirement" id="req-number">
+                            <span class="check">✓</span> Um número
+                        </p>
+                        <p class="requirement" id="req-special">
+                            <span class="check">✓</span> Um caractere especial
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirmar Senha</label>
+                    <div class="password-input-wrapper">
+                        <input 
+                            type="password" 
+                            id="confirm_password" 
+                            name="confirm_password" 
+                            placeholder="Digite novamente a senha"
+                            required
+                        >
+                        <button type="button" class="toggle-password" data-target="confirm_password">
+                            <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                    <small class="error-message" id="password-match-error"></small>
+                </div>
+
+                <div class="alert alert-error" id="errorAlert" style="display: none;"></div>
+                <div class="alert alert-success" id="successAlert" style="display: none;"></div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <span class="btn-text">Redefinir Senha</span>
+                    <span class="btn-loader" style="display: none;"></span>
+                </button>
+            </form>
+
+            <div class="back-to-login">
+                <a href="login.html">Voltar para o login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../resources/js/resetSenha.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha - Restaurante</title>
+    <link rel="stylesheet" href="../../resources/css/resetSenha.css">
+</head>
+<body>
+    <div class="container">
+        <div class="reset-box">
+            <div class="logo-section">
+                <div class="logo-circle">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </div>
+                <h1>Recuperar Senha</h1>
+                <p class="subtitle">Digite seu email para receber o link de redefinição</p>
+            </div>
+
+            <!-- Simplified form structure with proper IDs for JavaScript -->
+            <form id="resetForm" method="POST">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="seu@email.com"
+                        required
+                    >
+                    <small class="input-hint">Enviaremos um link para redefinir sua senha</small>
+                </div>
+
+                <!-- Added alert boxes for error and success messages -->
+                <div class="alert alert-error" id="errorAlert" style="display: none;"></div>
+                <div class="alert alert-success" id="successAlert" style="display: none;"></div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <span class="btn-text">Enviar Link de Recuperação</span>
+                    <span class="btn-loader" style="display: none;"></span>
+                </button>
+            </form>
+
+            <div class="back-to-login">
+                <a href="login.html">Voltar para o login</a>
+            </div>
+        </div>
+
+        <!-- Formulário para redefinir senha (quando tem token) -->
+        <div class="reset-box" id="newPasswordForm" style="display: none;">
+            <div class="logo-section">
+                <div class="logo-circle">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                        <path d="M45 20H42V15C42 8.4 36.6 3 30 3C23.4 3 18 8.4 18 15V20H15C12.3 20 10 22.3 10 25V50C10 52.7 12.3 55 15 55H45C47.7 55 50 52.7 50 50V25C50 22.3 47.7 20 45 20ZM30 42C27.3 42 25 39.7 25 37C25 34.3 27.3 32 30 32C32.7 32 35 34.3 35 37C35 39.7 32.7 42 30 42ZM38 20H22V15C22 10.6 25.6 7 30 7C34.4 7 38 10.6 38 15V20Z" fill="#F97316"/>
+                    </svg>
+                </div>
+                <h1>Nova Senha</h1>
+                <p class="subtitle">Digite sua nova senha</p>
+            </div>
+
+            <form id="confirmResetForm" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="token" id="resetToken">
+                
+                <div class="form-group">
+                    <label for="newPassword">Nova Senha</label>
+                    <div class="password-input">
+                        <input 
+                            type="password" 
+                            id="newPassword" 
+                            name="password" 
+                            placeholder="Mínimo 8 caracteres" 
+                            required
+                        >
+                        <button type="button" class="toggle-password" data-target="newPassword">
+                            <svg class="eye-open" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 4C5 4 1.73 7.11 0 10C1.73 12.89 5 16 10 16C15 16 18.27 12.89 20 10C18.27 7.11 15 4 10 4ZM10 14C7.79 14 6 12.21 6 10C6 7.79 7.79 6 10 6C12.21 6 14 7.79 14 10C14 12.21 12.21 14 10 14ZM10 8C8.9 8 8 8.9 8 10C8 11.1 8.9 12 10 12C11.1 12 12 11.1 12 10C12 8.9 11.1 8 10 8Z" fill="#9CA3AF"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Senha</label>
+                    <div class="password-input">
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirm_password" 
+                            placeholder="Digite a senha novamente" 
+                            required
+                        >
+                        <button type="button" class="toggle-password" data-target="confirmPassword">
+                            <svg class="eye-open" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 4C5 4 1.73 7.11 0 10C1.73 12.89 5 16 10 16C15 16 18.27 12.89 20 10C18.27 7.11 15 4 10 4ZM10 14C7.79 14 6 12.21 6 10C6 7.79 7.79 6 10 6C12.21 6 14 7.79 14 10C14 12.21 12.21 14 10 14ZM10 8C8.9 8 8 8.9 8 10C8 11.1 8.9 12 10 12C11.1 12 12 11.1 12 10C12 8.9 11.1 8 10 8Z" fill="#9CA3AF"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="error-message" id="confirmPasswordError"></span>
+                </div>
+
+                <div class="password-requirements">
+                    <p>A senha deve conter:</p>
+                    <ul>
+                        <li id="req-length">
+                            <span class="req-icon">○</span>
+                            Mínimo de 8 caracteres
+                        </li>
+                        <li id="req-uppercase">
+                            <span class="req-icon">○</span>
+                            Uma letra maiúscula
+                        </li>
+                        <li id="req-number">
+                            <span class="req-icon">○</span>
+                            Um número
+                        </li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span class="btn-text">Redefinir Senha</span>
+                    <span class="btn-loader" style="display: none;">
+                        <svg class="spinner" viewBox="0 0 50 50">
+                            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                        </svg>
+                    </span>
+                </button>
+
+                <div class="success-message" id="successMessageConfirm" style="display: none;">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 15L3 10L4.41 8.59L8 12.17L15.59 4.58L17 6L8 15Z" fill="#10B981"/>
+                    </svg>
+                    <span>Senha redefinida com sucesso!</span>
+                </div>
+            </form>
+
+            <div class="back-link">
+                <a href="login.html">Ir para Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="reset-senha.js"></script>
+</body>
+</html>
