@@ -65,7 +65,7 @@ function removerFavorito(id) {
 // Ver detalhes do restaurante
 function verRestaurante(id) {
   localStorage.setItem("restauranteAtual", id)
-  window.location.href = "/detalhes"
+  window.location.href = "detalhe.html"
 }
 
 // Carregar tema

@@ -12,7 +12,7 @@
         <aside class="sidebar">
             <a href="index1.html" class="nav-icon active"><i class="icon-home">🏠</i></a>
             <a href="favorito1.html" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
-            <a href="#" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="detalhe.html" class="nav-icon"><i class="icon-receipt">🧾</i></a>
             <a href="config.html" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
         </aside>
 
@@ -27,7 +27,7 @@
                     <button class="search-btn">🔍</button>
                 </div>
                 <button class="theme-toggle" id="themeToggle">☀️</button>
-                <button class="login-btn">Fazer Login</button>
+                <button class="login-btn">User</button>
             </header>
 
             <!-- Promotion Banner -->
@@ -47,8 +47,6 @@
                     <button class="reserve-btn">RESERVE AGORA</button>
                 </div>
             </section>
-
-            <!-- Nearby Restaurants -->
             <section class="restaurants-section">
                 <h3>Restaurantes Próximos</h3>
                 <div class="restaurants-grid" id="restaurantesGrid">
@@ -56,7 +54,7 @@
                 </div>
             </section>
 
-            <!-- Categories -->
+            <!-- Categorias -->
             <section class="categories-section">
                 <h3>Categorias</h3>
                 <div class="categories-grid">
@@ -74,6 +72,63 @@
                     <!-- Recomendações serão carregadas via JavaScript -->
                 </div>
             </section>
+
+            <!-- Modal Pop-up -->
+            <div class="modal-overlay" id="modalOverlay">
+                <div class="modal-popup">
+                    <button class="modal-close" id="modalClose">✕</button>
+                    
+                    <div class="modal-header">
+                        <div class="modal-restaurant-logo" id="modalLogo">🍝</div>
+                        <div class="modal-title-section">
+                            <h2 id="modalNome">Bella Cucina</h2>
+                            <p class="modal-tipo" id="modalTipo">Italiano</p>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="modal-info-grid">
+                            <div class="modal-info-item">
+                                <span class="info-icon">⭐</span>
+                                <div>
+                                    <p class="info-label">Avaliação</p>
+                                    <p class="info-value" id="modalAvaliacao">4.5</p>
+                                </div>
+                            </div>
+                            <div class="modal-info-item">
+                                <span class="info-icon">🕐</span>
+                                <div>
+                                    <p class="info-label">Tempo</p>
+                                    <p class="info-value" id="modalTempo">15-20 min</p>
+                                </div>
+                            </div>
+                            <div class="modal-info-item">
+                                <span class="info-icon">📍</span>
+                                <div>
+                                    <p class="info-label">Distância</p>
+                                    <p class="info-value" id="modalDistancia">1.2 km</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-description">
+                            <p id="modalDescricao">Restaurante especializado em comida italiana com os melhores pratos da região.</p>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button class="modal-btn btn-route" id="btnVerRota">
+                                <span>📍</span> Ver Rota
+                            </button>
+                            <button class="modal-btn btn-reserve" id="btnFazerReserva">
+                                <span>📅</span> Fazer Reserva
+                            </button>
+                            <button class="modal-btn btn-more" id="btnVerMais">
+                                <span>➡️</span> Ver Mais
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 

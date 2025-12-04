@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NearFood - Detalhes do Restaurante</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="../../resources/css/style1.css">
 </head>
 <body>
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <a href="/" class="nav-icon"><i class="icon-home">🏠</i></a>
-            <a href="/favoritos" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
-            <a href="#" class="nav-icon"><i class="icon-receipt">🧾</i></a>
-            <a href="/config" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
+            <a href="index1.html" class="nav-icon"><i class="icon-home">🏠</i></a>
+            <a href="favorito1.html" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
+            <a href="detalhe.html" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="config.html" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
         </aside>
 
         <!-- Main Content -->
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="action-buttons">
-                            <button class="btn-primary reserve-detail-btn">FAZER RESERVA</button>
+                            <button class="btn-primary reserve-detail-btn" id="btnReservaDetalhes">FAZER RESERVA</button>
                             <button class="btn-secondary favorite-toggle-btn" id="adicionarFavoritoBtn">
                                 <span id="favoritoIcone">🤍</span> ADICIONAR AOS FAVORITOS
                             </button>
@@ -62,6 +62,32 @@
                         <img src="/images/captura-20de-20tela-202025-12-02-20095902.png" alt="Restaurante" id="restauranteImagem">
                     </div>
                 </div>
+
+                <!-- Menu Section -->
+                <section class="menu-section">
+                    <h2>📋 Cardápio</h2>
+                    <div class="menu-grid" id="menuGrid">
+                        <!-- Cardápio será carregado via JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Route Section -->
+                <section class="route-section">
+                    <h2>🗺️ Como Chegar</h2>
+                    <div class="route-info">
+                        <div class="route-address">
+                            <h3 id="enderecoCompleto">Avenida João Celos, 123 - Centro</h3>
+                            <p id="cidadeEstado">São Paulo, SP - CEP: 01234-567</p>
+                        </div>
+                        <button class="btn-route-large" id="btnAbrirMaps">
+                            📍 Abrir no Google Maps
+                        </button>
+                        <div class="route-map-placeholder">
+                            <p>🗺️ Mapa interativo do Google Maps</p>
+                            <p class="map-note">(Em uma aplicação real, aqui seria exibido o mapa)</p>
+                        </div>
+                    </div>
+                </section>
 
                 <!-- Reviews Section -->
                 <section class="reviews-section">
@@ -74,6 +100,6 @@
         </main>
     </div>
 
-    <script src="{% static 'js/detalhes.js' %}"></script>
+    <script src="../../resources/js/detalhes.js"></script>
 </body>
 </html>
