@@ -36,7 +36,7 @@ public class telaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblNaoTemConta = new javax.swing.JLabel();
-        txtUser = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         esqueceuSenha = new javax.swing.JLabel();
         chkManterLogin = new javax.swing.JCheckBox();
         btnAvancar = new javax.swing.JButton();
@@ -48,10 +48,10 @@ public class telaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Imagem-login.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Imagem-login.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Logo Nearfood__extenso.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logos/Logo Nearfood__extenso.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Poppins Medium", 0, 26)); // NOI18N
         jLabel3.setText("Olá, seja muito bem-vindo ao");
@@ -64,12 +64,12 @@ public class telaLogin extends javax.swing.JFrame {
             }
         });
 
-        txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtUserFocusGained(evt);
+                txtEmailFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUserFocusLost(evt);
+                txtEmailFocusLost(evt);
             }
         });
 
@@ -84,7 +84,7 @@ public class telaLogin extends javax.swing.JFrame {
         chkManterLogin.setFont(new java.awt.Font("Lato", 0, 13)); // NOI18N
         chkManterLogin.setText("Manter Login");
 
-        btnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/seta_avancar.png"))); // NOI18N
+        btnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/seta_avancar.png"))); // NOI18N
         btnAvancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAvancarActionPerformed(evt);
@@ -109,43 +109,43 @@ public class telaLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2)
+                        .addGap(92, 92, 92)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(245, 245, 245)
+                                .addComponent(btnAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblNaoTemConta)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(esqueceuSenha)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(chkManterLogin)))))
+                        .addContainerGap(30, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(btnAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblNaoTemConta)
-                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(esqueceuSenha)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(chkManterLogin)))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel3)
@@ -154,7 +154,7 @@ public class telaLogin extends javax.swing.JFrame {
                 .addGap(83, 83, 83)
                 .addComponent(lblNaoTemConta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -165,7 +165,7 @@ public class telaLogin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(btnAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap(44, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -173,6 +173,7 @@ public class telaLogin extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         pack();
@@ -180,39 +181,39 @@ public class telaLogin extends javax.swing.JFrame {
 
     private void btnAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarActionPerformed
         // TODO add your handling code here:
-        String username = txtUser.getText();
+        String email = txtEmail.getText();
         String password = new String(txtPassword.getPassword());
         
-        boolean logado = LoginService.autenticar(username, password);
+        boolean logado = LoginService.autenticar(email, password);
         
         if (logado) {
             JOptionPane.showMessageDialog(this, "✅ Login realizado com sucesso!");
             this.dispose();
-            new TelaPrincipal().setVisible(true);
+            new TelaGerenciarRestaurante().setVisible(true);
         }else {
             JOptionPane.showMessageDialog(this, "❌ Usuário ou senha incorretos.");
         }
     }//GEN-LAST:event_btnAvancarActionPerformed
 
-    private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
+    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
         
-        if (txtUser.getText().equals("Insira seu email")) {
+        if (txtEmail.getText().equals("Insira seu email")) {
             
-            txtUser.setText("");
-            txtUser.setForeground(new Color(153, 153, 153));
+            txtEmail.setText("");
+            txtEmail.setForeground(new Color(153, 153, 153));
             
         }
-    }//GEN-LAST:event_txtUserFocusGained
+    }//GEN-LAST:event_txtEmailFocusGained
 
-    private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         // TODO add your handling code here:
-         if (txtUser.getText().equals("")) {
+         if (txtEmail.getText().equals("")) {
             
-            txtUser.setText("Insira seu email");
-            txtUser.setForeground(new Color(153, 153, 153));
+            txtEmail.setText("Insira seu email");
+            txtEmail.setForeground(new Color(153, 153, 153));
             
         }
-    }//GEN-LAST:event_txtUserFocusLost
+    }//GEN-LAST:event_txtEmailFocusLost
 
     private void lblNaoTemContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNaoTemContaMouseClicked
         // TODO add your handling code here:
@@ -270,7 +271,7 @@ public class telaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblNaoTemConta;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

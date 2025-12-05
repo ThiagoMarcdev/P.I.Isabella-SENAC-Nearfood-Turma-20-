@@ -34,24 +34,19 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel1 = new javax.swing.JLabel();
         JpnlFundo = new javax.swing.JPanel();
         jPnlBoxcadastro = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtUltimoNome = new javax.swing.JTextField();
         jComboTipoUsuario = new javax.swing.JComboBox<>();
         txtEmail = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JTextField();
         txtConfirmaSenha = new javax.swing.JPasswordField();
         txtSenha = new javax.swing.JPasswordField();
         btnCadastrarUser = new javax.swing.JButton();
-        txtUsername = new javax.swing.JTextField();
-        txtPrimeiroNome = new javax.swing.JTextField();
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Imagem__tela-cadastro.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        txtLastName = new javax.swing.JTextField();
+        txtFirstName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(186, 139, 84));
@@ -63,21 +58,19 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jPnlBoxcadastro.setLayout(null);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Imagem__tela-cadastro.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Imagem__tela-cadastro.png"))); // NOI18N
         jLabel4.setText("jLabel4");
         jPnlBoxcadastro.add(jLabel4);
         jLabel4.setBounds(0, 0, 480, 700);
 
-        jLabel2.setFont(new java.awt.Font("Poppins SemiBold", 0, 13)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         jLabel2.setText("Conclua agora seu cadastro e venha fazer parte do Nearfood!");
         jPnlBoxcadastro.add(jLabel2);
-        jLabel2.setBounds(500, 10, 460, 30);
+        jLabel2.setBounds(500, 10, 470, 30);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/traced-logo-nearfood.png.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logos/traced-logo-nearfood.png.png"))); // NOI18N
         jPnlBoxcadastro.add(jLabel3);
         jLabel3.setBounds(670, 60, 90, 100);
-        jPnlBoxcadastro.add(txtUltimoNome);
-        txtUltimoNome.setBounds(520, 380, 420, 40);
 
         jComboTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CLIENTE", "ADIMINISTRADOR", " " }));
         jComboTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +79,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jPnlBoxcadastro.add(jComboTipoUsuario);
-        jComboTipoUsuario.setBounds(520, 230, 150, 23);
+        jComboTipoUsuario.setBounds(520, 190, 150, 23);
 
         txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -97,26 +90,22 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jPnlBoxcadastro.add(txtEmail);
-        txtEmail.setBounds(520, 430, 420, 40);
-
-        txtTelefone.setText("Telefone");
+        txtEmail.setBounds(520, 320, 420, 40);
         jPnlBoxcadastro.add(txtTelefone);
-        txtTelefone.setBounds(520, 580, 420, 40);
+        txtTelefone.setBounds(520, 370, 420, 40);
 
-        txtConfirmaSenha.setText("jPasswordField1");
         txtConfirmaSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtConfirmaSenhaActionPerformed(evt);
             }
         });
         jPnlBoxcadastro.add(txtConfirmaSenha);
-        txtConfirmaSenha.setBounds(520, 530, 420, 40);
-
-        txtSenha.setText("jPasswordField1");
+        txtConfirmaSenha.setBounds(520, 470, 420, 40);
         jPnlBoxcadastro.add(txtSenha);
-        txtSenha.setBounds(520, 480, 420, 40);
+        txtSenha.setBounds(520, 420, 420, 40);
 
         btnCadastrarUser.setBackground(new java.awt.Color(255, 126, 34));
+        btnCadastrarUser.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
         btnCadastrarUser.setText("CADASTRAR-SE");
         btnCadastrarUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,29 +113,29 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jPnlBoxcadastro.add(btnCadastrarUser);
-        btnCadastrarUser.setBounds(660, 650, 150, 23);
+        btnCadastrarUser.setBounds(650, 570, 160, 40);
 
-        txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtLastName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtUsernameFocusGained(evt);
+                txtLastNameFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUsernameFocusLost(evt);
+                txtLastNameFocusLost(evt);
             }
         });
-        jPnlBoxcadastro.add(txtUsername);
-        txtUsername.setBounds(520, 270, 420, 40);
+        jPnlBoxcadastro.add(txtLastName);
+        txtLastName.setBounds(520, 270, 420, 40);
 
-        txtPrimeiroNome.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtFirstName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtPrimeiroNomeFocusGained(evt);
+                txtFirstNameFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPrimeiroNomeFocusLost(evt);
+                txtFirstNameFocusLost(evt);
             }
         });
-        jPnlBoxcadastro.add(txtPrimeiroNome);
-        txtPrimeiroNome.setBounds(520, 330, 420, 40);
+        jPnlBoxcadastro.add(txtFirstName);
+        txtFirstName.setBounds(520, 220, 420, 40);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -163,15 +152,14 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUserActionPerformed
-        String username = txtUsername.getText();
-        String first_name = txtPrimeiroNome.getText();
-        String last_name = txtUltimoNome.getText();
+        String firstName = txtFirstName.getText();
+        String lastname = txtLastName.getText();       
         String password = new String(txtSenha.getPassword());
         String email = txtEmail.getText();
         String tipo_usuario = "cliente"; // ou pegue de um comboBox
         String telefone = txtTelefone.getText();
 
-        Usuario usuario = new Usuario(username, first_name, last_name, password, email, tipo_usuario, telefone);
+        Usuario usuario = new Usuario(nome, password, email, tipo_usuario, telefone);
 
         boolean sucesso = UsuarioService.cadastrarUsuario(usuario);
 
@@ -213,25 +201,25 @@ public class TelaCadastro extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jComboTipoUsuarioActionPerformed
 
-    private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameFocusGained
-
-    private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameFocusLost
-
     private void txtConfirmaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmaSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtConfirmaSenhaActionPerformed
 
-    private void txtPrimeiroNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrimeiroNomeFocusGained
+    private void txtLastNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrimeiroNomeFocusGained
+    }//GEN-LAST:event_txtLastNameFocusGained
 
-    private void txtPrimeiroNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrimeiroNomeFocusLost
+    private void txtLastNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrimeiroNomeFocusLost
+    }//GEN-LAST:event_txtLastNameFocusLost
+
+    private void txtFirstNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFirstNameFocusGained
+
+    private void txtFirstNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFirstNameFocusLost
 
     /**
      * @param args the command line arguments
@@ -262,17 +250,15 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel JpnlFundo;
     private javax.swing.JButton btnCadastrarUser;
     private javax.swing.JComboBox<String> jComboTipoUsuario;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPnlBoxcadastro;
     private javax.swing.JPasswordField txtConfirmaSenha;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtPrimeiroNome;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtTelefone;
-    private javax.swing.JTextField txtUltimoNome;
-    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class LoginService {
     private static final String API_URL = "http://localhost:8000/api/usuarios/login/";
 
-    public static boolean autenticar(String username, String password) {
+    public static boolean autenticar(String email, String password) {
         try {
             URL url = new URL(API_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -25,7 +25,7 @@ public class LoginService {
             conn.setRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);
 
-            String jsonInput = String.format("{\"username\":\"%s\",\"password\":\"%s\"}", username, password);
+            String jsonInput = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
 
             try (OutputStream os = conn.getOutputStream()) {
                 os.write(jsonInput.getBytes(StandardCharsets.UTF_8));
