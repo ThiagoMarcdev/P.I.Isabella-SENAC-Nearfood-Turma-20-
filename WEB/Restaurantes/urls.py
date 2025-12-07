@@ -3,7 +3,7 @@ from . import views # impostar arquivos do views de restaurantes para ca.. esse 
 
 
 urlpatterns = [
+    path('', views.acessar_home, name='homePage'),
     path('buscar_restaurantes/', views.buscar_restaurantes),
-    path('' , views.acessar_home, name='home'),
     path('api/restaurantes-proximos/', views.api_restaurantes_proximos, name='api_restaurantes_proximos'),    
 ]

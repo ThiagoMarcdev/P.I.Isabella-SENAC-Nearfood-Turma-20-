@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author firmodev
  */
 public class TelaCadastro extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCadastro.class.getName());
 
     /**
@@ -39,7 +39,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboTipoUsuario = new javax.swing.JComboBox<>();
         txtEmail = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JTextField();
         txtConfirmaSenha = new javax.swing.JPasswordField();
@@ -47,6 +46,12 @@ public class TelaCadastro extends javax.swing.JFrame {
         btnCadastrarUser = new javax.swing.JButton();
         txtLastName = new javax.swing.JTextField();
         txtFirstName = new javax.swing.JTextField();
+        jlbConfirmaSenha = new javax.swing.JLabel();
+        jlbPrimeiroNome = new javax.swing.JLabel();
+        jlbUltimoNome = new javax.swing.JLabel();
+        jlbEmail = new javax.swing.JLabel();
+        jlbTelefone = new javax.swing.JLabel();
+        jlbSenha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(186, 139, 84));
@@ -72,15 +77,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPnlBoxcadastro.add(jLabel3);
         jLabel3.setBounds(670, 60, 90, 100);
 
-        jComboTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CLIENTE", "ADIMINISTRADOR", " " }));
-        jComboTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboTipoUsuarioActionPerformed(evt);
-            }
-        });
-        jPnlBoxcadastro.add(jComboTipoUsuario);
-        jComboTipoUsuario.setBounds(520, 190, 150, 23);
-
         txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtEmailFocusGained(evt);
@@ -90,9 +86,23 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jPnlBoxcadastro.add(txtEmail);
-        txtEmail.setBounds(520, 320, 420, 40);
+        txtEmail.setBounds(520, 340, 420, 40);
+
+        txtTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefoneFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefoneFocusLost(evt);
+            }
+        });
+        txtTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefoneActionPerformed(evt);
+            }
+        });
         jPnlBoxcadastro.add(txtTelefone);
-        txtTelefone.setBounds(520, 370, 420, 40);
+        txtTelefone.setBounds(520, 410, 420, 40);
 
         txtConfirmaSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,9 +110,9 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jPnlBoxcadastro.add(txtConfirmaSenha);
-        txtConfirmaSenha.setBounds(520, 470, 420, 40);
+        txtConfirmaSenha.setBounds(520, 550, 420, 40);
         jPnlBoxcadastro.add(txtSenha);
-        txtSenha.setBounds(520, 420, 420, 40);
+        txtSenha.setBounds(520, 480, 420, 40);
 
         btnCadastrarUser.setBackground(new java.awt.Color(255, 126, 34));
         btnCadastrarUser.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
@@ -113,7 +123,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jPnlBoxcadastro.add(btnCadastrarUser);
-        btnCadastrarUser.setBounds(650, 570, 160, 40);
+        btnCadastrarUser.setBounds(660, 620, 160, 40);
 
         txtLastName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -124,7 +134,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jPnlBoxcadastro.add(txtLastName);
-        txtLastName.setBounds(520, 270, 420, 40);
+        txtLastName.setBounds(520, 280, 420, 40);
 
         txtFirstName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -136,6 +146,30 @@ public class TelaCadastro extends javax.swing.JFrame {
         });
         jPnlBoxcadastro.add(txtFirstName);
         txtFirstName.setBounds(520, 220, 420, 40);
+
+        jlbConfirmaSenha.setText("Confirme sua senha:");
+        jPnlBoxcadastro.add(jlbConfirmaSenha);
+        jlbConfirmaSenha.setBounds(520, 530, 130, 17);
+
+        jlbPrimeiroNome.setText("Primeiro Nome:");
+        jPnlBoxcadastro.add(jlbPrimeiroNome);
+        jlbPrimeiroNome.setBounds(520, 200, 100, 17);
+
+        jlbUltimoNome.setText("Ultimo nome:");
+        jPnlBoxcadastro.add(jlbUltimoNome);
+        jlbUltimoNome.setBounds(520, 260, 100, 17);
+
+        jlbEmail.setText("Insira seu email:");
+        jPnlBoxcadastro.add(jlbEmail);
+        jlbEmail.setBounds(520, 320, 150, 17);
+
+        jlbTelefone.setText("Insira seu telefone:");
+        jPnlBoxcadastro.add(jlbTelefone);
+        jlbTelefone.setBounds(520, 390, 130, 17);
+
+        jlbSenha.setText("Sua senha:");
+        jPnlBoxcadastro.add(jlbSenha);
+        jlbSenha.setBounds(520, 460, 90, 17);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -152,20 +186,39 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUserActionPerformed
-        String firstName = txtFirstName.getText();
-        String lastname = txtLastName.getText();       
+        String first_name = txtFirstName.getText().trim();
+        String last_name = txtLastName.getText().trim();
+        String username = (first_name + "." + last_name).toLowerCase();
         String password = new String(txtSenha.getPassword());
-        String email = txtEmail.getText();
-        String tipo_usuario = "cliente"; // ou pegue de um comboBox
-        String telefone = txtTelefone.getText();
+        String confirmPassword = new String (txtConfirmaSenha.getPassword());
+        String email = txtEmail.getText().trim();
+        String tipo_usuario = "dono"; //dono do restaurante
+        String telefone = txtTelefone.getText().trim();
 
-        Usuario usuario = new Usuario(nome, password, email, tipo_usuario, telefone);
+        Usuario usuario = new Usuario(first_name, last_name, username, password, email, tipo_usuario, telefone);
 
         boolean sucesso = UsuarioService.cadastrarUsuario(usuario);
 
+        if (first_name.isEmpty() || first_name.equals("Insira seu primeiro nome")
+                || last_name.isEmpty() || last_name.equals("Insira seu ultimo nome")
+                || email.isEmpty() || email.equals("Insira seu nome email")
+                || telefone.isEmpty() || telefone.equals("Telefone com DDD")) {
+
+            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos corretamente.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+
+       
+        if (!password.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(this, "As senhas não conferem!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (sucesso) {
             JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!");
-            
+            String result = String.format("O Usuario %s, foi criado e armazenado com sucesso!", username);
+
+            System.out.println(result);
             telaLogin login = new telaLogin();
             login.setVisible(true);
             this.dispose();
@@ -177,29 +230,23 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
         // TODO add your handling code here:
-         if (txtEmail.getText().equals("Insira seu nome completo")) {
-            
-            txtEmail.setText("");
-            txtEmail.setForeground(new Color(153, 153, 153));
-            
-        }
+//        if (txtEmail.getText().equals("Insira seu nome email")) {
+//
+//            txtEmail.setText("");
+//            txtEmail.setForeground(new Color(153, 153, 153));
+//
+//        }
     }//GEN-LAST:event_txtEmailFocusGained
 
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         // TODO add your handling code here:
-         if (txtEmail.getText().equals("")) {
-            
-            txtEmail.setText("Insira seu nome completo");
-            txtEmail.setForeground(new Color(153, 153, 153));
-            
-        }
+//        if (txtEmail.getText().equals("")) {
+//
+//            txtEmail.setText("Insira seu nome email");
+//            txtEmail.setForeground(new Color(153, 153, 153));
+//
+//        }
     }//GEN-LAST:event_txtEmailFocusLost
-
-    private void jComboTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoUsuarioActionPerformed
-        // aqui o usuario escolhera se o cadatro sera de um cliente ou admin (ou seja, dono de restaurante)
-        // caso o valor escolhido seja cliente, o campo CNPJ fica desabilitado ou desaparece. se não o campo CNPJ fica obrigatorio
-        
-    }//GEN-LAST:event_jComboTipoUsuarioActionPerformed
 
     private void txtConfirmaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmaSenhaActionPerformed
         // TODO add your handling code here:
@@ -207,19 +254,68 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void txtLastNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusGained
         // TODO add your handling code here:
+//        if (txtLastName.getText().equals("Insira seu ultimo nome")) {
+//
+//            txtLastName.setText("");
+//            txtLastName.setForeground(new Color(153, 153, 153));
+//
+//        }
     }//GEN-LAST:event_txtLastNameFocusGained
 
     private void txtLastNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLastNameFocusLost
         // TODO add your handling code here:
+//        if (txtLastName.getText().equals("")) {
+//
+//            txtLastName.setText("Insira seu ultimo nome");
+//            txtLastName.setForeground(new Color(153, 153, 153));
+//
+//        }
     }//GEN-LAST:event_txtLastNameFocusLost
 
     private void txtFirstNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusGained
         // TODO add your handling code here:
+//        if (txtFirstName.getText().equals("Insira seu primeiro nome")) {
+//
+//            txtFirstName.setText("");
+//            txtFirstName.setForeground(new Color(153, 153, 153));
+//
+//        }
+
     }//GEN-LAST:event_txtFirstNameFocusGained
 
     private void txtFirstNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFirstNameFocusLost
         // TODO add your handling code here:
+
+//        if (txtFirstName.getText().equals("")) {
+//
+//            txtFirstName.setText("Insira seu primeiro nome");
+//            txtFirstName.setForeground(new Color(153, 153, 153));
+//
+//        }
     }//GEN-LAST:event_txtFirstNameFocusLost
+
+    private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefoneActionPerformed
+
+    private void txtTelefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneFocusGained
+//        // TODO add your handling code here:
+//        if (txtTelefone.getText().equals("Telefone com DDD")) {
+//            txtTelefone.setText("");
+//            txtTelefone.setForeground(new Color(153, 153, 153));
+//
+//        }
+    }//GEN-LAST:event_txtTelefoneFocusGained
+
+    private void txtTelefoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneFocusLost
+        // TODO add your handling code here:
+//        if (txtTelefone.getText().equals("")) {
+//
+//            txtTelefone.setText("Telefone com DDD");
+//            txtTelefone.setForeground(new Color(153, 153, 153));
+//
+//        }
+    }//GEN-LAST:event_txtTelefoneFocusLost
 
     /**
      * @param args the command line arguments
@@ -249,11 +345,16 @@ public class TelaCadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JpnlFundo;
     private javax.swing.JButton btnCadastrarUser;
-    private javax.swing.JComboBox<String> jComboTipoUsuario;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPnlBoxcadastro;
+    private javax.swing.JLabel jlbConfirmaSenha;
+    private javax.swing.JLabel jlbEmail;
+    private javax.swing.JLabel jlbPrimeiroNome;
+    private javax.swing.JLabel jlbSenha;
+    private javax.swing.JLabel jlbTelefone;
+    private javax.swing.JLabel jlbUltimoNome;
     private javax.swing.JPasswordField txtConfirmaSenha;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;

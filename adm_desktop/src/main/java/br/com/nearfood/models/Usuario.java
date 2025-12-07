@@ -2,27 +2,32 @@ package br.com.nearfood.models;
 
 public class Usuario {
     //id mas o id ja é gerado automatico
-    private String firstName;
-    private String lastName;
+    private String username;
+    private String first_name;
+    private String last_name;
     private String email;
     private String password;
     private String telefone;
     private String tipo_usuario;
 
-    public Usuario(String firstName, String lastName, String password, String email, String tipo_usuario, String telefone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Usuario(String username, String first_name, String last_name, String password, String email, String tipo_usuario, String telefone) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.tipo_usuario = tipo_usuario;
         this.telefone = telefone;
     }
     
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public String getUsername() { return username;}
+    public void setUsername(String username) { this.username = username;}
     
-    public String getLastName() { return lastName;}
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public String getFirst_name() { return first_name; }
+    public void setFirst_name(String first_name) { this.first_name = first_name; }
+    
+    public String getLast_name() { return last_name;}
+    public void setLastName(String last_name) { this.last_name = last_name; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }

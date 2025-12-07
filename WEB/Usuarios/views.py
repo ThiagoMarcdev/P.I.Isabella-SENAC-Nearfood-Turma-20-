@@ -21,20 +21,17 @@ def cadastrar_usuario(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
-    authentication_classes = []  # permitir sem autenticação para login
-    permission_classes = []      # permitir qualquer um acessar
 
     def post(self, request, *args, **kwargs):
-        email = request.data.get('username')
+        username = request.data.get('username')
         password = request.data.get('password')
 
-        if not email or not password:
-            return Response({"error": "email and password required"}, status=status.HTTP_400_BAD_REQUEST)
+        if not username or not password:
+            return Response({"error": "username and password required"}, status=status.HTTP_400_BAD_REQUEST)
 
-        user = authenticate(username=email, password=password)
+        user = authenticate(username=username, password=password)
         if user is None:
-            return Response({"error": "Email ou senha inválidos"}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({"error": "Username ou senha inválidos"}, status=status.HTTP_401_UNAUTHORIZED)
 
-        # opcional: usar serializer para formatar a resposta
         serializer = UsuarioRetornoSerializer(user)
         return Response({"message": "Login OK", "user": serializer.data}, status=status.HTTP_200_OK)
