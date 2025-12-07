@@ -1,7 +1,5 @@
 from django.urls import path
-from . import views
-from .views import cadastrar_usuario
-from .views import LoginView
+from .views import cadastrar_usuario, LoginView
 
 urlpatterns = [
     path('login-interno/', views.login, name='login'),

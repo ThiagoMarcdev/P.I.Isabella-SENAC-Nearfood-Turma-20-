@@ -10,6 +10,7 @@ class Cliente(models.Model):
     senha = models.CharField(max_length=128, blank=False, null=False),
     class Meta:
         db_table = 'tbl_Clientes'
+        db_table = 'tbl_Clientes'
 
     def __str__(self):
         return self.username

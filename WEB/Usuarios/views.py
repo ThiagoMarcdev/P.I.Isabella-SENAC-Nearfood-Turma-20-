@@ -6,8 +6,6 @@ from .serializers import UsuarioSerializer, UsuarioRetornoSerializer
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 
-def login(request):
-    return render(request, 'login.html')
 
 @api_view(['POST'])
 def cadastrar_usuario(request):
@@ -23,15 +21,23 @@ def cadastrar_usuario(request):
 class LoginView(APIView):
 
     def post(self, request, *args, **kwargs):
-        username = request.data.get('username')
+        email = request.data.get('email')
         password = request.data.get('password')
 
-        if not username or not password:
-            return Response({"error": "username and password required"}, status=status.HTTP_400_BAD_REQUEST)
+        if not email or not password:
+            return Response(
+                {"error": "email and password required"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
-        user = authenticate(username=username, password=password)
+        # IMPORTANTE: usar username=email, pois USERNAME_FIELD=email
+        user = authenticate(username=email, password=password)
+
         if user is None:
             return Response({"error": "Username ou senha inválidos"}, status=status.HTTP_401_UNAUTHORIZED)
 
         serializer = UsuarioRetornoSerializer(user)
-        return Response({"message": "Login OK", "user": serializer.data}, status=status.HTTP_200_OK)
+        return Response(
+            {"message": "Login OK", "user": serializer.data},
+            status=status.HTTP_200_OK
+        )

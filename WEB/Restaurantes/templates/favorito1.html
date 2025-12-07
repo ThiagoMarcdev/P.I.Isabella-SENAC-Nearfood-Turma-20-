@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NearFood - Favoritos</title>
+    <link rel="stylesheet" href="../../resources/css/style1.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="index1.html" class="nav-icon"><i class="icon-home">🏠</i></a>
+            <a href="favorito1.html" class="nav-icon active"><i class="icon-bookmark">🔖</i></a>
+            <a href="detalhe.html" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="config.html" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button class="menu-btn" id="menuBtn">☰</button>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span class="heart">❤️</span></span>d</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar" id="searchInput">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle">☀️</button>
+                <button class="login-btn">Fazer Login</button>
+            </header>
+
+            <!-- Favorites Content -->
+            <section class="favorites-section">
+                <button class="back-btn" onclick="history.back()">← Voltar</button>
+                <h1>Meus Favoritos</h1>
+
+                <div class="favorites-grid" id="favoritosGrid">
+                    <!-- Favoritos serão carregados via JavaScript -->
+                </div>
+
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <div class="empty-icon">💔</div>
+                    <h2>Nenhum favorito ainda</h2>
+                    <p>Adicione restaurantes aos seus favoritos para vê-los aqui!</p>
+                    <a href="/" class="btn-primary">Explorar Restaurantes</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../../resources/js/favorito.js"></script>
+</body>
+</html>
