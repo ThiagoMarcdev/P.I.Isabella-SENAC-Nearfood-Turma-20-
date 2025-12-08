@@ -114,4 +114,8 @@ STATICFILES_DIRS = [
 ]
 ####################################################
 
+# servidor de email ficticio para teste
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "naoresponder@nearfood.com"
+
 

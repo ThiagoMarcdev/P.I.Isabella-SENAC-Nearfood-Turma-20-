@@ -5,6 +5,7 @@ from Usuarios.models import TokenResetSenha, Usuario
 from django.contrib.auth import get_user_model
 import uuid
 from django.contrib.auth.hashers import make_password
+from django.core.mail import send_mail
 
 def login_view(request):
     if request.method == 'POST':

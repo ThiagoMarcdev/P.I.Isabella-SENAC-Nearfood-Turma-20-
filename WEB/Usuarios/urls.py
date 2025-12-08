@@ -7,6 +7,7 @@ urlpatterns = [
     
     path('  /', views.exibir_receber_token, name='esqueci'),
     path('enviar-token/', views.enviar_token, name='enviar_token'),
-    path('reset/<str:token>/', views.exibir_reset_senha, name='reset_senha'),
+    path("reset/<str:token>/", views.exibir_reset_senha, name="reset"),
     path('reset-confirmar/<str:token>/', views.salvar_nova_senha, name='reset_confirmar'),
+    
 ]
