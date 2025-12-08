@@ -11,7 +11,7 @@ def login_view(request):
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user:
             login(request, user)
-            return redirect('home')
+            return redirect('index')
     return render(request, 'login.html')
 
 
@@ -20,14 +20,30 @@ def cadastro_view(request):
         nome = request.POST['firstName']
         username = request.POST['username']
         email = request.POST['email']
+        telefone = request.POST['telefone']
         senha = request.POST['senha']
         confirmSenha = request.POST['confirmSenha']
-        
-        if senha == confirmSenha:
-            user = Usuario.objects.create_user(username=username, email=email, password=senha)
-            login(request, user)
-            return redirect('home')
+
+        if senha != confirmSenha:
+            return render(request, 'cadastro.html', {"erro": "As senhas não coincidem"})
+
+        user = Usuario.objects.create_user(
+            username=username,
+            email=email,
+            password=senha,
+        )
+
+        user.first_name = nome
+        user.telefone = telefone
+        user.tipo = "cliente"
+        user.save()
+
+        login(request, user)
+        return redirect('login')
+
     return render(request, 'cadastro.html')
+
+
 
 
 def exibir_receber_token(request):

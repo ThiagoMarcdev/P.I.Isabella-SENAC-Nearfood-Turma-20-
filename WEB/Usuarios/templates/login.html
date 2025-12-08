@@ -34,11 +34,11 @@
                     <input id="username" name="username" class="user" type="text" placeholder="Usuário" required>
                     <input id="password" name="password" class="senha" type="password" placeholder="Senha" required>
                     <button type="submit" class="entrar-btn">ENTRAR</button>
-                    <a href="{% url '' %}" class="esqueceu-btn">Esqueceu sua senha?</a>
+                    <a href="{% url 'esqueci' %}" class="esqueceu-btn">Esqueceu sua senha?</a>
                     <a href="{% url 'cadastrar_usuario' %}" class="criar-btn">Criar uma conta</a>
                 </form>
                 <p id="mensagem"></p>
-                <script src="../../static/js/login.js"></script>
+                <!-- <script src="../../static/js/login.js"></script> -->
 
         </div>
     </div>
