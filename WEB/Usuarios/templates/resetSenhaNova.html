@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Definir Nova Senha - Restaurante</title>
-    <link rel="stylesheet" href="../../resources/css/resetSenha.css">
+    <link rel="stylesheet" href="../../static/css/resetSenha.css">
 </head>
 <body>
     <div class="container">
@@ -22,8 +22,8 @@
                 <p class="subtitle">Crie uma senha forte e segura</p>
             </div>
 
-            <form id="newPasswordForm" method="POST">
-                
+            <form id="newPasswordForm" method="POST" action="{% url 'reset_confirmar' token %}">
+                {% csrf_token %}
                 <input type="hidden" name="token" id="tokenField">
                 
                 <div class="form-group">
@@ -90,11 +90,11 @@
             </form>
 
             <div class="back-to-login">
-                <a href="login.html">Voltar para o login</a>
+                <a href="{% url 'login' %}">Voltar para o login</a>
             </div>
         </div>
     </div>
 
-    <script src="../../resources/js/resetSenha.js"></script>
+    <script src="../../static/js/resetSenha.js"></script>
 </body>
 </html>

@@ -31,8 +31,8 @@ class Restaurant(models.Model):
     avaliacao = models.DecimalField(max_digits=3, decimal_places=1, default=0.0) # Mudado para DecimalField
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True) # Mudado para DecimalField
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True) # Mudado para DecimalField
-    categorias = models.ManyToManyField('Categoria') # Perfeito usando a string!
-    #recomendado = models.BooleanField(default=False)
+    categorias = models.ManyToManyField('Categoria') 
+    recomendado = models.BooleanField(default=False)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -97,15 +97,21 @@ USE_TZ = True
 # Arquivos estáticos
 STATIC_URL = 'static/'
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
-# Modelo customizado
+#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Modelo customizado de usuario
 AUTH_USER_MODEL = 'Usuarios.Usuario'
 
+
+# declarando rota para o django reconhecer os arquivos css, js, e imagens
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'WEB/resources'
+    BASE_DIR / 'static'
 ]
+####################################################
 
 

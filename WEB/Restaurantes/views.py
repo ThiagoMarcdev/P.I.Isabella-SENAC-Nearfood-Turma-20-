@@ -4,6 +4,13 @@ from django.http import JsonResponse
 from .models import Restaurant, Promocao, Categoria 
 from geopy.distance import geodesic
 import json
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+from .models import PasswordResetToken
+
 
 def acessar_home(request):
     """
@@ -21,16 +28,23 @@ def acessar_home(request):
         'recomendacoes': restaurantes_recomendados,
         'restaurantes_proximos': restaurantes_gerais,
     }
-    return render(request, 'templates/restaurants/index.html', contexto)
+    return render(request, 'index1.html', contexto)
 
+def favoritos(request):
+    return render(request, 'favoritos1.html')
 
 def buscar_restaurantes(request):
     return render(
         request,
-        'busca2.html',
+        'busca.html',
         {'Restaurant': {'nome': '*'}}    
     )
-    
+
+def detalhes(request):
+    return render(request, 'detalhe.html') 
+
+def configuracoes(request):
+    return render(request, 'config.html')
     
 # API DE LOCALIZAÇÃO 
 def api_restaurantes_proximos(request):
@@ -69,13 +83,7 @@ def api_restaurantes_proximos(request):
         return JsonResponse({'error': str(e)}, status=500)
     
     from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
-from django.core.mail import send_mail
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
-from .models import PasswordResetToken
-import json
+
 
 @require_http_methods(["POST"])
 def solicitar_reset_senha(request):
@@ -120,13 +128,7 @@ def solicitar_reset_senha(request):
 
 
         from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
-from django.core.mail import send_mail
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
-from .models import PasswordResetToken
-import json
+
 
 @require_http_methods(["POST"])
 def solicitar_reset_senha(request):

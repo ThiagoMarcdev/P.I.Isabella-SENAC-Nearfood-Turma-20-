@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NearFood - Tela Inicial</title>
-    <link rel="stylesheet" href="../../resources/css/style1.css">
+    <link rel="stylesheet" href="../../static/css/style1.css">
 </head>
 <body>
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <a href="index1.html" class="nav-icon active"><i class="icon-home">🏠</i></a>
-            <a href="favorito1.html" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
-            <a href="detalhe.html" class="nav-icon"><i class="icon-receipt">🧾</i></a>
-            <a href="config.html" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
+            <a href="{% url 'index' %}" class="nav-icon active"><i class="icon-home">🏠</i></a>
+            <a href="{% url 'favoritos' %}" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
+            <a href="{% url 'detalhes' %}" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="{% url 'config' %}" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
         </aside>
 
         <!-- Main Content -->
@@ -27,7 +27,10 @@
                     <button class="search-btn">🔍</button>
                 </div>
                 <button class="theme-toggle" id="themeToggle">☀️</button>
-                <button class="login-btn">User</button>
+                <a href="{% url 'login' %}">
+                    <button class="login-btn">Fazer login</button>
+                </a>
+                
             </header>
 
             <!-- Promotion Banner -->
@@ -132,6 +135,6 @@
         </main>
     </div>
 
-    <script src="../../resources/js/main1.js"></script>
+    <script src="../../static/js/main1.js"></script>
 </body>
 </html>

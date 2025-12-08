@@ -1,31 +1,36 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
+import uuid
+from datetime import timedelta
+from django.utils import timezone
 
+class Usuario(AbstractUser):
+    tipo = models.CharField(max_length=10, choices=[('cliente', 'Cliente'), ('dono', 'Dono')])
+    telefone = models.CharField(max_length=20, blank=True, null=True)
 
-class Cliente(models.Model):
-    username = models.CharField(max_length=255, blank=False, null=False, unique=True), # não pode se repetir no banco de dados
-    nome = models.CharField(max_length=255, blank=True, null=True),
-    email = models.EmailField(max_length=100, blank=True, null=True),
-    telefone = models.CharField(max_length=20, blank=True, null=True),
-    is_admin = models.BooleanField(default=False, blank=False, null=False),
-    senha = models.CharField(max_length=128, blank=False, null=False),
     class Meta:
-        db_table = 'tbl_Clientes'
-        db_table = 'tbl_Clientes'
+        db_table = 'tbl_usuarios'
 
     def __str__(self):
         return self.username
-    
-class Dono(models.Model):
-    username = models.CharField(max_length=255, blank=False, null=False, unique=True), # não pode se repetir no banco de dados
-    nome = models.CharField(max_length=255, blank=True, null=True),
-    email = models.EmailField(max_length=100, blank=True, null=True),
-    telefone = models.CharField(max_length=20, blank=True, null=True),
-    is_admin = models.BooleanField(default=True, blank=False, null=False), # usuario admin dono do restaurante
-    senha = models.CharField(max_length=128, blank=False, null=False),
-    cnpj = models.CharField(max_length=128, blank=False, null=False, unique=True), # não pode se repetir no banco de dados
-    
+
+class Dono(Usuario):
+    cnpj = models.CharField(max_length=128, unique=True)
+    restaurante = models.CharField(max_length=255, blank=True, null=True)
+
     class Meta:
-        db_table = 'tbl_Donos'
+        db_table = 'tbl_donos'
 
     def __str__(self):
         return self.username
+
+User = get_user_model()
+
+class TokenResetSenha(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=200, unique=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
+
+    def expirado(self):
+        return self.criado_em < timezone.now() - timedelta(hours=1)

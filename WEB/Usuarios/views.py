@@ -1,43 +1,116 @@
-from django.shortcuts import render
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .serializers import UsuarioSerializer, UsuarioRetornoSerializer
-from rest_framework.views import APIView
-from django.contrib.auth import authenticate
+from django.conf import settings
+from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate, login
+from Usuarios.models import TokenResetSenha, Usuario
+from django.contrib.auth import get_user_model
+import uuid
+from django.contrib.auth.hashers import make_password
+
+def login_view(request):
+    if request.method == 'POST':
+        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        if user:
+            login(request, user)
+            return redirect('home')
+    return render(request, 'login.html')
 
 
-@api_view(['POST'])
-def cadastrar_usuario(request):
-    serializer = UsuarioSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(
-            {"mensagem": "Usuário cadastrado com sucesso!"},
-            status=status.HTTP_201_CREATED
+def cadastro_view(request):
+    if request.method == 'POST':
+        nome = request.POST['firstName']
+        username = request.POST['username']
+        email = request.POST['email']
+        senha = request.POST['senha']
+        confirmSenha = request.POST['confirmSenha']
+        
+        if senha == confirmSenha:
+            user = Usuario.objects.create_user(username=username, email=email, password=senha)
+            login(request, user)
+            return redirect('home')
+    return render(request, 'cadastro.html')
+
+
+def exibir_receber_token(request):
+    return render(request, 'recebeToken.html')
+
+    # chamar função para enviar link de redefinição de senha
+    
+    
+User = get_user_model()
+
+def enviar_token(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+
+        try:
+            usuario = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return render(request, 'recebeToken.html', {
+                "erro": "Email não encontrado."
+            })
+
+        # gerar token único
+        token = str(uuid.uuid4())
+
+        TokenResetSenha.objects.create(usuario=usuario, token=token)
+
+        link = request.build_absolute_uri(f"/usuarios/reset/{token}/")
+
+        # enviar email — precisa configurar EMAIL_BACKEND
+        send_mail(
+            subject="Redefinir sua senha",
+            message=f"Clique no link para redefinir sua senha:\n{link}",
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[email],
         )
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class LoginView(APIView):
+        return render(request, 'recebeToken.html', {
+            "sucesso": "Enviamos o link de redefinição para seu email."
+        })
+    
+def exibir_reset_senha(request, token):
+    from .models import TokenResetSenha
 
-    def post(self, request, *args, **kwargs):
-        email = request.data.get('email')
-        password = request.data.get('password')
+    try:
+        token_obj = TokenResetSenha.objects.get(token=token)
+    except TokenResetSenha.DoesNotExist:
+        return render(request, 'resetSenhaNova.html', {"erro": "Link inválido."})
 
-        if not email or not password:
-            return Response(
-                {"error": "email and password required"},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+    if token_obj.expirado():
+        return render(request, 'resetSenhaNova.html', {"erro": "Link expirado."})
 
-        # IMPORTANTE: usar username=email, pois USERNAME_FIELD=email
-        user = authenticate(username=email, password=password)
+    return render(request, 'resetSenhaNova.html', {"token": token})
 
-        if user is None:
-            return Response({"error": "Username ou senha inválidos"}, status=status.HTTP_401_UNAUTHORIZED)
+def salvar_nova_senha(request, token):
+    if request.method == "POST":
+        senha1 = request.POST.get("password")
+        senha2 = request.POST.get("confirm_password")
 
-        serializer = UsuarioRetornoSerializer(user)
-        return Response(
-            {"message": "Login OK", "user": serializer.data},
-            status=status.HTTP_200_OK
-        )
+        if senha1 != senha2:
+            return render(request, 'resetSenhaNova.html', {
+                "erro": "As senhas não coincidem.",
+                "token": token
+            })
+
+        try:
+            token_obj = TokenResetSenha.objects.get(token=token)
+        except TokenResetSenha.DoesNotExist:
+            return render(request, 'resetSenhaNova.html', {"erro": "Token inválido."})
+
+        usuario = token_obj.usuario
+
+        # alterar senha corretamente
+        usuario.set_password(senha1)
+        usuario.save()
+
+        # apagar token usado
+        token_obj.delete()
+
+        # redirecionar para login
+        return redirect("login")
+
+    return redirect("esqueci")
+
+def reset_senha(request):
+  pass
+
