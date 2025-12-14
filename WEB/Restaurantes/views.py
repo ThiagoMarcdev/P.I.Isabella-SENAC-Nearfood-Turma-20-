@@ -10,8 +10,9 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from .models import PasswordResetToken
+from django.contrib.auth.decorators import login_required
 
-
+@login_required # verifica se login esta feito
 def acessar_home(request):
     """
     Esta view agora busca TODAS as informações necessárias para a página inicial

@@ -118,4 +118,7 @@ STATICFILES_DIRS = [
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "naoresponder@nearfood.com"
 
-
+# sobre autenticação inicial do site
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'login'

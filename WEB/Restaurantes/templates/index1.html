@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NearFood - Tela Inicial</title>
-    <link rel="stylesheet" href="../../static/css/style1.css">
+    <link rel="stylesheet" href="{% static '/css/style1.css' %}">
 </head>
 
 <body>
@@ -31,9 +31,13 @@
                     <button class="search-btn">🔍</button>
                 </div>
                 <button class="theme-toggle" id="themeToggle">☀️</button>
-                <a href="{% url 'login' %}">
-                    <button class="login-btn">Fazer login</button>
-                </a>
+                {% if user.is.authenticated %}
+                    <span style="margin-right: 10px;">Olá, {{ user.first_name|default:user.username }}! 👋</span>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <button class="login-btn">Fazer login</button>
+                    </a>
+                {% endif %}
 
             </header>
 
@@ -195,7 +199,7 @@
         </main>
     </div>
 
-    <script src="../../static/js/main1.js"></script>
+    <script src="{% static 'js/main1.js' %}"></script>
 </body>
 
 </html>
