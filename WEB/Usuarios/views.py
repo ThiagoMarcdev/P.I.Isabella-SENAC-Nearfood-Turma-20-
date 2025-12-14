@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 import uuid
 from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
+from django.contrib.auth import logout
 
 def login_view(request):
     if request.method == 'POST':
@@ -14,6 +15,10 @@ def login_view(request):
             login(request, user)
             return redirect('index')
     return render(request, 'login.html')
+
+def fazerLogout(request): # desloga o usuario do site
+    logout(request) # limpa a sessão
+    return redirect('login') # redireciona para tela login
 
 
 def cadastro_view(request):

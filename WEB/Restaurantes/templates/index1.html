@@ -31,7 +31,7 @@
                     <button class="search-btn">🔍</button>
                 </div>
                 <button class="theme-toggle" id="themeToggle">☀️</button>
-                {% if user.is.authenticated %}
+                {% if user.is_authenticated %}
                     <span style="margin-right: 10px;">Olá, {{ user.first_name|default:user.username }}! 👋</span>
                 {% else %}
                     <a href="{% url 'login' %}">

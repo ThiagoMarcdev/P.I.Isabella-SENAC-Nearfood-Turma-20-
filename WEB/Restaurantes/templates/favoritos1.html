@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NearFood - Favoritos</title>
     <link rel="stylesheet" href="../../static/css/favorito.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Sidebar -->
@@ -21,13 +23,21 @@
             <!-- Header -->
             <header class="header">
                 <button class="menu-btn" id="menuBtn">☰</button>
-                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span class="heart">❤️</span></span>d</div>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span
+                            class="heart">❤️</span></span>d</div>
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar" id="searchInput">
                     <button class="search-btn">🔍</button>
                 </div>
                 <button class="theme-toggle" id="themeToggle">☀️</button>
-                <button class="login-btn">Fazer Login</button>
+                {% if user.is_authenticated %}
+                <span style="margin-right: 10px;">Olá, {{ user.first_name|default:user.username }}! 👋</span>
+                {% else %}
+                <a href="{% url 'login' %}">
+                    <button class="login-btn">Fazer login</button>
+                </a>
+
+                {% endif %}
             </header>
 
             <!-- Favorites Content -->
@@ -51,4 +61,5 @@
 
     <script src="../../static/js/favorito.js"></script>
 </body>
+
 </html>
