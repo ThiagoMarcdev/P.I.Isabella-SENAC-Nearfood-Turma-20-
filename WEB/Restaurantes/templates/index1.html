@@ -15,7 +15,7 @@
         <aside class="sidebar">
             <a href="{% url 'index' %}" class="nav-icon active"><i class="icon-home">🏠</i></a>
             <a href="{% url 'favoritos' %}" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
-            <a href="{% url 'detalhes' %}" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="#" class="nav-icon"><i class="icon-receipt">🧾</i></a>
             <a href="{% url 'config' %}" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
         </aside>
 
@@ -73,14 +73,12 @@
                                 <span>⭐ {{ restaurante.avaliacao }}</span>
                                 <span>🕒 {{ restaurante.hora_funcionamento }}</span>
                             </div>
-                            <button class="btn-detalhes" onclick="abrirModal(
-                                    '{{ restaurante.nome }}', 
-                                    '{{ restaurante.descricao }}', 
-                                    '{{ restaurante.avaliacao }}',
-                                    '{{ restaurante.hora_funcionamento }}'
-                                )">
+                            <a href="{% url 'detalhes' restaurante.id %}">
+                                <button class="btn-detalhes">
                                 Ver Detalhes
                             </button>
+                            </a>
+                            
                         </div>
                     </div>
                     {% empty %}
@@ -118,7 +116,7 @@
                             <p>{{ restaurante.endereco }}</p>
                             <div class="rec-footer">
                                 <span class="price">⭐ {{ restaurante.avaliacao }}</span>
-                                <a href="{% url 'detalhes' %}" class="add-btn">+</a>
+                                <a href="{% url 'detalhes' restaurante.id %}" class="add-btn">+</a>
                             </div>
                         </div>
                     </div>

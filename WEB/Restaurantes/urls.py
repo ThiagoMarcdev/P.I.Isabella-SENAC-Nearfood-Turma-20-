@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.acessar_home, name='index'),
     #path('buscar_restaurantes/', views.buscar_restaurantes),
     #path('api/restaurantes-proximos/', views.api_restaurantes_proximos, name='api_restaurantes_proximos'),    
-    path('detalhes/', views.detalhes, name='detalhes'),
+    path('detalhes/<int:id>/', views.detalhes, name='detalhes'),
     path('config/', views.configuracoes, name='config'),
     path('favoritos/', views.favoritos, name='favoritos'),
     #path('api/restaurantes/', views.api_restaurantes, name='api_restaurantes'),
