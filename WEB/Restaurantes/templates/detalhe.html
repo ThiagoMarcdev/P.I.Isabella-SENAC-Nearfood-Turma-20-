@@ -61,7 +61,11 @@
                     </div>
 
                     <div class="details-image">
-                        <img src="/images/captura-20de-20tela-202025-12-02-20095902.png" alt="{{ restaurante.nome }}" id="restauranteImagem">
+                        {% if restaurante.imagem %}
+                            <img src="{{ restaurante.imagem.url }}" alt="{{ restaurante.nome }}" id="restauranteImagem" >
+                        {% else %}
+                            <img src="https://via.placeholder.com/600x400?text=Sem+Foto" alt="Sem imagem" id="restauranteImagem">
+                        {% endif %}
                     </div>
                 </div>
 
@@ -78,8 +82,8 @@
                     <h2>🗺️ Como Chegar</h2>
                     <div class="route-info">
                         <div class="route-address">
-                            <h3 id="enderecoCompleto">Avenida João Celos, 123 - Centro</h3>
-                            <p id="cidadeEstado">São Paulo, SP - CEP: 01234-567</p>
+                            <h3 id="enderecoCompleto">{{ restaurante.endereco }}</h3>
+                            <p id="cidadeEstado">{{ restaurante.estado }}</p>
                         </div>
                         <button class="btn-route-large" id="btnAbrirMaps">
                             📍 Abrir no Google Maps

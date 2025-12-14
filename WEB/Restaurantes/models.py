@@ -35,6 +35,7 @@ class Restaurant(models.Model):
     recomendado = models.BooleanField(default=False)    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    imagem = models.ImageField(upload_to='restaurantes/', blank=True, null=True) # imagem do restaurante
     
     class Meta:
         db_table='tbl_Restaurantes'
