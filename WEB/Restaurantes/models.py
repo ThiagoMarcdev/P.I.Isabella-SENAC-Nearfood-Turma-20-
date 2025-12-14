@@ -73,3 +73,14 @@ class PasswordResetToken(models.Model):
 
     def __str__(self):
         return f"Token para {self.user.email}"
+    
+    
+class ItemCardapio(models.Model):
+    restaurante = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='itens_cardapio')
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField(blank=True, null=True)
+    preco = models.DecimalField(max_digits=6, decimal_places=2) # Ex: 1500.50
+    imagem = models.ImageField(upload_to='cardapio/', blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.nome} - {self.restaurante.nome}"

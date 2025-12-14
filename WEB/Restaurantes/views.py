@@ -1,7 +1,7 @@
 
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import JsonResponse
-from .models import Restaurant, Promocao, Categoria 
+from .models import ItemCardapio, Restaurant, Promocao, Categoria 
 from geopy.distance import geodesic
 import json
 from django.views.decorators.csrf import csrf_exempt
@@ -51,6 +51,8 @@ def detalhes(request, id): # cada restaurante precisa de um identificador
    # Busca o restaurante pelo ID ou retorna erro 404 se não achar
     restaurante = get_object_or_404(Restaurant, id=id)
     
+    itens_cardapio = ItemCardapio.objects.filter(restaurante=restaurante)
+    
     is_favorito = False
     if request.user.is_authenticated:
         if restaurante  in request.user.favoritos.all():
@@ -59,6 +61,7 @@ def detalhes(request, id): # cada restaurante precisa de um identificador
     contexto = {
         'restaurante': restaurante,
         'is_favorito' : is_favorito,
+        'cardapio' : itens_cardapio,
     }
     return render(request, 'detalhe.html', contexto)
 
