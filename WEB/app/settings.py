@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Seus apps
-    'app',
+    'app', ## core
     'Usuarios',
     'Restaurantes',
 

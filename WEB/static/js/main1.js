@@ -1,19 +1,19 @@
 // Dados de exemplo dos restaurantes
-const restaurantes = [
-  { id: 1, nome: "Bella Cucina", tipo: "Italiano", categoria: "Pizza", emoji: "🍝", avaliacao: 4.5 },
-  { id: 2, nome: "Zen Bites", tipo: "Chinês", categoria: "Japonês", emoji: "🥢", avaliacao: 4.7 },
-  { id: 3, nome: "The Grill House", tipo: "Churrascaria", categoria: "Lanches", emoji: "🥩", avaliacao: 4.6 },
-  { id: 4, nome: "Ocean Harvest", tipo: "Frutos do mar", categoria: "Japonês", emoji: "🦐", avaliacao: 4.8 },
-  { id: 5, nome: "Green Plate", tipo: "Vegano", categoria: "Sanduíche", emoji: "🥗", avaliacao: 4.4 },
-  { id: 6, nome: "Fiesta Cantina", tipo: "Mexicano", categoria: "Lanches", emoji: "🌮", avaliacao: 4.5 },
-]
+// const restaurantes = [
+//   { id: 1, nome: "Bella Cucina", tipo: "Italiano", categoria: "Pizza", emoji: "🍝", avaliacao: 4.5 },
+//   { id: 2, nome: "Zen Bites", tipo: "Chinês", categoria: "Japonês", emoji: "🥢", avaliacao: 4.7 },
+//   { id: 3, nome: "The Grill House", tipo: "Churrascaria", categoria: "Lanches", emoji: "🥩", avaliacao: 4.6 },
+//   { id: 4, nome: "Ocean Harvest", tipo: "Frutos do mar", categoria: "Japonês", emoji: "🦐", avaliacao: 4.8 },
+//   { id: 5, nome: "Green Plate", tipo: "Vegano", categoria: "Sanduíche", emoji: "🥗", avaliacao: 4.4 },
+//   { id: 6, nome: "Fiesta Cantina", tipo: "Mexicano", categoria: "Lanches", emoji: "🌮", avaliacao: 4.5 },
+// ]
 
-const recomendacoes = [
-  { id: 7, nome: "Golden Harvest", tipo: "Comida caseira", categoria: "Lanches", emoji: "🍲" },
-  { id: 8, nome: "Urban Bites", tipo: "Comida de rua", categoria: "Lanches", emoji: "🍔" },
-]
+// const recomendacoes = [
+//   { id: 7, nome: "Golden Harvest", tipo: "Comida caseira", categoria: "Lanches", emoji: "🍲" },
+//   { id: 8, nome: "Urban Bites", tipo: "Comida de rua", categoria: "Lanches", emoji: "🍔" },
+// ]
 
-console.log("[v0] main.js carregado, total de restaurantes:", restaurantes.length)
+//console.log("[v0] main.js carregado, total de restaurantes:", restaurantes.length)
 
 // Função para renderizar restaurantes
 function renderizarRestaurantes() {
@@ -275,5 +275,5 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 // Exportar dados para uso em outras páginas
-window.restaurantesData = restaurantes
-window.recomendacoesData = recomendacoes
+// window.restaurantesData = restaurantes
+// window.recomendacoesData = recomendacoes

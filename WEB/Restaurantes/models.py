@@ -32,8 +32,7 @@ class Restaurant(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True) # Mudado para DecimalField
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True) # Mudado para DecimalField
     categorias = models.ManyToManyField('Categoria') 
-    recomendado = models.BooleanField(default=False)
-    
+    recomendado = models.BooleanField(default=False)    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
