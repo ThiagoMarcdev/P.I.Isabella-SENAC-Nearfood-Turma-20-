@@ -9,6 +9,7 @@ urlpatterns = [
     path('detalhes/<int:id>/', views.detalhes, name='detalhes'),
     path('config/', views.configuracoes, name='config'),
     path('favoritos/', views.favoritos, name='favoritos'),
+    path('favoritar/<int:id>/', views.toggle_favorito, name='toggle_favorito'),
     #path('api/restaurantes/', views.api_restaurantes, name='api_restaurantes'),
     # path('api/restaurante/<int:restaurante_id>/', views.api_restaurante_detalhes, name='api_restaurante_detalhes'),
     # path('api/config/salvar/', views.api_salvar_config, name='api_salvar_config'),

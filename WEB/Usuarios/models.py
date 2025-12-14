@@ -8,6 +8,7 @@ from django.utils import timezone
 class Usuario(AbstractUser):
     tipo = models.CharField(max_length=10, choices=[('cliente', 'Cliente'), ('dono', 'Dono')])
     telefone = models.CharField(max_length=20, blank=True, null=True)
+    favoritos = models.ManyToManyField('Restaurantes.Restaurant', related_name='favoritado_por', blank=True)
 
     class Meta:
         db_table = 'tbl_usuarios'

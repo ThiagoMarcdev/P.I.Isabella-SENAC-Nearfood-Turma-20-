@@ -1,12 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NearFood - Detalhes do Restaurante</title>
     <link rel="stylesheet" href="../../static/css/style1.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Sidebar -->
@@ -22,25 +24,33 @@
             <!-- Header -->
             <header class="header">
                 <button class="menu-btn" id="menuBtn">☰</button>
-                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span class="heart">❤️</span></span>d</div>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span
+                            class="heart">❤️</span></span>d</div>
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar" id="searchInput">
                     <button class="search-btn">🔍</button>
                 </div>
                 <button class="theme-toggle" id="themeToggle">☀️</button>
-                <button class="login-btn">Fazer Login</button>
+                {% if user.is_authenticated %}
+                <span style="margin-right: 10px; font-weight: bold;">{{ user.username }}</span>
+
+                {% else %}
+                <a href="{% url 'login' %}">
+                    <button class="login-btn">Fazer Login</button>
+                </a>
+                {% endif %}
             </header>
 
             <!-- Restaurant Details -->
             <section class="restaurant-details">
                 <div class="details-content">
-                    
+
                     <div class="details-info">
                         <button class="back-btn" onclick="history.back()">← Voltar</button>
                         <button class="favorite-btn" id="favoritoBtn" data-restaurante-id="{{ restaurante.id }}">
                             <span class="star">⭐</span> Reportar
                         </button>
-                        
+
                         <h1 class="restaurant-name" id="restauranteName">{{ restaurante.nome }}</h1>
                         <p class="restaurant-rating">
                             <span class="rating-number" id="avaliacaoNumero">{{ restaurante.avaliacao }}</span>
@@ -53,18 +63,37 @@
                         </div>
 
                         <div class="action-buttons">
-                            <button class="btn-primary reserve-detail-btn" id="btnReservaDetalhes">FAZER RESERVA</button>
-                            <button class="btn-secondary favorite-toggle-btn" id="adicionarFavoritoBtn">
-                                <span id="favoritoIcone">🤍</span> ADICIONAR AOS FAVORITOS
-                            </button>
+                            <button class="btn-primary reserve-detail-btn" id="btnReservaDetalhes">FAZER
+                                RESERVA</button>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'toggle_favorito' restaurante.id %}" style="text-decoration: none;">
+                                {% if is_favorito %}
+                                <button class="btn-secondary favorite-toggle-btn"
+                                    style="background-color: #ff4757; color: white; border-color: #ff4757;">
+                                    <span>❤️</span> REMOVER DOS FAVORITOS
+                                </button>
+                                {% else %}
+                                <button class="btn-secondary favorite-toggle-btn">
+                                    <span>🤍</span> ADICIONAR AOS FAVORITOS
+                                </button>
+                                {% endif %}
+                            </a>
+                            {% else %}
+                            <a href="{% url 'login' %}" style="text-decoration: none;">
+                                <button class="btn-secondary favorite-toggle-btn">
+                                    <span>🤍</span> FAZER LOGIN PARA FAVORITAR
+                                </button>
+                            </a>
+                            {% endif %}
                         </div>
                     </div>
 
                     <div class="details-image">
                         {% if restaurante.imagem %}
-                            <img src="{{ restaurante.imagem.url }}" alt="{{ restaurante.nome }}" id="restauranteImagem" >
+                        <img src="{{ restaurante.imagem.url }}" alt="{{ restaurante.nome }}" id="restauranteImagem">
                         {% else %}
-                            <img src="https://via.placeholder.com/600x400?text=Sem+Foto" alt="Sem imagem" id="restauranteImagem">
+                        <img src="https://via.placeholder.com/600x400?text=Sem+Foto" alt="Sem imagem"
+                            id="restauranteImagem">
                         {% endif %}
                     </div>
                 </div>
@@ -108,4 +137,5 @@
 
     <script src="../../static/js/detalhes.js"></script>
 </body>
+
 </html>
