@@ -17,7 +17,7 @@ class Usuario(AbstractUser):
         return self.username
 
 class Dono(Usuario):
-    cnpj = models.CharField(max_length=128, unique=True)
+    cnpj = models.CharField(max_length=128, unique=True, blank=True, null=True)
     restaurante = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:

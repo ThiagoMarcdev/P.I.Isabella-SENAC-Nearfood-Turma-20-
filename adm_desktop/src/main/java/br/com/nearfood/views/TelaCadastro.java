@@ -5,7 +5,7 @@
 package br.com.nearfood.views;
 
 import br.com.nearfood.models.Usuario;
-import br.com.nearfood.service.UsuarioService;
+import br.com.nearfood.service.CadastroService;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -197,7 +197,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         Usuario usuario = new Usuario(first_name, last_name, username, password, email, tipo_usuario, telefone);
 
-        boolean sucesso = UsuarioService.cadastrarUsuario(usuario);
+        boolean sucesso = CadastroService.cadastrarUsuario(usuario);
 
         if (first_name.isEmpty() || first_name.equals("Insira seu primeiro nome")
                 || last_name.isEmpty() || last_name.equals("Insira seu ultimo nome")
@@ -219,7 +219,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             String result = String.format("O Usuario %s, foi criado e armazenado com sucesso!", username);
 
             System.out.println(result);
-            telaLogin login = new telaLogin();
+            TelaLoginNew login = new TelaLoginNew();
             login.setVisible(true);
             this.dispose();
         } else {

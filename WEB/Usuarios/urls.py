@@ -5,6 +5,8 @@ urlpatterns = [
     path('login-interno/', views.login_view, name='login'),
     path('cadastro/', views.cadastro_view, name='cadastrar_usuario'),
     path('logout/', views.fazerLogout, name='logout'),
+    path('api/login/', views.api_login, name='api_login'),
+    path('api/cadastro/', views.api_cadastro, name='api_cadastro'),
     
     path('  /', views.exibir_receber_token, name='esqueci'),
     path('enviar-token/', views.enviar_token, name='enviar_token'),

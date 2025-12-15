@@ -36,7 +36,7 @@ public class Usuario {
     public void setEmail(String email) { this.email = email; }
 
     public String getTipo_usuario() { return tipo_usuario; }
-    public void tipo_usuario(String tipo) { this.tipo_usuario = tipo; }
+    public void setTipoUsuario(String tipo) { this.tipo_usuario = tipo; }
 
     public String getTelefone() { return telefone; }
     public void setTelefone(String telefone) { this.telefone = telefone; }
