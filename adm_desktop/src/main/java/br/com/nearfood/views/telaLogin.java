@@ -52,11 +52,14 @@ public class telaLogin extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Imagem-login.png"))); // NOI18N
         jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logos/Logo Nearfood__extenso.png"))); // NOI18N
+        getContentPane().add(jLabel2);
 
         jLabel3.setFont(new java.awt.Font("Poppins Medium", 0, 26)); // NOI18N
         jLabel3.setText("Olá, seja muito bem-vindo ao");
+        getContentPane().add(jLabel3);
 
         lblNaoTemConta.setFont(new java.awt.Font("Lato", 1, 15)); // NOI18N
         lblNaoTemConta.setText("Não tem login? Crie sua conta");
@@ -66,6 +69,7 @@ public class telaLogin extends javax.swing.JFrame {
                 lblNaoTemContaMouseClicked(evt);
             }
         });
+        getContentPane().add(lblNaoTemConta);
 
         txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -75,6 +79,7 @@ public class telaLogin extends javax.swing.JFrame {
                 txtEmailFocusLost(evt);
             }
         });
+        getContentPane().add(txtEmail);
 
         esqueceuSenha.setFont(new java.awt.Font("Lato", 1, 15)); // NOI18N
         esqueceuSenha.setText("Esqueceu sua senha?");
@@ -84,10 +89,12 @@ public class telaLogin extends javax.swing.JFrame {
                 esqueceuSenhaMouseClicked(evt);
             }
         });
+        getContentPane().add(esqueceuSenha);
 
         chkManterLogin.setFont(new java.awt.Font("Lato", 0, 13)); // NOI18N
         chkManterLogin.setText("Manter Login");
         chkManterLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(chkManterLogin);
 
         btnAvancar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/seta_avancar.png"))); // NOI18N
         btnAvancar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +102,7 @@ public class telaLogin extends javax.swing.JFrame {
                 btnAvancarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAvancar);
 
         txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -104,102 +112,33 @@ public class telaLogin extends javax.swing.JFrame {
                 txtPasswordFocusLost(evt);
             }
         });
+        getContentPane().add(txtPassword);
 
         jLabel6.setFont(new java.awt.Font("Poppins Light", 0, 13)); // NOI18N
         jLabel6.setText("CONSULTE AQUI A");
+        getContentPane().add(jLabel6);
 
         jLabel7.setFont(new java.awt.Font("Poppins Light", 0, 13)); // NOI18N
         jLabel7.setText("E OS");
+        getContentPane().add(jLabel7);
 
         jLabel8.setFont(new java.awt.Font("Poppins Light", 0, 13)); // NOI18N
         jLabel8.setText("<HTML><U>POLÍTICA DE PRIVACIDADE</U> </HTML>");
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jLabel8);
 
         jLabel9.setFont(new java.awt.Font("Poppins Light", 0, 13)); // NOI18N
         jLabel9.setText("<html><u>TERMOS DE USO</u></html>");
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jLabel9);
 
         jLabel4.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
         jLabel4.setText("Email");
+        getContentPane().add(jLabel4);
 
         jLabel5.setFont(new java.awt.Font("Fira Sans", 0, 18)); // NOI18N
         jLabel5.setText("Senha");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(245, 245, 245)
-                                .addComponent(btnAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblNaoTemConta)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(esqueceuSenha)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(chkManterLogin)))))
-                        .addContainerGap(30, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNaoTemConta)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(esqueceuSenha)
-                .addGap(6, 6, 6)
-                .addComponent(chkManterLogin)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(btnAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(44, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
+        getContentPane().add(jLabel5);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
