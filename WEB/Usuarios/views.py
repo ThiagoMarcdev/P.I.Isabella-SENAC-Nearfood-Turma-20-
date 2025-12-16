@@ -1,11 +1,16 @@
+import json
 from django.conf import settings
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
-from Usuarios.models import TokenResetSenha, Usuario
+from Usuarios.models import Dono, TokenResetSenha, Usuario
 from django.contrib.auth import get_user_model
 import uuid
 from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
+from django.contrib.auth import logout
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 
 def login_view(request):
     if request.method == 'POST':
@@ -14,6 +19,10 @@ def login_view(request):
             login(request, user)
             return redirect('index')
     return render(request, 'login.html')
+
+def fazerLogout(request): # desloga o usuario do site
+    logout(request) # limpa a sessão
+    return redirect('login') # redireciona para tela login
 
 
 def cadastro_view(request):
@@ -128,6 +137,112 @@ def salvar_nova_senha(request, token):
 
     return redirect("esqueci")
 
-def reset_senha(request):
-  pass
+@csrf_exempt  
+@require_http_methods(["POST"])
+def api_login(request):
+    try:
+        data = json.loads(request.body)
+        
+        username_java = data.get('user') 
+        password_java = data.get('password')
+        
+        if not username_java or not password_java:
+            return JsonResponse({
+                'authenticated': False, 
+                'message': 'Usuário e senha são obrigatórios'
+            }, status=400)
 
+        # verifica credenciais (Username e Senha)
+        user = authenticate(request, username=username_java, password=password_java)
+
+        if user is not None:
+            # O usuário é do tipo 'dono'?
+            if user.tipo == 'dono':
+                # SUCESSO: É dono e a senha está certa
+                return JsonResponse({
+                    'authenticated': True,
+                    'message': 'Login de Dono realizado com sucesso',
+                    'user_id': user.id,
+                    'nome': user.first_name or user.username
+                }, status=200)
+            
+            else:
+                # BLOQUEIO: A senha está certa, mas é um Cliente tentando entrar no App de Dono
+                return JsonResponse({
+                    'authenticated': False,
+                    'message': 'Acesso restrito. Este aplicativo é apenas para parceiros/donos.'
+                }, status=403) # 403 = Proibido
+        
+        else:
+            # ERRO: Usuário não existe ou senha errada
+            return JsonResponse({
+                'authenticated': False,
+                'message': 'Credenciais inválidas'
+            }, status=401)
+
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'JSON inválido'}, status=400)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+
+@csrf_exempt  
+@require_http_methods(["POST"])
+def api_cadastro(request):
+    try:
+        data = json.loads(request.body)
+        
+        #  Extração dos dados (Tentando pegar tanto camelCase do Java quanto snake_case)
+        # O Java manda 'username' já concatenado conforme sua lógica
+        username_java = data.get('username') or data.get('user') 
+        password_java = data.get('password') or data.get('senha')
+        email = data.get('email')
+        telefone = data.get('telefone')
+        
+        # Pega firstName (Java) ou first_name (Python)
+        first_name = data.get('firstName') or data.get('first_name')
+        # Pega lastName (Java) ou last_name (Python)
+        last_name = data.get('lastName') or data.get('last_name')
+        
+        #  Validação de campos obrigatórios
+        # CNPJ e Restaurante não são validados aqui pois o banco aceita NULL agora
+        if not all([first_name, last_name, email, telefone, username_java, password_java]):
+            return JsonResponse({
+                'success': False, 
+                'message': 'Todos os campos (Nome, Sobrenome, Email, Tel, User, Senha) são obrigatórios.'
+            }, status=400)
+
+        #Verificações de duplicidade
+        if Usuario.objects.filter(username=username_java).exists():
+            return JsonResponse({'success': False, 'message': 'Nome de usuário já está em uso.'}, status=400)
+        
+        if Usuario.objects.filter(email=email).exists():
+            return JsonResponse({'success': False, 'message': 'Email já cadastrado.'}, status=400)
+
+        # Criação do Usuário DONO
+        
+        novo_dono = Dono.objects.create_user(
+            username=username_java,
+            email=email,
+            password=password_java,
+            tipo='dono',            
+            first_name=first_name,
+            last_name=last_name,
+            cnpj=None,              
+            restaurante=None        
+        )
+        
+        # Salva o telefone e confirma a gravação
+        novo_dono.telefone = telefone
+        novo_dono.save()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Cadastro realizado com sucesso!',
+            'user_id': novo_dono.id
+        }, status=201)
+
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'message': 'JSON inválido enviado pelo Java.'}, status=400)
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': f'Erro interno no servidor: {str(e)}'}, status=500)

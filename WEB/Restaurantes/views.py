@@ -1,7 +1,7 @@
 
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import JsonResponse
-from .models import Restaurant, Promocao, Categoria 
+from .models import ItemCardapio, Restaurant, Promocao, Categoria 
 from geopy.distance import geodesic
 import json
 from django.views.decorators.csrf import csrf_exempt
@@ -10,8 +10,9 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from .models import PasswordResetToken
+from django.contrib.auth.decorators import login_required
 
-
+@login_required # verifica se login esta feito
 def acessar_home(request):
     """
     Esta view agora busca TODAS as informações necessárias para a página inicial
@@ -30,8 +31,14 @@ def acessar_home(request):
     }
     return render(request, 'index1.html', contexto)
 
+@login_required # login aqui é necessario para trazer informações especificas daquele usuario
 def favoritos(request):
-    return render(request, 'favoritos1.html')
+    meus_favoritos = request.user.favoritos.all()
+    contexto = {
+        'meus_favoritos': meus_favoritos
+    }
+    
+    return render(request, 'favoritos1.html', contexto)
 
 def buscar_restaurantes(request):
     return render(
@@ -40,8 +47,23 @@ def buscar_restaurantes(request):
         {'Restaurant': {'nome': '*'}}    
     )
 
-def detalhes(request):
-    return render(request, 'detalhe.html') 
+def detalhes(request, id): # cada restaurante precisa de um identificador
+   # Busca o restaurante pelo ID ou retorna erro 404 se não achar
+    restaurante = get_object_or_404(Restaurant, id=id)
+    
+    itens_cardapio = ItemCardapio.objects.filter(restaurante=restaurante)
+    
+    is_favorito = False
+    if request.user.is_authenticated:
+        if restaurante  in request.user.favoritos.all():
+            is_favorito = True
+    
+    contexto = {
+        'restaurante': restaurante,
+        'is_favorito' : is_favorito,
+        'cardapio' : itens_cardapio,
+    }
+    return render(request, 'detalhe.html', contexto)
 
 def configuracoes(request):
     return render(request, 'config.html')
@@ -129,88 +151,14 @@ def solicitar_reset_senha(request):
 
         from django.http import JsonResponse
 
-
-@require_http_methods(["POST"])
-def solicitar_reset_senha(request):
-    try:
-        data = json.loads(request.body)
-        email = data.get('email')
+@login_required
+def toggle_favorito(request, id):
+    restaurante = get_object_or_404(Restaurant, id=id)
+    usuario = request.user
+    
+    if restaurante in usuario.favoritos.all():
+        usuario.favoritos.remove(restaurante)
+    else:
+        usuario.favoritos.add(restaurante)
         
-        # Verificar se email existe
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return JsonResponse({
-                'success': False,
-                'message': 'Email não encontrado em nossa base de dados.'
-            }, status=404)
-        
-        # Criar token
-        token = PasswordResetToken.objects.create(user=user)
-        
-        # Montar link de reset
-        reset_link = f"http://seusite.com/reset-senha-nova.html?token={token.token}"
-        
-        # Enviar email
-        send_mail(
-            'Recuperação de Senha',
-            f'Clique no link para redefinir sua senha: {reset_link}',
-            'noreply@seusite.com',
-            [email],
-            fail_silently=False,
-        )
-        
-        return JsonResponse({
-            'success': True,
-            'message': 'Email enviado com sucesso!'
-        })
-        
-    except Exception as e:
-        return JsonResponse({
-            'success': False,
-            'message': f'Erro ao processar solicitação: {str(e)}'
-        }, status=500)
-
-
-    @require_http_methods(["POST"])
-    def definir_nova_senha(request):
-        try:
-            data = json.loads(request.body)
-            token = data.get('token')
-            password = data.get('password')
-            
-            # Verificar token
-            try:
-                reset_token = PasswordResetToken.objects.get(token=token)
-            except PasswordResetToken.DoesNotExist:
-                return JsonResponse({
-                    'success': False,
-                    'message': 'Token inválido.'
-                }, status=400)
-            
-            # Verificar se token está válido
-            if not reset_token.is_valid():
-                return JsonResponse({
-                    'success': False,
-                    'message': 'Token expirado ou já utilizado.'
-                }, status=400)
-            
-            # Atualizar senha
-            user = reset_token.user
-            user.password = make_password(password)
-            user.save()
-            
-            # Marcar token como usado
-            reset_token.used = True
-            reset_token.save()
-            
-            return JsonResponse({
-                'success': True,
-                'message': 'Senha redefinida com sucesso!'
-            })
-            
-        except Exception as e:
-            return JsonResponse({
-                'success': False,
-                'message': f'Erro ao redefinir senha: {str(e)}'
-            }, status=500)
+    return redirect('detalhes', id=id)

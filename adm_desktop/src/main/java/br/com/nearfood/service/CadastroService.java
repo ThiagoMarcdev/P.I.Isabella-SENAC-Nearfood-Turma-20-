@@ -10,9 +10,9 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import javax.swing.JOptionPane;
 
-public class UsuarioService {
+public class CadastroService {
 
-     private static final String API_URL = "http://localhost:8000/api/usuarios/";
+     private static final String API_URL = "http://localhost:8000/usuarios/api/cadastro/";
 
     public static boolean cadastrarUsuario(Usuario usuario) {
         try {

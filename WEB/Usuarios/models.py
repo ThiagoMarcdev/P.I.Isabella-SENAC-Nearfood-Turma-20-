@@ -8,6 +8,7 @@ from django.utils import timezone
 class Usuario(AbstractUser):
     tipo = models.CharField(max_length=10, choices=[('cliente', 'Cliente'), ('dono', 'Dono')])
     telefone = models.CharField(max_length=20, blank=True, null=True)
+    favoritos = models.ManyToManyField('Restaurantes.Restaurant', related_name='favoritado_por', blank=True)
 
     class Meta:
         db_table = 'tbl_usuarios'
@@ -16,7 +17,7 @@ class Usuario(AbstractUser):
         return self.username
 
 class Dono(Usuario):
-    cnpj = models.CharField(max_length=128, unique=True)
+    cnpj = models.CharField(max_length=128, unique=True, blank=True, null=True)
     restaurante = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:

@@ -72,7 +72,7 @@ public class TelaResetSenha extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         
-        telaLogin telaLogin = new telaLogin();
+        TelaLoginNew telaLogin = new TelaLoginNew();
         telaLogin.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 

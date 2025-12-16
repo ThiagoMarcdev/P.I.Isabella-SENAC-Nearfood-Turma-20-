@@ -1,105 +1,158 @@
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NearFood - Detalhes do Restaurante</title>
-    <link rel="stylesheet" href="../../static/css/style1.css">
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
 </head>
+
 <body>
     <div class="container">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <a href="{% url 'index' %}" class="nav-icon"><i class="icon-home">🏠</i></a>
             <a href="{% url 'favoritos' %}" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
-            <a href="{% url 'detalhes' %}" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="#" class="nav-icon"><i class="icon-receipt">🧾</i></a>
             <a href="{% url 'config' %}" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
-            <!-- Header -->
             <header class="header">
                 <button class="menu-btn" id="menuBtn">☰</button>
-                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span class="heart">❤️</span></span>d</div>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span
+                            class="heart">❤️</span></span>d</div>
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar" id="searchInput">
                     <button class="search-btn">🔍</button>
                 </div>
                 <button class="theme-toggle" id="themeToggle">☀️</button>
-                <button class="login-btn">Fazer Login</button>
+                {% if user.is_authenticated %}
+                    <span style="margin-right: 10px; font-weight: bold;">{{ user.username }}</span>
+                    <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="login-btn" style="background-color: #ff4757; padding: 5px 15px;">Sair</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <button class="login-btn">Fazer Login</button>
+                    </a>
+                {% endif %}
             </header>
 
-            <!-- Restaurant Details -->
             <section class="restaurant-details">
                 <div class="details-content">
                     <div class="details-info">
                         <button class="back-btn" onclick="history.back()">← Voltar</button>
-                        <button class="favorite-btn" id="favoritoBtn" data-restaurante-id="">
+                        <button class="favorite-btn" id="favoritoBtn">
                             <span class="star">⭐</span> Reportar
                         </button>
-                        
-                        <h1 class="restaurant-name" id="restauranteName">NOME DO RESTAURANTE</h1>
+
+                        <h1 class="restaurant-name">{{ restaurante.nome }}</h1>
                         <p class="restaurant-rating">
-                            <span class="rating-number" id="avaliacaoNumero">4.5</span>
+                            <span class="rating-number">{{ restaurante.avaliacao }}</span>
                             <span class="stars">⭐⭐⭐⭐⭐</span>
                         </p>
-                        <p class="restaurant-address" id="restauranteEndereco">Avenida João Celos</p>
+                        <p class="restaurant-address">{{ restaurante.endereco }}</p>
 
-                        <div class="restaurant-description" id="restauranteDescricao">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac lectus at turpis hendrerit porta sit amet ut quam. Nam mattis lacinia metus, ut tristique risus pretium dictum. Praesent vel velit augue. Aliquam lobortis velit a cursus mattis. Donec sagittis, lectus sed gravida convallis. Morbi bibendum pretium felis, eget elefend turpis auctor sit amet. In nec sodales urna. urna nibh, ultricies sit amet teuigiat luctus, semper quis enim. Pellentesque facilisis et mi eget placerat.</p>
+                        <div class="restaurant-description">
+                            {{ restaurante.descricao }}
                         </div>
 
                         <div class="action-buttons">
-                            <button class="btn-primary reserve-detail-btn" id="btnReservaDetalhes">FAZER RESERVA</button>
-                            <button class="btn-secondary favorite-toggle-btn" id="adicionarFavoritoBtn">
-                                <span id="favoritoIcone">🤍</span> ADICIONAR AOS FAVORITOS
-                            </button>
+                            <button class="btn-primary reserve-detail-btn">FAZER RESERVA</button>
+                            
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'toggle_favorito' restaurante.id %}" style="text-decoration: none;">
+                                {% if is_favorito %}
+                                <button class="btn-secondary favorite-toggle-btn"
+                                    style="background-color: #ff4757; color: white; border-color: #ff4757;">
+                                    <span>❤️</span> REMOVER DOS FAVORITOS
+                                </button>
+                                {% else %}
+                                <button class="btn-secondary favorite-toggle-btn">
+                                    <span>🤍</span> ADICIONAR AOS FAVORITOS
+                                </button>
+                                {% endif %}
+                            </a>
+                            {% else %}
+                            <a href="{% url 'login' %}">
+                                <button class="btn-secondary favorite-toggle-btn">
+                                    <span>🤍</span> FAZER LOGIN PARA FAVORITAR
+                                </button>
+                            </a>
+                            {% endif %}
                         </div>
                     </div>
 
                     <div class="details-image">
-                        <img src="/images/captura-20de-20tela-202025-12-02-20095902.png" alt="Restaurante" id="restauranteImagem">
+                        {% if restaurante.imagem %}
+                            <img src="{{ restaurante.imagem.url }}" alt="{{ restaurante.nome }}" id="restauranteImagem">
+                        {% else %}
+                            <img src="https://via.placeholder.com/600x400?text=Sem+Foto" alt="Sem imagem">
+                        {% endif %}
                     </div>
                 </div>
 
-                <!-- Menu Section -->
                 <section class="menu-section">
                     <h2>📋 Cardápio</h2>
                     <div class="menu-grid" id="menuGrid">
-                        <!-- Cardápio será carregado via JavaScript -->
+                        
+                        {% for item in cardapio %}
+                        <div class="menu-item" style="display: flex; gap: 15px; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                            
+                            <div class="menu-img-wrapper" style="width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: #eee; display: flex; align-items: center; justify-content: center;">
+                                {% if item.imagem %}
+                                    <img src="{{ item.imagem.url }}" alt="{{ item.nome }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                {% else %}
+                                    <span style="font-size: 2rem;">🍔</span>
+                                {% endif %}
+                            </div>
+
+                            <div class="menu-info" style="flex: 1;">
+                                <h4 style="margin: 0; font-size: 1.1rem; color: #333;">{{ item.nome }}</h4>
+                                <p style="margin: 5px 0; color: #666; font-size: 0.9rem;">{{ item.descricao|truncatechars:80 }}</p>
+                                <span class="price" style="color: #ff4500; font-weight: bold; font-size: 1.1rem;">R$ {{ item.preco }}</span>
+                            </div>
+
+                            <div class="menu-action" style="display: flex; align-items: center;">
+                                <button style="background: #ff4500; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;">+</button>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div style="grid-column: 1/-1; text-align: center; padding: 20px; color: #666;">
+                            <p>Este restaurante ainda não cadastrou itens no cardápio.</p>
+                        </div>
+                        {% endfor %}
+                        
                     </div>
                 </section>
 
-                <!-- Route Section -->
                 <section class="route-section">
                     <h2>🗺️ Como Chegar</h2>
                     <div class="route-info">
                         <div class="route-address">
-                            <h3 id="enderecoCompleto">Avenida João Celos, 123 - Centro</h3>
-                            <p id="cidadeEstado">São Paulo, SP - CEP: 01234-567</p>
+                            <h3 id="enderecoCompleto">{{ restaurante.endereco }}</h3>
                         </div>
                         <button class="btn-route-large" id="btnAbrirMaps">
                             📍 Abrir no Google Maps
                         </button>
                         <div class="route-map-placeholder">
                             <p>🗺️ Mapa interativo do Google Maps</p>
-                            <p class="map-note">(Em uma aplicação real, aqui seria exibido o mapa)</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Reviews Section -->
                 <section class="reviews-section">
                     <h2>Avaliações</h2>
                     <div class="reviews-list" id="avaliacoesList">
-                        <!-- Avaliações serão carregadas via JavaScript -->
+                        <p>Funcionalidade em desenvolvimento...</p>
                     </div>
                 </section>
             </section>
         </main>
     </div>
 
-    <script src="../../static/js/detalhes.js"></script>
+    <script src="{% static 'js/detalhes.js' %}"></script>
 </body>
 </html>

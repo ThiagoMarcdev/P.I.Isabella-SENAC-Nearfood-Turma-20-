@@ -1,54 +1,223 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NearFood - Favoritos</title>
-    <link rel="stylesheet" href="../../static/css/style1.css">
+    <link rel="stylesheet" href="{% static 'css/favorito.css' %}">
+    
+    <style>
+        /* Container da lista */
+        .favorites-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espaço entre os itens */
+            max-width: 1000px;
+        }
+
+        /* O Cartão Individual (Barra Horizontal) */
+        .fav-item {
+            display: flex;
+            align-items: center; /* Centraliza verticalmente */
+            justify-content: space-between;
+            background-color: var(--card-background); /* Usa a cor do seu tema */
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .fav-item:hover {
+            transform: translateX(5px); /* Efeito sutil ao passar o mouse */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Área da Imagem (Esquerda) */
+        .fav-img-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0; /* Impede a imagem de amassar */
+            margin-right: 20px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fav-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Área do Texto (Meio) */
+        .fav-info {
+            flex: 1; /* Ocupa todo o espaço disponível no meio */
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .fav-info h3 {
+            font-size: 1.1rem;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .fav-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .fav-rating {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+        }
+
+        /* Área dos Botões (Direita) */
+        .fav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        /* Botão Excluir (Vermelho) */
+        .btn-excluir {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .btn-excluir:hover {
+            background-color: #d63031;
+        }
+
+        /* Link invisível para o título levar aos detalhes */
+        .link-detalhes {
+            text-decoration: none;
+            color: inherit;
+        }
+        .link-detalhes:hover h3 {
+            color: var(--primary-color);
+        }
+
+        /* Responsividade para celular */
+        @media (max-width: 600px) {
+            .fav-item {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+            .fav-img-wrapper {
+                width: 100%;
+                height: 150px;
+                margin-bottom: 10px;
+            }
+            .fav-actions {
+                width: 100%;
+                margin-top: 10px;
+                margin-left: 0;
+                justify-content: flex-end;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <a href="{% url 'index' %}" class="nav-icon"><i class="icon-home">🏠</i></a>
             <a href="{% url 'favoritos' %}" class="nav-icon active"><i class="icon-bookmark">🔖</i></a>
-            <a href="{% url 'detalhes' %}" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="#" class="nav-icon"><i class="icon-receipt">🧾</i></a>
             <a href="{% url 'config' %}" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
-            <!-- Header -->
             <header class="header">
                 <button class="menu-btn" id="menuBtn">☰</button>
-                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span class="heart">❤️</span></span>d</div>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span
+                            class="heart">❤️</span></span>d</div>
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar" id="searchInput">
                     <button class="search-btn">🔍</button>
                 </div>
                 <button class="theme-toggle" id="themeToggle">☀️</button>
-                <button class="login-btn">Fazer Login</button>
+                {% if user.is_authenticated %}
+                    <span style="margin-right: 10px; font-weight: bold;">{{ user.username }}</span>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <button class="login-btn">Fazer login</button>
+                    </a>
+                {% endif %}
             </header>
 
-            <!-- Favorites Content -->
             <section class="favorites-section">
                 <button class="back-btn" onclick="history.back()">← Voltar</button>
                 <h1>Meus Favoritos</h1>
 
-                <div class="favorites-grid" id="favoritosGrid">
-                    <!-- Favoritos serão carregados via JavaScript -->
-                </div>
+                <div class="favorites-list">
+                    
+                    {% for restaurante in meus_favoritos %}
+                    
+                    <div class="fav-item">
+                        
+                        <a href="{% url 'detalhes' restaurante.id %}" class="fav-img-wrapper">
+                            {% if restaurante.imagem %}
+                                <img src="{{ restaurante.imagem.url }}" alt="{{ restaurante.nome }}">
+                            {% else %}
+                                <span style="font-size: 2rem;">🍽️</span>
+                            {% endif %}
+                        </a>
 
-                <div class="empty-state" id="emptyState" style="display: none;">
-                    <div class="empty-icon">💔</div>
-                    <h2>Nenhum favorito ainda</h2>
-                    <p>Adicione restaurantes aos seus favoritos para vê-los aqui!</p>
-                    <a href="/" class="btn-primary">Explorar Restaurantes</a>
-                </div>
+                        <div class="fav-info">
+                            <a href="{% url 'detalhes' restaurante.id %}" class="link-detalhes">
+                                <h3>{{ restaurante.nome }}</h3>
+                            </a>
+                            <p>{{ restaurante.descricao|truncatechars:50 }}</p>
+                            <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                                <span class="fav-rating">⭐ {{ restaurante.avaliacao }}</span>
+                                <span style="font-size: 0.8rem; color: #888;">• {{ restaurante.endereco|default:"Endereço não informado" }}</span>
+                            </div>
+                        </div>
+
+                        <div class="fav-actions">
+                            <a href="{% url 'detalhes' restaurante.id %}" class="btn-excluir">
+                                🗑️ Excluir
+                            </a>
+                        </div>
+                    </div>
+
+                    {% empty %}
+                        <div class="empty-state">
+                            <div class="empty-icon">💔</div>
+                            <h2>Nenhum favorito ainda</h2>
+                            <p>Adicione restaurantes aos seus favoritos para vê-los aqui!</p>
+                            <a href="{% url 'index' %}" class="btn-primary" style="text-decoration: none;">Explorar Restaurantes</a>
+                        </div>
+                    {% endfor %}
+                    </div>
             </section>
         </main>
     </div>
 
-    <script src="../../static/js/favorito.js"></script>
+    <script src="{% static 'js/favorito.js' %}"></script>
 </body>
 </html>

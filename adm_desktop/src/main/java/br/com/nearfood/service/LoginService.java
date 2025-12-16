@@ -1,22 +1,21 @@
-
 package br.com.nearfood.service;
 
 /**
  *
  * @author firmodev
  */
-
-
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 import javax.swing.JOptionPane;
 
 public class LoginService {
-    private static final String API_URL = "http://localhost:8000/api/usuarios/login/";
 
-    public static boolean autenticar(String email, String password) {
+    private static final String API_URL = "http://localhost:8000/usuarios/api/login/";
+
+    public static boolean autenticar(String user, String password) {
         try {
             URL url = new URL(API_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -25,7 +24,11 @@ public class LoginService {
             conn.setRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);
 
-            String jsonInput = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
+            Gson gson = new Gson();
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("user", user);
+            jsonObject.addProperty("password", password);
+            String jsonInput = gson.toJson(jsonObject);
 
             try (OutputStream os = conn.getOutputStream()) {
                 os.write(jsonInput.getBytes(StandardCharsets.UTF_8));
@@ -39,14 +42,16 @@ public class LoginService {
             StringBuilder response = new StringBuilder();
             try (BufferedReader br = new BufferedReader(reader)) {
                 String line;
-                while ((line = br.readLine()) != null) response.append(line.trim());
+                while ((line = br.readLine()) != null) {
+                    response.append(line.trim());
+                }
             }
 
             System.out.println("📩 Resposta da API: " + response);
             if (status == 200) {
                 return true;
             } else {
-                return false; 
+                return false;
             }
         } catch (Exception e) {
             e.printStackTrace();
