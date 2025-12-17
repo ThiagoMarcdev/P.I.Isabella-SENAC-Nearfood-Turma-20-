@@ -5,6 +5,8 @@ import br.com.nearfood.service.RestauranteService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 public class TelaGerenciarRestaurante extends JFrame {
@@ -59,6 +61,16 @@ public class TelaGerenciarRestaurante extends JFrame {
 
         topo.add(lblNomeRestaurante, BorderLayout.WEST);
         topo.add(btnMinhaConta, BorderLayout.EAST);
+        
+        btnMinhaConta .addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TelaMinhaConta telaConta = new TelaMinhaConta();
+                telaConta.setVisible(true);
+                dispose();
+            }
+            
+        });
 
         return topo;
     }
@@ -217,4 +229,14 @@ public class TelaGerenciarRestaurante extends JFrame {
         imagemSelecionada = restaurante.getImagem();
         atualizarPreviewImagem(imagemSelecionada);
     }
+    
+    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new TelaGerenciarRestaurante().setVisible(true);
+        });
+    }
+    
+    
+    
 }

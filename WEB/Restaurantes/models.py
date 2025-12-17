@@ -4,6 +4,7 @@ from django.conf import settings
 import uuid
 from django.utils import timezone
 from datetime import timedelta
+from geopy.geocoders import Nominatim
 
 # Create your models here.
 
@@ -22,6 +23,7 @@ class Restaurant(models.Model):
     #id = models.AutoField (primary_key=True) # O Django cria automaticamente
     nome = models.CharField(max_length=100)
     descricao = models.CharField(max_length=255, blank=True, null=True) # Mudado para CharField
+    cep = models.CharField(max_length=9, blank=True, null=True) 
     estado = models.CharField(max_length=100)
     endereco = models.CharField(max_length=100)
     hora_funcionamento = models.CharField(max_length=50)
@@ -42,6 +44,41 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return self.nome
+    
+# função para sobrescrever o que o botão salvar na hora de cadastrar um restaurante
+    def save(self, *args, **kwargs):
+        # Lógica: Só buscamos a coordenada se ela estiver vazia OU se o endereço mudou
+        # (Para simplificar, vamos fazer: se latitude ou longitude forem None, buscamos)
+        
+        if not self.latitude or not self.longitude:
+            try:
+                # 1. Instancia o geolocalizador (Defina um user_agent único para seu app)
+                geolocator = Nominatim(user_agent="nearfood_app_estudo")
+                
+                # 2. Monta o endereço completo para aumentar a precisão
+                # Ex: "Av. Paulista, 1000 - SP, Brasil"
+                endereco_completo = f"{self.endereco} - {self.estado}, Brasil"
+                if self.cep:
+                     endereco_completo += f", {self.cep}"
+
+                # 3. Faz a requisição externa (pede ao OpenStreetMap)
+                location = geolocator.geocode(endereco_completo, timeout=10)
+
+                # 4. Se encontrou, preenche os campos
+                if location:
+                    self.latitude = location.latitude
+                    self.longitude = location.longitude
+                    print(f"Sucesso: Coordenadas encontradas para {self.nome}")
+                else:
+                    print(f"Aviso: Endereço não encontrado para {self.nome}")
+            
+            except Exception as e:
+                # Tratamento de erro básico para não travar o sistema se a internet cair
+                print(f"Erro ao buscar coordenadas: {e}")
+
+        # 5. Chama o método save original do Django para gravar no banco
+        super(Restaurant, self).save(*args, **kwargs)
+
 
 class Promocao(models.Model):
     titulo = models.CharField(max_length=100) # Ex: "NA SUA PRÓXIMA RESERVA"
@@ -57,7 +94,6 @@ class Promocao(models.Model):
     def __str__(self):
         return f"{self.desconto_percentual}% OFF em {self.restaurante.nome}"
     
-
 class PasswordResetToken(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

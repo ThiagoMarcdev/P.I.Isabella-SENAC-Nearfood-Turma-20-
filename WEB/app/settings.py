@@ -68,13 +68,13 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': 'NearFoodDB1',
+        'NAME': 'NearFoodDB',
         'USER': 'sa',
-        'PASSWORD': 'pw_user_app',  #NearFoodNearFood1234#
+        'PASSWORD': 'NearFoodNearFood1234#',  # pw_user_app
         'HOST': 'localhost',
         'PORT': '',  # porta padrão
         'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
+            'driver': 'ODBC Driver 18 for SQL Server', # na maquina do senac, usam driver odbc 17
             'extra_params': 'Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30'
         }
     }

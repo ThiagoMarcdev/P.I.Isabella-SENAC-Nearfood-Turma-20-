@@ -1,4 +1,5 @@
 
+from math import asin, cos, radians, sin, sqrt
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import JsonResponse
 from .models import ItemCardapio, Restaurant, Promocao, Categoria 
@@ -14,6 +15,42 @@ from django.contrib.auth.decorators import login_required
 
 @login_required # verifica se login esta feito
 def acessar_home(request):
+    # localização
+    lat_usuario = request.GET.get('lat')
+    lon_usuario = request.GET.get('lon')
+    
+    restaurantes_proximos = []
+    todos_restaurantes = Restaurant.objects.all()
+    
+    if lat_usuario and lon_usuario:
+        try:
+            lat_usuario = float(lat_usuario)
+            lon_usuario = float(lon_usuario)
+
+            for restaurante in todos_restaurantes:
+                # Verifica se o restaurante tem coordenadas cadastradas
+                if restaurante.latitude and restaurante.longitude:
+                    distancia = calcula_distancia(
+                        lon_usuario, 
+                        lat_usuario, 
+                        float(restaurante.longitude), 
+                        float(restaurante.latitude)
+                    )
+                    
+                    # Lógica do raio de 10km
+                    if distancia <= 10:
+                        # Adicionamos um atributo temporário para exibir a distância no template se quiser
+                        restaurante.distancia_calculada = round(distancia, 1)
+                        restaurantes_proximos.append(restaurante)
+        except ValueError:
+            # Se houver erro na conversão, retorna lista vazia ou todos (decisão de negócio)
+            pass
+    else:
+        # Se não tiver localização, você decide: mostra todos ou nenhum?
+        # Aqui estou mostrando todos como fallback
+        restaurantes_proximos = todos_restaurantes   
+    
+    
     """
     Esta view agora busca TODAS as informações necessárias para a página inicial
     e as envia para o template.
@@ -27,7 +64,8 @@ def acessar_home(request):
         'promocao': promocao_ativa,
         'categorias': todas_as_categorias,
         'recomendacoes': restaurantes_recomendados,
-        'restaurantes_proximos': restaurantes_gerais,
+        'restaurantes_gerais': restaurantes_gerais,
+        'restaurantes_proximos': restaurantes_proximos,
     }
     return render(request, 'index1.html', contexto)
 
@@ -162,3 +200,18 @@ def toggle_favorito(request, id):
         usuario.favoritos.add(restaurante)
         
     return redirect('detalhes', id=id)
+
+def calcula_distancia(lon1, lat1, lon2, lat2):
+    """
+    Calcula a distância em quilômetros entre dois pontos (latitude/longitude).
+    """
+    # Converter graus decimais para radianos
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+
+    # Fórmula de Haversine
+    dlon = lon2 - lon1 
+    dlat = lat2 - lat1 
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a)) 
+    r = 6371 # Raio da Terra em quilômetros
+    return c * r

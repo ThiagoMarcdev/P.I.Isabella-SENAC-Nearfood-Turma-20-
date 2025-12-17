@@ -32,11 +32,11 @@
                 </div>
                 <button class="theme-toggle" id="themeToggle">☀️</button>
                 {% if user.is_authenticated %}
-                    <span style="margin-right: 10px;">Olá, {{ user.first_name|default:user.username }}! 👋</span>
+                <span style="margin-right: 10px;">Olá, {{ user.first_name|default:user.username }}! 👋</span>
                 {% else %}
-                    <a href="{% url 'login' %}">
-                        <button class="login-btn">Fazer login</button>
-                    </a>
+                <a href="{% url 'login' %}">
+                    <button class="login-btn">Fazer login</button>
+                </a>
                 {% endif %}
 
             </header>
@@ -69,9 +69,10 @@
                         <div class="card-image"
                             style="background-color: #ddd; height: 120px; display: flex; align-items: center; justify-content: center;">
                             {% if restaurante.imagem %}
-                            <img src="{{ restaurante.imagem.url }}" alt="{{ restaurante.nome }}" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="{{ restaurante.imagem.url }}" alt="{{ restaurante.nome }}"
+                                style="width: 100%; height: 100%; object-fit: cover;">
                             {% else %}
-                                <span style="font-size: 2rem;">🍽️</span>
+                            <span style="font-size: 2rem;">🍽️</span>
                             {% endif %}
                         </div>
                         <div class="card-info">
@@ -80,13 +81,16 @@
                             <div class="card-meta">
                                 <span>⭐ {{ restaurante.avaliacao }}</span>
                                 <span>🕒 {{ restaurante.hora_funcionamento }}</span>
+                                {% if restaurante.distancia_calculada %}
+                                <span>📍 {{ restaurante.distancia_calculada }} km</span>
+                                {% endif %}
                             </div>
                             <a href="{% url 'detalhes' restaurante.id %}">
                                 <button class="btn-detalhes">
-                                Ver Detalhes
-                            </button>
+                                    Ver Detalhes
+                                </button>
                             </a>
-                            
+
                         </div>
                     </div>
                     {% empty %}
@@ -102,7 +106,7 @@
                     {% for categoria in categorias %}
                     <button class="category-btn">
                         {% if categoria.icone %}
-                            <i class="{{ categoria.icone }}"></i>
+                        <i class="{{ categoria.icone }}"></i>
                         {% else %}
                         <span>🍴</span>
                         {% endif %}
