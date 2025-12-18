@@ -122,3 +122,6 @@ DEFAULT_FROM_EMAIL = "naoresponder@nearfood.com"
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login'
+
+# permitir virgula?
+#USE_L10N = True
