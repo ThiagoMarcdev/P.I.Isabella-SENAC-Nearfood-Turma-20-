@@ -27,10 +27,18 @@
                 <button class="menu-btn" id="menuBtn">☰</button>
                 <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span
                             class="heart">❤️</span></span>d</div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Buscar" id="searchInput">
-                    <button class="search-btn">🔍</button>
-                </div>
+
+                <form action="." method="GET" class="search-bar">
+
+                    <input type="hidden" name="lat" value="{{ request.GET.lat }}">
+                    <input type="hidden" name="lon" value="{{ request.GET.lon }}">
+
+                    <input type="text" name="q" placeholder="Buscar prato, restaurante..." id="searchInput"
+                        value="{{ request.GET.q|default:'' }}">
+
+                    <button type="submit" class="search-btn">🔍</button>
+                </form>
+
                 <button class="theme-toggle" id="themeToggle">☀️</button>
                 {% if user.is_authenticated %}
                 <span style="margin-right: 10px;">Olá, {{ user.first_name|default:user.username }}! 👋</span>
@@ -110,14 +118,17 @@
                 <h3>Categorias</h3>
                 <div class="categories-grid">
                     {% for categoria in categorias %}
-                    <button class="category-btn">
-                        {% if categoria.icone %}
-                        <i class="{{ categoria.icone }}"></i>
-                        {% else %}
-                        <span>🍴</span>
-                        {% endif %}
-                        {{ categoria.nome }}
-                    </button>
+                    <a href="?q={{ categoria.nome }}&lat={{ request.GET.lat }}&lon={{ request.GET.lon }}"
+                        style="text-decoration: none;">
+                        <button class="category-btn">
+                            {% if categoria.icone %}
+                            <i class="{{ categoria.icone }}"></i>
+                            {% else %}
+                            <span>🍴</span>
+                            {% endif %}
+                            {{ categoria.nome }}
+                        </button>
+                    </a>
                     {% endfor %}
                 </div>
             </section>

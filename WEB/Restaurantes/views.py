@@ -14,6 +14,7 @@ from django.contrib.auth.hashers import make_password
 from .models import PasswordResetToken
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
+from django.db.models import Q
 
 def haversine(lon1, lat1, lon2, lat2):
     # Converter graus decimais em radianos
@@ -27,50 +28,59 @@ def haversine(lon1, lat1, lon2, lat2):
     r = 6371 # Raio da Terra em quilômetros
     return c * r
 
-@login_required # verifica se login esta feito
+@login_required 
 def acessar_home(request):
     lat_user = request.GET.get('lat')
     lon_user = request.GET.get('lon')
+    termo_busca = request.GET.get('q')
     
+    # 1. LÓGICA DE FILTRO (BUSCA)
+    if termo_busca:
+        todos_restaurantes = Restaurant.objects.filter(
+            Q(nome__icontains=termo_busca) |                 
+            Q(categorias__nome__icontains=termo_busca) |     
+            Q(itens_cardapio__nome__icontains=termo_busca)   
+        ).distinct() 
+    else:
+        todos_restaurantes = Restaurant.objects.all()
+    
+    # --- A LINHA QUE CAUSAVA O ERRO FOI REMOVIDA DAQUI ---
+
+    # 2. LÓGICA DE DISTÂNCIA
     restaurantes_proximos = []
-    
-    todos_restaurantes = Restaurant.objects.all()
 
     if lat_user and lon_user:
         try:
             lat_user = float(lat_user)
             lon_user = float(lon_user)
             
+            # Agora 'todos_restaurantes' contém APENAS o resultado da busca (se houver)
             for restaurante in todos_restaurantes:
-                # Só calcula se o restaurante tiver coordenadas cadastradas
                 if restaurante.latitude and restaurante.longitude:
                     distancia = haversine(
                         lon_user, lat_user,
                         float(restaurante.longitude), float(restaurante.latitude)
                     )
                     
-                    # FILTRO: Raio de 10km
+                    # Filtro de Raio 10km 
                     if distancia <= 10:
                         restaurante.distancia_temp = round(distancia, 1)
                         restaurantes_proximos.append(restaurante)
             
-           
             restaurantes_proximos.sort(key=lambda x: x.distancia_temp)
             
         except ValueError:
-            # Se vier lixo na URL, não quebra o site
             pass
     else:
-        # Se o usuário negou localização, mostra tudo ou uma lista padrão
-        restaurantes_proximos = todos_restaurantes  
-    
-    
-    """
-    Esta view agora busca TODAS as informações necessárias para a página inicial
-    e as envia para o template.
-    """
+        # Se não tem localização, mostramos o resultado da busca sem calcular distância
+        restaurantes_proximos = list(todos_restaurantes)
+
+    # Contexto para o template
     promocao_ativa = Promocao.objects.filter(ativo=True).first()
     todas_as_categorias = Categoria.objects.all()
+    
+    # DICA DE UX: Se o usuário estiver buscando, talvez não queira ver "Recomendações aleatórias"
+    # Mas deixaremos como está por enquanto
     restaurantes_recomendados = Restaurant.objects.filter(recomendado=True)[:2]
     restaurantes_gerais = Restaurant.objects.order_by('?')[:6]
 
@@ -79,7 +89,7 @@ def acessar_home(request):
         'categorias': todas_as_categorias,
         'recomendacoes': restaurantes_recomendados,
         'restaurantes_gerais': restaurantes_gerais,
-        'restaurantes_proximos': restaurantes_proximos,
+        'restaurantes_proximos': restaurantes_proximos, # Essa é a lista que o HTML usa
     }
     return render(request, 'index1.html', contexto)
 
