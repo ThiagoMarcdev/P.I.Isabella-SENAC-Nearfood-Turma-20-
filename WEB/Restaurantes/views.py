@@ -115,8 +115,7 @@ def detalhes(request, id): # cada restaurante precisa de um identificador
     }
     return render(request, 'detalhe.html', contexto)
 
-def configuracoes(request):
-    return render(request, 'config.html')
+
     
 # API DE LOCALIZAÇÃO 
 def api_restaurantes_proximos(request):

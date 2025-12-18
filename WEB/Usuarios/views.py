@@ -11,6 +11,8 @@ from django.core.mail import send_mail
 from django.contrib.auth import logout
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 def login_view(request):
     if request.method == 'POST':
@@ -246,3 +248,44 @@ def api_cadastro(request):
         return JsonResponse({'success': False, 'message': 'JSON inválido enviado pelo Java.'}, status=400)
     except Exception as e:
         return JsonResponse({'success': False, 'message': f'Erro interno no servidor: {str(e)}'}, status=500)
+    
+    
+@login_required
+def config(request):
+    
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            user = request.user
+           
+            novo_email = data.get('email')
+            if novo_email and novo_email != user.email:
+               
+                user.email = novo_email
+            
+            nova_senha = data.get('nova_senha')
+            senha_atual = data.get('senha_atual')
+            
+            if nova_senha:
+                if not senha_atual:
+                    return JsonResponse({'status': 'error', 'message': 'Para mudar a senha, informe a senha atual.'}, status=400)
+                
+                if not user.check_password(senha_atual):
+                    return JsonResponse({'status': 'error', 'message': 'A senha atual está incorreta.'}, status=400)
+                
+                if nova_senha != data.get('confirmar_senha'):
+                    return JsonResponse({'status': 'error', 'message': 'As novas senhas não coincidem.'}, status=400)
+
+               
+                user.set_password(nova_senha)
+                
+                update_session_auth_hash(request, user)
+            
+            user.save()
+            return JsonResponse({'status': 'success', 'message': 'Dados atualizados com sucesso!'})
+
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': f'Erro interno: {str(e)}'}, status=500)
+
+    
+    return render(request, 'config.html')

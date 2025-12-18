@@ -33,13 +33,13 @@
                 <button class="theme-toggle" id="themeToggle">☀️</button>
                 {% if user.is_authenticated%}
                 <span style="margin-right: 10px; font-weight: bold;">{{ user.username }}</span>
-                    <form action="{% url 'logout' %}" method="POST" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="login-btn" style="background-color: #ff4757;">Logout</button>
-                {% else %}
+                <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="login-btn" style="background-color: #ff4757;">Logout</button>
+                </form>{% else %}
                 <a href="{% url 'login' %}">
-                        <button class="login-btn">Fazer login</button>
-                    </a>
+                    <button class="login-btn">Fazer login</button>
+                </a>
                 {% endif %}
             </header>
 
@@ -52,6 +52,7 @@
                 <div class="settings-card">
                     <h2>Configurações da Conta</h2>
                     <form id="accountForm">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="email">E-mail</label>
                             <input type="email" id="email" name="email" placeholder="seu-email@exemplo.com">
