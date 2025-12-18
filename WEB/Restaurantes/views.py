@@ -32,8 +32,6 @@ def acessar_home(request):
     
     restaurantes_proximos = []
     
-    # Pegamos TODOS os restaurantes para filtrar na memória
-    # (Obs: Em sistemas reais com milhões de dados, faríamos isso via Banco de Dados/PostGIS)
     todos_restaurantes = Restaurant.objects.all()
 
     if lat_user and lon_user:
@@ -51,13 +49,10 @@ def acessar_home(request):
                     
                     # FILTRO: Raio de 10km
                     if distancia <= 10:
-                        # Truque Python: Estamos "injetando" um atributo novo no objeto
-                        # só para usar no template. Não salva no banco, só na memória RAM.
                         restaurante.distancia_temp = round(distancia, 1)
                         restaurantes_proximos.append(restaurante)
             
-            # ORDENAÇÃO: Do mais perto para o mais longe
-            # Lambda function: diz para ordenar baseada no campo 'distancia_temp'
+           
             restaurantes_proximos.sort(key=lambda x: x.distancia_temp)
             
         except ValueError:
@@ -217,18 +212,3 @@ def toggle_favorito(request, id):
         usuario.favoritos.add(restaurante)
         
     return redirect('detalhes', id=id)
-
-def calcula_distancia(lon1, lat1, lon2, lat2):
-    """
-    Calcula a distância em quilômetros entre dois pontos (latitude/longitude).
-    """
-    # Converter graus decimais para radianos
-    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
-
-    # Fórmula de Haversine
-    dlon = lon2 - lon1 
-    dlat = lat2 - lat1 
-    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
-    c = 2 * asin(sqrt(a)) 
-    r = 6371 # Raio da Terra em quilômetros
-    return c * r
