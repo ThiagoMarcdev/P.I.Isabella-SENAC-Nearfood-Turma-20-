@@ -65,7 +65,7 @@ public class TelaGerenciarRestaurante extends JFrame {
         btnMinhaConta .addActionListener( new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                TelaMinhaConta telaConta = new TelaMinhaConta();
+                MinhaContaFrame telaConta = new MinhaContaFrame();
                 telaConta.setVisible(true);
                 dispose();
             }

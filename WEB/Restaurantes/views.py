@@ -13,42 +13,59 @@ from django.contrib.auth.hashers import make_password
 from .models import PasswordResetToken
 from django.contrib.auth.decorators import login_required
 
+def haversine(lon1, lat1, lon2, lat2):
+    # Converter graus decimais em radianos
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+
+    # Fórmula de Haversine
+    dlon = lon2 - lon1 
+    dlat = lat2 - lat1 
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a)) 
+    r = 6371 # Raio da Terra em quilômetros
+    return c * r
+
 @login_required # verifica se login esta feito
 def acessar_home(request):
-    # localização
-    lat_usuario = request.GET.get('lat')
-    lon_usuario = request.GET.get('lon')
+    lat_user = request.GET.get('lat')
+    lon_user = request.GET.get('lon')
     
     restaurantes_proximos = []
-    todos_restaurantes = Restaurant.objects.all()
     
-    if lat_usuario and lon_usuario:
-        try:
-            lat_usuario = float(lat_usuario)
-            lon_usuario = float(lon_usuario)
+    # Pegamos TODOS os restaurantes para filtrar na memória
+    # (Obs: Em sistemas reais com milhões de dados, faríamos isso via Banco de Dados/PostGIS)
+    todos_restaurantes = Restaurant.objects.all()
 
+    if lat_user and lon_user:
+        try:
+            lat_user = float(lat_user)
+            lon_user = float(lon_user)
+            
             for restaurante in todos_restaurantes:
-                # Verifica se o restaurante tem coordenadas cadastradas
+                # Só calcula se o restaurante tiver coordenadas cadastradas
                 if restaurante.latitude and restaurante.longitude:
-                    distancia = calcula_distancia(
-                        lon_usuario, 
-                        lat_usuario, 
-                        float(restaurante.longitude), 
-                        float(restaurante.latitude)
+                    distancia = haversine(
+                        lon_user, lat_user,
+                        float(restaurante.longitude), float(restaurante.latitude)
                     )
                     
-                    # Lógica do raio de 10km
+                    # FILTRO: Raio de 10km
                     if distancia <= 10:
-                        # Adicionamos um atributo temporário para exibir a distância no template se quiser
-                        restaurante.distancia_calculada = round(distancia, 1)
+                        # Truque Python: Estamos "injetando" um atributo novo no objeto
+                        # só para usar no template. Não salva no banco, só na memória RAM.
+                        restaurante.distancia_temp = round(distancia, 1)
                         restaurantes_proximos.append(restaurante)
+            
+            # ORDENAÇÃO: Do mais perto para o mais longe
+            # Lambda function: diz para ordenar baseada no campo 'distancia_temp'
+            restaurantes_proximos.sort(key=lambda x: x.distancia_temp)
+            
         except ValueError:
-            # Se houver erro na conversão, retorna lista vazia ou todos (decisão de negócio)
+            # Se vier lixo na URL, não quebra o site
             pass
     else:
-        # Se não tiver localização, você decide: mostra todos ou nenhum?
-        # Aqui estou mostrando todos como fallback
-        restaurantes_proximos = todos_restaurantes   
+        # Se o usuário negou localização, mostra tudo ou uma lista padrão
+        restaurantes_proximos = todos_restaurantes  
     
     
     """

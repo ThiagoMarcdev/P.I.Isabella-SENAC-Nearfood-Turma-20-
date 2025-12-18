@@ -81,12 +81,17 @@
                             <div class="card-meta">
                                 <span>⭐ {{ restaurante.avaliacao }}</span>
                                 <span>🕒 {{ restaurante.hora_funcionamento }}</span>
-                                {% if restaurante.distancia_calculada %}
-                                <span>📍 {{ restaurante.distancia_calculada }} km</span>
+
+                                {% if restaurante.distancia_temp %}
+                                <span style="color: #2ecc71; font-weight: bold;">
+                                    📍 {{ restaurante.distancia_temp }} km
+                                </span>
                                 {% endif %}
                             </div>
                             <a href="{% url 'detalhes' restaurante.id %}">
-                                <button class="btn-detalhes">
+                                <button class="btn-detalhes" data-id="{{ restaurante.id }}"
+                                    data-lat="{{ restaurante.latitude }}" data-lon="{{ restaurante.longitude }}"
+                                    data-nome="{{ restaurante.nome }}">
                                     Ver Detalhes
                                 </button>
                             </a>

@@ -47,36 +47,31 @@ class Restaurant(models.Model):
     
 # função para sobrescrever o que o botão salvar na hora de cadastrar um restaurante
     def save(self, *args, **kwargs):
-        # Lógica: Só buscamos a coordenada se ela estiver vazia OU se o endereço mudou
-        # (Para simplificar, vamos fazer: se latitude ou longitude forem None, buscamos)
-        
         if not self.latitude or not self.longitude:
             try:
-                # 1. Instancia o geolocalizador (Defina um user_agent único para seu app)
-                geolocator = Nominatim(user_agent="nearfood_app_estudo")
-                
-                # 2. Monta o endereço completo para aumentar a precisão
-                # Ex: "Av. Paulista, 1000 - SP, Brasil"
-                endereco_completo = f"{self.endereco} - {self.estado}, Brasil"
+                geolocator = Nominatim(user_agent="nearfood_app_v3_cep")
+            
                 if self.cep:
-                     endereco_completo += f", {self.cep}"
+                    # Limpa o CEP (tira traço)
+                    cep_limpo = self.cep.replace('-', '').strip()
+                    
+                    busca = f"{self.endereco}, {self.cep} - {self.estado}, Brasil"
+                else:
+                    busca = f"{self.endereco} - {self.estado}, Brasil"
 
-                # 3. Faz a requisição externa (pede ao OpenStreetMap)
-                location = geolocator.geocode(endereco_completo, timeout=10)
-
-                # 4. Se encontrou, preenche os campos
+                print(f" BUSCANDO: '{busca}'")
+                location = geolocator.geocode(busca, timeout=10)
+                
                 if location:
                     self.latitude = location.latitude
                     self.longitude = location.longitude
-                    print(f"Sucesso: Coordenadas encontradas para {self.nome}")
                 else:
-                    print(f"Aviso: Endereço não encontrado para {self.nome}")
-            
-            except Exception as e:
-                # Tratamento de erro básico para não travar o sistema se a internet cair
-                print(f"Erro ao buscar coordenadas: {e}")
+                    print(" Endereço exato falhou no geocoding.")
+                    # Fallback continua aqui se quiser...
 
-        # 5. Chama o método save original do Django para gravar no banco
+            except Exception as e:
+                print(f" Erro Geopy: {e}")
+
         super(Restaurant, self).save(*args, **kwargs)
 
 
