@@ -1241,3 +1241,29 @@ h3 {
     flex-direction: column;
   }
 }
+
+/* CSS PARA O SISTEMA DE AVALIAÇÃO */
+.rating-input {
+    display: flex;
+    flex-direction: row-reverse; /* Inverte a ordem para facilitar o CSS de seleção */
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.rating-input input {
+    display: none; /* Esconde as bolinhas do rádio */
+}
+
+.rating-input label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/* Quando passa o mouse ou seleciona */
+.rating-input label:hover,
+.rating-input label:hover ~ label,
+.rating-input input:checked ~ label {
+    color: #ffc107; /* Amarelo Ouro */
+}

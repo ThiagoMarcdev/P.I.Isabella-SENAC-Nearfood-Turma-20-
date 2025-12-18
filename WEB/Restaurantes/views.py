@@ -1,8 +1,9 @@
 
 from math import asin, cos, radians, sin, sqrt
+from django.contrib import messages as flash_messages # Damos um apelido para evitar conflito
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import JsonResponse
-from .models import ItemCardapio, Restaurant, Promocao, Categoria 
+from .models import Avaliacao, ItemCardapio, Restaurant, Promocao, Categoria 
 from geopy.distance import geodesic
 import json
 from django.views.decorators.csrf import csrf_exempt
@@ -12,6 +13,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from .models import PasswordResetToken
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 
 def haversine(lon1, lat1, lon2, lat2):
     # Converter graus decimais em radianos
@@ -97,23 +99,64 @@ def buscar_restaurantes(request):
         {'Restaurant': {'nome': '*'}}    
     )
 
-def detalhes(request, id): # cada restaurante precisa de um identificador
-   # Busca o restaurante pelo ID ou retorna erro 404 se não achar
+def detalhes(request, id):
     restaurante = get_object_or_404(Restaurant, id=id)
     
-    itens_cardapio = ItemCardapio.objects.filter(restaurante=restaurante)
+    # Lógica de POST (Salvar/Atualizar Avaliação)
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login') # Segurança extra
+            
+        try:
+            nova_nota = int(request.POST.get('nota'))
+            novo_comentario = request.POST.get('comentario')
+            
+            # --- A MÁGICA DO UPSERT ---
+            # Procura por (restaurante + usuario). 
+            # Se achar, atualiza os campos em 'defaults'. Se não, cria.
+            avaliacao, created = Avaliacao.objects.update_or_create(
+                restaurante=restaurante,
+                usuario=request.user,
+                defaults={
+                    'nota': nova_nota,
+                    'comentario': novo_comentario
+                }
+            )
+            
+            # Recalcular média
+            avaliacoes = restaurante.avaliacoes.all()
+            media = avaliacoes.aggregate(Avg('nota'))['nota__avg']
+            
+            # Atualiza o restaurante
+            restaurante.avaliacao = round(media, 1) if media else 0
+            restaurante.save()
+            
+            # Feedback para o usuário
+            if created:
+                flash_messages.success(request, 'Sua avaliação foi publicada!') # <--- Mudou aqui
+            else:
+                flash_messages.info(request, 'Sua avaliação foi atualizada!') # <--- Mudou aqui
+                
+        except ValueError:
+            flash_messages.error(request, 'Erro ao processar a nota.') # <--- Mudou aqui
+                
+        return redirect('detalhes', id=id)
+
+    # --- GET (Exibir Página) ---
+    avaliacoes = restaurante.avaliacoes.all().order_by('-data') # Mais recentes primeiro
+    cardapio = ItemCardapio.objects.filter(restaurante=restaurante)
     
     is_favorito = False
     if request.user.is_authenticated:
-        if restaurante  in request.user.favoritos.all():
-            is_favorito = True
-    
-    contexto = {
+        is_favorito = restaurante.favoritos.filter(id=request.user.id).exists()
+
+    context = {
         'restaurante': restaurante,
-        'is_favorito' : is_favorito,
-        'cardapio' : itens_cardapio,
+        'cardapio': cardapio,
+        'avaliacoes': avaliacoes,
+        'is_favorito': is_favorito,
     }
-    return render(request, 'detalhe.html', contexto)
+    return render(request, 'detalhe.html', context)
 
 
     

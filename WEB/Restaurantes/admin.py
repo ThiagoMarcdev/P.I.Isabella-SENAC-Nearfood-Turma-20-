@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ItemCardapio, Restaurant, Categoria, Promocao
+from .models import Avaliacao, ItemCardapio, Restaurant, Categoria, Promocao
 
 class ItemCardapioInline(admin.TabularInline):
     model = ItemCardapio
@@ -28,3 +28,15 @@ class RestaurantAdmin(admin.ModelAdmin):
 admin.site.register(Restaurant, RestaurantAdmin)
 admin.site.register(Categoria)
 admin.site.register(Promocao)
+
+
+@admin.register(Avaliacao)
+class AvaliacaoAdmin(admin.ModelAdmin):
+    list_display = ('restaurante', 'usuario', 'nota', 'data_formatada')
+    list_filter = ('nota', 'restaurante')
+    search_fields = ('restaurante__nome', 'usuario__username', 'comentario')
+    readonly_fields = ('data',)
+
+    def data_formatada(self, obj):
+        return obj.data.strftime("%d/%m/%Y %H:%M")
+    data_formatada.short_description = 'Data'

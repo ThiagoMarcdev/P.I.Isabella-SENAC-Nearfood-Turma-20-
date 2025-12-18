@@ -39,6 +39,12 @@ class Restaurant(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     imagem = models.ImageField(upload_to='restaurantes/', blank=True, null=True) # imagem do restaurante
     
+    
+    favoritos = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, 
+        blank=True, 
+        related_name='restaurantes_favoritos'
+    )
     class Meta:
         db_table='tbl_Restaurantes'
 
@@ -115,3 +121,22 @@ class ItemCardapio(models.Model):
     
     def __str__(self):
         return f"{self.nome} - {self.restaurante.nome}"
+    
+class Avaliacao(models.Model):
+    restaurante = models.ForeignKey('Restaurant', on_delete=models.CASCADE, related_name='avaliacoes')
+    
+    # 2. CORREÇÃO AQUI:
+    # Em vez de 'User', usamos 'settings.AUTH_USER_MODEL'
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    
+    nota = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+    comentario = models.TextField()
+    data = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-data']
+        # db_table = 'tbl_Avaliacoes' # Opcional, se quiser manter padrão
+
+    def __str__(self):
+        # Como o usuário agora é genérico, acessamos o campo que representa o nome (geralmente username ou email)
+        return f"{self.usuario} - {self.restaurante.nome} ({self.nota}⭐)"

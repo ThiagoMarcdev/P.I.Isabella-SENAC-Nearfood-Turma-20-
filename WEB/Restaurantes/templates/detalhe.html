@@ -9,9 +9,9 @@
     <title>NearFood - Detalhes do Restaurante</title>
     <link rel="stylesheet" href="{% static 'css/style1.css' %}">
 
-    <!--link custom-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/logos/Logo__icone__nearFood.png' %}">
 </head>
 
 <body>
@@ -25,6 +25,7 @@
 
         <main class="main-content">
             <header class="header">
+
                 <button class="menu-btn" id="menuBtn">☰</button>
                 <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span
                             class="heart">❤️</span></span>d</div>
@@ -46,6 +47,21 @@
                 </a>
                 {% endif %}
             </header>
+
+            {% if messages %}
+            <div class="messages-container" style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }}"
+                    style="padding: 15px; border-radius: 8px; margin-bottom: 10px; 
+                {% if message.tags == 'success' %}
+                    background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;{% endif %}
+                {% if message.tags == 'info' %}background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb;{% endif %}
+                {% if message.tags == 'error' %}background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
 
             <section class="restaurant-details">
                 <div class="details-content">
@@ -147,7 +163,8 @@
                         <div class="route-address">
                             <h3 id="enderecoCompleto">{{ restaurante.endereco }}</h3>
                             <small style="color: #666; font-size: 0.8rem;">
-                                Lat: {{ restaurante.latitude|default:"N/A" }} | Lon: {{ restaurante.longitude|default:"N/A" }}
+                                Lat: {{ restaurante.latitude|default:"N/A" }} | Lon: {{
+                                restaurante.longitude|default:"N/A" }}
                             </small>
                         </div>
 
@@ -158,17 +175,84 @@
                             </button>
                         </a>
 
-                        <div id="map" style="height: 350px; width: 100%; margin-top: 20px; border-radius: 12px; z-index: 1;"></div>
+                        <div id="map"
+                            style="height: 350px; width: 100%; margin-top: 20px; border-radius: 12px; z-index: 1;">
+                        </div>
                     </div>
                 </section>
 
                 <section class="reviews-section">
                     <h2>Avaliações</h2>
+
+                    <div class="review-form-container"
+                        style="background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        {% if user.is_authenticated %}
+                        <h3>Deixe sua opinião</h3>
+                        <form method="POST" action="">
+                            {% csrf_token %}
+
+                            <div class="rating-input">
+                                <input type="radio" id="star5" name="nota" value="5" required /><label for="star5"
+                                    title="5 estrelas">★</label>
+                                <input type="radio" id="star4" name="nota" value="4" /><label for="star4"
+                                    title="4 estrelas">★</label>
+                                <input type="radio" id="star3" name="nota" value="3" /><label for="star3"
+                                    title="3 estrelas">★</label>
+                                <input type="radio" id="star2" name="nota" value="2" /><label for="star2"
+                                    title="2 estrelas">★</label>
+                                <input type="radio" id="star1" name="nota" value="1" /><label for="star1"
+                                    title="1 estrela">★</label>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 15px;">
+                                <textarea name="comentario" placeholder="Conte como foi sua experiência..." rows="4"
+                                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; resize: vertical;"
+                                    required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary" style="margin-top: 10px;">Enviar
+                                Avaliação</button>
+                        </form>
+                        {% else %}
+                        <div style="text-align: center; padding: 20px;">
+                            <p>Você precisa estar logado para avaliar.</p>
+                            <a href="{% url 'login' %}"><button class="login-btn">Fazer Login</button></a>
+                        </div>
+                        {% endif %}
+                    </div>
+
                     <div class="reviews-list" id="avaliacoesList">
-                        <p>Funcionalidade em desenvolvimento...</p>
+                        {% for avaliacao in avaliacoes %}
+                        <div class="review-card"
+                            style="background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-bottom: 1px solid #eee;">
+                            <div class="review-header"
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar"
+                                        style="width: 40px; height: 40px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                        👤
+                                    </div>
+                                    <div>
+                                        <h4 style="margin: 0; color: #333;">{{ avaliacao.usuario.first_name|default:avaliacao.usuario.username }}</h4>
+                                        <small style="color: #888;">{{ avaliacao.data|date:"d/m/Y \à\s H:i" }}</small>
+                                    </div>
+                                </div>
+                                <div class="stars" style="color: #ffc107;">
+                                    {% if avaliacao.nota == 5 %}⭐⭐⭐⭐⭐{% endif %}
+                                    {% if avaliacao.nota == 4 %}⭐⭐⭐⭐{% endif %}
+                                    {% if avaliacao.nota == 3 %}⭐⭐⭐{% endif %}
+                                    {% if avaliacao.nota == 2 %}⭐⭐{% endif %}
+                                    {% if avaliacao.nota == 1 %}⭐{% endif %}
+                                </div>
+                            </div>
+                            <p class="review-text" style="color: #555; line-height: 1.5;">{{ avaliacao.comentario }}</p>
+                        </div>
+                        {% empty %}
+                        <p style="text-align: center; color: #777;">Seja o primeiro a avaliar este restaurante!</p>
+                        {% endfor %}
                     </div>
                 </section>
-            </section>
+                </section>
         </main>
     </div>
 
@@ -176,14 +260,11 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
-        // Capturamos os valores como strings puras primeiro
-        // O filtro default_if_none:'' garante que não venha a palavra "None"
         const latRaw = "{{ restaurante.latitude|unlocalize|default_if_none:'' }}";
         const lonRaw = "{{ restaurante.longitude|unlocalize|default_if_none:'' }}";
 
         const RESTAURANTE_DATA = {
             nome: "{{ restaurante.nome|escapejs }}",
-            // Operador ternário: Se tiver valor, troca vírgula por ponto e converte. Se não, vira null.
             lat: latRaw ? parseFloat(latRaw.replace(',', '.')) : null,
             lon: lonRaw ? parseFloat(lonRaw.replace(',', '.')) : null
         };
@@ -191,4 +272,5 @@
 
     <script src="{% static 'js/detalhes.js' %}"></script>
 </body>
+
 </html>
