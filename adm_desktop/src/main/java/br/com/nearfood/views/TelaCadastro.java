@@ -52,6 +52,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jlbEmail = new javax.swing.JLabel();
         jlbTelefone = new javax.swing.JLabel();
         jlbSenha = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(186, 139, 84));
@@ -123,7 +124,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
         jPnlBoxcadastro.add(btnCadastrarUser);
-        btnCadastrarUser.setBounds(660, 620, 160, 40);
+        btnCadastrarUser.setBounds(780, 620, 160, 40);
 
         txtLastName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -170,6 +171,15 @@ public class TelaCadastro extends javax.swing.JFrame {
         jlbSenha.setText("Sua senha:");
         jPnlBoxcadastro.add(jlbSenha);
         jlbSenha.setBounds(520, 460, 220, 17);
+
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        jPnlBoxcadastro.add(btnVoltar);
+        btnVoltar.setBounds(510, 630, 80, 30);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -328,6 +338,14 @@ public class TelaCadastro extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_txtTelefoneFocusLost
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        
+        TelaLoginNew telaLogin = new TelaLoginNew();
+        telaLogin.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,6 +374,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JpnlFundo;
     private javax.swing.JButton btnCadastrarUser;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
