@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': 'NearFoodDB',
         'USER': 'sa',
         'PASSWORD': 'NearFoodNearFood1234#',  # pw_user_app
-        'HOST': '192.168.131.141',
+        'HOST': 'localhost',
         'PORT': '1433',  # porta padrão
         'OPTIONS': {
             'driver': 'ODBC Driver 18 for SQL Server', # na maquina do senac, usam driver odbc 17
