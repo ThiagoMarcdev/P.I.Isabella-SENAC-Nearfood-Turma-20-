@@ -21,8 +21,10 @@ public class UsuarioService {
 
     // Busca dados do usuário (GET)
     public CompletableFuture<Usuario> buscarUsuario(Long id) {
+        String url = BASE_URL + "/" + id + "/";
+
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/" + id + "/")) // <--- Note a barra extra aqui
+                .uri(URI.create(url)) 
                 .GET()
                 .header("Accept", "application/json")
                 .build();
@@ -36,13 +38,21 @@ public class UsuarioService {
     public CompletableFuture<Boolean> atualizarUsuario(Usuario usuario) {
         String jsonBody = gson.toJson(usuario);
 
+        // Montagem: URL + / + ID + /
+        // ISSO GARANTE QUE O DJANGO NÃO DÊ ERRO 301 OU 404
+        String url = BASE_URL + "/" + usuario.getId() + "/";
+
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/" + usuario.getUsername()))
+                .uri(URI.create(url))
                 .PUT(HttpRequest.BodyPublishers.ofString(jsonBody))
                 .header("Content-Type", "application/json")
                 .build();
 
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenApply(response -> response.statusCode() == 200 || response.statusCode() == 204);
+                .thenApply(response -> {
+                    // Log para você conferir se deu certo
+                    System.out.println("PUT Status: " + response.statusCode());
+                    return response.statusCode() == 200 || response.statusCode() == 204;
+                });
     }
 }

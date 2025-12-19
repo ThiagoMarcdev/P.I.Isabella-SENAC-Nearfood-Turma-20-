@@ -166,10 +166,16 @@ def api_login(request):
             if user.tipo == 'dono':
                 # SUCESSO: É dono e a senha está certa
                 return JsonResponse({
-                    'authenticated': True,
-                    'message': 'Login de Dono realizado com sucesso',
-                    'user_id': user.id,
-                    'nome': user.first_name or user.username
+                   'authenticated': True,
+                    'message': 'Login realizado com sucesso',
+                    # Dados para preencher o objeto Java Usuario:
+                    'id': user.id,
+                    'username': user.username,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'email': user.email,
+                    'telefone': user.telefone, # Certifique-se que seu model tem esse campo
+                    'tipo': user.tipo
                 }, status=200)
             
             else:

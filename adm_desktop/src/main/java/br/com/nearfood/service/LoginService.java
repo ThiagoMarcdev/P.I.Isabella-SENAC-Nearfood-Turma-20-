@@ -38,6 +38,11 @@ public class LoginService {
         // 3. Envia Assincronamente
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(response -> {
+                    
+                    // --- ADICIONE ESTAS LINHAS PARA DEBUG ---
+                System.out.println("STATUS: " + response.statusCode());
+                System.out.println("JSON RECEBIDO: " + response.body()); 
+                // ----------------------------------------
                     if (response.statusCode() == 200) {
                         // Se deu certo (200 OK), o Django retorna o JSON do usuário
                         // Convertemos esse JSON para o objeto Java Usuario
