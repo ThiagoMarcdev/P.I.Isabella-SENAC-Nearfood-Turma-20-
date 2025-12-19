@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class TelaGerenciarRestaurante extends JFrame {
+    
+    private Long idUsuarioLogado;
 
     // ===== SERVICE =====
     private final RestauranteService restauranteService = new RestauranteService();
@@ -21,7 +23,8 @@ public class TelaGerenciarRestaurante extends JFrame {
     private File imagemSelecionada;
 
     // ===== CONSTRUTOR =====
-    public TelaGerenciarRestaurante() {
+    public TelaGerenciarRestaurante(Long idUsuario) {
+        this.idUsuarioLogado = idUsuario;
         configurarTela();
     }
 
@@ -62,14 +65,14 @@ public class TelaGerenciarRestaurante extends JFrame {
         topo.add(lblNomeRestaurante, BorderLayout.WEST);
         topo.add(btnMinhaConta, BorderLayout.EAST);
         
-        btnMinhaConta .addActionListener( new ActionListener(){
+        btnMinhaConta.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                MinhaContaFrame telaConta = new MinhaContaFrame();
+                // Passamos o ID salvo para a próxima tela
+                MinhaContaFrame telaConta = new MinhaContaFrame(idUsuarioLogado);
                 telaConta.setVisible(true);
                 dispose();
             }
-            
         });
 
         return topo;
@@ -231,11 +234,7 @@ public class TelaGerenciarRestaurante extends JFrame {
     }
     
     
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new TelaGerenciarRestaurante().setVisible(true);
-        });
-    }
+   
     
     
     

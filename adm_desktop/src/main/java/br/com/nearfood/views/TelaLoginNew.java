@@ -6,13 +6,15 @@ package br.com.nearfood.views;
 
 import br.com.nearfood.service.LoginService;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author firmodev
  */
 public class TelaLoginNew extends javax.swing.JFrame {
-    
+    private LoginService service = new LoginService();
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLoginNew.class.getName());
 
     /**
@@ -20,8 +22,8 @@ public class TelaLoginNew extends javax.swing.JFrame {
      */
     public TelaLoginNew() {
         initComponents();
-       this.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
-        
+        this.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+
         // Ajuste para o fundo preencher a tela
         this.setLayout(new java.awt.BorderLayout());
         this.add(jblBackground, java.awt.BorderLayout.CENTER);
@@ -58,7 +60,7 @@ public class TelaLoginNew extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         lblCriarConta = new javax.swing.JLabel();
         chkManterLogin = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        btnLogar = new javax.swing.JButton();
         txtPswdInput = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -135,15 +137,15 @@ public class TelaLoginNew extends javax.swing.JFrame {
         jlbGrid.add(chkManterLogin);
         chkManterLogin.setBounds(740, 520, 150, 29);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/seta_avancar.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogar.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/seta_avancar.png"))); // NOI18N
+        btnLogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLogarActionPerformed(evt);
             }
         });
-        jlbGrid.add(jButton1);
-        jButton1.setBounds(1100, 570, 80, 50);
+        jlbGrid.add(btnLogar);
+        btnLogar.setBounds(1100, 570, 80, 50);
 
         txtPswdInput.setBackground(new java.awt.Color(255, 255, 255));
         txtPswdInput.setForeground(new java.awt.Color(0, 0, 0));
@@ -163,37 +165,59 @@ public class TelaLoginNew extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkManterLoginActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
         // TODO add your handling code here:
-        
-        String user = txtUserInput.getText();
-        String pwd = new String(txtPswdInput.getPassword());
-        
-        boolean logado = LoginService.autenticar( user, pwd);
-        
-        if (logado) {
-            JOptionPane.showMessageDialog(this, "✅ Login realizado com sucesso!");
-            this.dispose();
-            new TelaGerenciarRestaurante().setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "❌ Usuário e/ou senha incorretos.");
+
+     
+        String username = txtUserInput.getText().trim();
+        String password = new String(txtPswdInput.getPassword());
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha usuário e senha.");
+            return;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+        
+        service.fazerLogin(username, password)
+            .thenAccept(usuarioLogado -> {
+                
+                SwingUtilities.invokeLater(() -> {
+                    // Se usuarioLogado for diferente de null, o login funcionou
+                    if (usuarioLogado != null && usuarioLogado.getId() != null) {
+                        JOptionPane.showMessageDialog(this, "✅ Login realizado com sucesso!");
+                        
+                       
+                        TelaGerenciarRestaurante telaPrincipal = new TelaGerenciarRestaurante(usuarioLogado.getId());
+                        telaPrincipal.setVisible(true);
+                        
+                        this.dispose(); // Fecha o login
+                    } else {
+                        JOptionPane.showMessageDialog(this, "❌ Usuário e/ou senha incorretos.");
+                    }
+                });
+            })
+            .exceptionally(ex -> {
+                SwingUtilities.invokeLater(() -> 
+                    JOptionPane.showMessageDialog(this, "Erro de conexão: " + ex.getMessage())
+                );
+                return null;
+            });
+    }//GEN-LAST:event_btnLogarActionPerformed
 
     private void lblCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCriarContaMouseClicked
         // TODO add your handling code here:
-        
+
         this.dispose();
-        
+
         TelaCadastro cadastro = new TelaCadastro();
         cadastro.setVisible(true);
     }//GEN-LAST:event_lblCriarContaMouseClicked
 
     private void lblEsqueceuSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEsqueceuSenhaMouseClicked
         // TODO add your handling code here:
-        
+
         this.dispose(); //fecha a tela atual
-        
+
         TelaResetSenha resetsenha = new TelaResetSenha();
         resetsenha.setVisible(true);
     }//GEN-LAST:event_lblEsqueceuSenhaMouseClicked
@@ -224,8 +248,8 @@ public class TelaLoginNew extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogar;
     private javax.swing.JCheckBox chkManterLogin;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

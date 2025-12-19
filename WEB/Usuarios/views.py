@@ -13,6 +13,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework import generics
+
+from Usuarios.serializers import UsuarioSerializer
 
 def login_view(request):
     if request.method == 'POST':
@@ -145,7 +149,7 @@ def api_login(request):
     try:
         data = json.loads(request.body)
         
-        username_java = data.get('user') 
+        username_java = data.get('username') 
         password_java = data.get('password')
         
         if not username_java or not password_java:
@@ -289,3 +293,14 @@ def config(request):
 
     
     return render(request, 'config.html')
+
+
+# logica de alteração de dados na aplicação java
+class UsuarioDetailView(generics.RetrieveUpdateAPIView):
+    # Aponta para o seu modelo customizado
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
+    
+    # Para facilitar os testes iniciais com o Java, deixe AllowAny
+    # Depois mude para IsAuthenticated quando implementar o Login com Token
+    permission_classes = [AllowAny]

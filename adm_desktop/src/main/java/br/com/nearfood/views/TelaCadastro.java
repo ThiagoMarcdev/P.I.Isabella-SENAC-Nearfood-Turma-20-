@@ -149,27 +149,27 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jlbConfirmaSenha.setText("Confirme sua senha:");
         jPnlBoxcadastro.add(jlbConfirmaSenha);
-        jlbConfirmaSenha.setBounds(520, 530, 130, 17);
+        jlbConfirmaSenha.setBounds(520, 530, 240, 17);
 
         jlbPrimeiroNome.setText("Primeiro Nome:");
         jPnlBoxcadastro.add(jlbPrimeiroNome);
-        jlbPrimeiroNome.setBounds(520, 200, 100, 17);
+        jlbPrimeiroNome.setBounds(520, 200, 170, 17);
 
         jlbUltimoNome.setText("Ultimo nome:");
         jPnlBoxcadastro.add(jlbUltimoNome);
-        jlbUltimoNome.setBounds(520, 260, 100, 17);
+        jlbUltimoNome.setBounds(520, 260, 170, 17);
 
         jlbEmail.setText("Insira seu email:");
         jPnlBoxcadastro.add(jlbEmail);
-        jlbEmail.setBounds(520, 320, 150, 17);
+        jlbEmail.setBounds(520, 320, 190, 17);
 
         jlbTelefone.setText("Insira seu telefone:");
         jPnlBoxcadastro.add(jlbTelefone);
-        jlbTelefone.setBounds(520, 390, 130, 17);
+        jlbTelefone.setBounds(520, 390, 220, 17);
 
         jlbSenha.setText("Sua senha:");
         jPnlBoxcadastro.add(jlbSenha);
-        jlbSenha.setBounds(520, 460, 90, 17);
+        jlbSenha.setBounds(520, 460, 220, 17);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -195,9 +195,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         String tipo_usuario = "dono"; //dono do restaurante
         String telefone = txtTelefone.getText().trim();
 
-        Usuario usuario = new Usuario(first_name, last_name, username, password, email, tipo_usuario, telefone);
+        //Usuario usuario = new Usuario(id, first_name, last_name, username, password, email, tipo_usuario, telefone);
 
-        boolean sucesso = CadastroService.cadastrarUsuario(usuario);
+        
 
         if (first_name.isEmpty() || first_name.equals("Insira seu primeiro nome")
                 || last_name.isEmpty() || last_name.equals("Insira seu ultimo nome")
@@ -213,6 +213,17 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "As senhas não conferem!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        Usuario usuario = new Usuario();
+        usuario.setFirst_name(first_name);
+        usuario.setLast_name(last_name);
+        usuario.setUsername(username);
+        usuario.setPassword(password);
+        usuario.setEmail(email);
+        usuario.setTipo_usuario(tipo_usuario);
+        usuario.setTelefone(telefone);
+        
+        boolean sucesso = CadastroService.cadastrarUsuario(usuario);
 
         if (sucesso) {
             JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!");

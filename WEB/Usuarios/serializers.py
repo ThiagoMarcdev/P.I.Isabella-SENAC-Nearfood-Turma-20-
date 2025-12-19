@@ -1,35 +1,26 @@
 from rest_framework import serializers
-from .models import Cliente, Dono
+from .models import Usuario # Importando seu modelo correto
 
 class UsuarioSerializer(serializers.ModelSerializer):
-    # Password deve ser write_only por segurança
-    password = serializers.CharField(write_only=True)
-
     class Meta:
         model = Usuario
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'password', 'telefone', 'tipo']
-
-    def create(self, validated_data):
-        # 1. Cria o Usuário Base com segurança
-        user = Usuario.objects.create_user(
-            username=validated_data['username'],
-            password=validated_data['password'],
-            email=validated_data.get('email', ''),
-            first_name=validated_data.get('first_name', ''),
-            last_name=validated_data.get('last_name', ''),
-            telefone=validated_data.get('telefone', ''),
-            tipo=validated_data.get('tipo', 'cliente')
-        )
-
-        # 2. Cria o perfil correspondente
-        if user.tipo == 'cliente':
-            Cliente.objects.create(usuario=user)
-        elif user.tipo == 'admin':
-            Administrador.objects.create(usuario=user)
+        # Listamos os campos exatos que o Java envia/recebe
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'telefone', 'password']
         
-        return user
+        # Configuramos a senha para não ser devolvida no GET (segurança)
+        # e não ser obrigatória no PUT (caso o usuário edite só o telefone)
+        extra_kwargs = {
+            'password': {'write_only': True, 'required': False},
+            'username': {'read_only': True}, # Geralmente não deixamos mudar o username
+        }
 
-class UsuarioRetornoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'telefone', 'tipo']
+    def update(self, instance, validated_data):
+        # Capturamos a senha separadamente para criptografar
+        password = validated_data.pop('password', None)
+        
+        # Se o Java enviou uma nova senha, criptografamos e salvamos
+        if password:
+            instance.set_password(password)
+
+        # Atualiza os outros campos (telefone, nome, email) automaticamente
+        return super().update(instance, validated_data)

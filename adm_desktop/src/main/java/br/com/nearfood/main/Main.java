@@ -1,5 +1,6 @@
-package br.com.nearfood.views;
+package br.com.nearfood.main;
 
+import br.com.nearfood.views.TelaLoginNew;
 import javax.swing.SwingUtilities;
 
 public class Main {
