@@ -2,72 +2,57 @@ package br.com.nearfood.service;
 
 import br.com.nearfood.models.Usuario;
 import com.google.gson.Gson;
-import java.io.OutputStream;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import javax.swing.JOptionPane;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.concurrent.CompletableFuture;
 
 public class UsuarioService {
 
-     private static final String API_URL = "http://localhost:8000/api/usuarios/";
+    private final String BASE_URL = "http://localhost:8000/usuarios/api/usuarios"; // Endereço da API
+    private final HttpClient client;
+    private final Gson gson;
 
-    public static boolean cadastrarUsuario(Usuario usuario) {
-        try {
-            // Monta a conexão HTTP
-            URL url = new URL(API_URL);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    public UsuarioService() {
+        this.client = HttpClient.newHttpClient();
+        this.gson = new Gson();
+    }
 
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json; utf-8");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setDoOutput(true);
+    // Busca dados do usuário (GET)
+    public CompletableFuture<Usuario> buscarUsuario(Long id) {
+        String url = BASE_URL + "/" + id + "/";
 
-            // Converte o objeto Usuario para JSON automaticamente
-            Gson gson = new Gson();
-            String jsonInput = gson.toJson(usuario);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url)) 
+                .GET()
+                .header("Accept", "application/json")
+                .build();
 
-            // Envia o JSON
-            try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonInput.getBytes(StandardCharsets.UTF_8);
-                os.write(input, 0, input.length);
-            }
+        return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenApply(json -> gson.fromJson(json, Usuario.class));
+    }
 
-            int status = conn.getResponseCode();
+    // Atualiza dados (PUT)
+    public CompletableFuture<Boolean> atualizarUsuario(Usuario usuario) {
+        String jsonBody = gson.toJson(usuario);
 
-            // Lê resposta da API (inputStream ou errorStream)
-            InputStreamReader reader;
-            if (status >= 200 && status < 300) {
-                reader = new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8);
-            } else {
-                reader = new InputStreamReader(conn.getErrorStream(), StandardCharsets.UTF_8);
-            }
+        // Montagem: URL + / + ID + /
+        // ISSO GARANTE QUE O DJANGO NÃO DÊ ERRO 301 OU 404
+        String url = BASE_URL + "/" + usuario.getId() + "/";
 
-            try (BufferedReader br = new BufferedReader(reader)) {
-                StringBuilder response = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    response.append(line.trim());
-                }
-                System.out.println("📩 Resposta da API: " + response.toString());
-            }
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .PUT(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .header("Content-Type", "application/json")
+                .build();
 
-            conn.disconnect();
-
-            if (status == 201 || status == 200) {
-                JOptionPane.showMessageDialog(null, "✅ Usuário cadastrado com sucesso!");
-                return true;
-            } else {
-                JOptionPane.showMessageDialog(null, "❌ Erro ao cadastrar. Código HTTP: " + status);
-                return false;
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            e.printStackTrace();
-            return false;
-        }
+        return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(response -> {
+                    // Log para você conferir se deu certo
+                    System.out.println("PUT Status: " + response.statusCode());
+                    return response.statusCode() == 200 || response.statusCode() == 204;
+                });
     }
 }

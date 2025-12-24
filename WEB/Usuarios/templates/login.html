@@ -1,10 +1,14 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../../resources/css/login.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href=".">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/logos/Logo__icone__nearFood.png' %}">
 </head>
 <body>
 
@@ -13,14 +17,14 @@
         <div class="marrom">
             
             <div class="circulo">
-                <img class="boneco" src ="../../resources/img/logos/entregador__imagem.png"Boneco-nearfood">
+                <img class="boneco" src ="../../static/img/logos/entregador__imagem.png"Boneco-nearfood">
             </div>
             
         </div>
         <div class="form-section">
 
             <div class="logo-container">
-                <img src="../../resources/img/logos/nearfood_logo.png" alt="Logo Nearfood" class="logo">
+                <img src="../../static/img/logos/nearfood_logo.png" alt="Logo Nearfood" class="logo">
             </div>
             
 
@@ -29,15 +33,16 @@
 
             <h1 class="bemvindo">Bem-Vindo<br>ao<br>Nearfood!</h1>
             
-                <form id="formLogin">
-                    <input id="email" class="user" type="text" placeholder="Nome de Usuário" required>
-                    <input id="senha" class="senha1" type="password" placeholder="Senha" required>
+                <form id="formLogin" method="POST">
+                    {% csrf_token %}
+                    <input id="username" name="username" class="user" type="text" placeholder="Usuário" required>
+                    <input id="password" name="password" class="senha" type="password" placeholder="Senha" required>
                     <button type="submit" class="entrar-btn">ENTRAR</button>
-                    <a href="../../templates/recuperar-senha.html" class="esqueceu-btn">Esqueceu sua senha?</a>
-                    <a href="../templates/cadastro.html" class="criar-btn">Criar uma conta</a>
+                    <a href="{% url 'esqueci' %}" class="esqueceu-btn">Esqueceu sua senha?</a>
+                    <a href="{% url 'cadastrar_usuario' %}" class="criar-btn">Criar uma conta</a>
                 </form>
                 <p id="mensagem"></p>
-                <script src="../../resources/js/login.js"></script>
+                <!-- <script src="../../static/js/login.js"></script> -->
 
         </div>
     </div>

@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NearFood - Tela Inicial</title>
+    <link rel="stylesheet" href="{% static '/css/style1.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/logos/Logo__icone__nearFood.png' %}">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="{% url 'index' %}" class="nav-icon active"><i class="icon-home">🏠</i></a>
+            <a href="{% url 'favoritos' %}" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
+            <a href="#" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="{% url 'config' %}" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button class="menu-btn" id="menuBtn">☰</button>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span
+                            class="heart">❤️</span></span>d</div>
+
+                <form action="." method="GET" class="search-bar">
+
+                    <input type="hidden" name="lat" value="{{ request.GET.lat }}">
+                    <input type="hidden" name="lon" value="{{ request.GET.lon }}">
+
+                    <input type="text" name="q" placeholder="Buscar prato, restaurante..." id="searchInput"
+                        value="{{ request.GET.q|default:'' }}">
+
+                    <button type="submit" class="search-btn">🔍</button>
+                </form>
+
+                <button class="theme-toggle" id="themeToggle">☀️</button>
+                {% if user.is_authenticated %}
+                <span style="margin-right: 10px;">Olá, {{ user.first_name|default:user.username }}! 👋</span>
+                {% else %}
+                <a href="{% url 'login' %}">
+                    <button class="login-btn">Fazer login</button>
+                </a>
+                {% endif %}
+
+            </header>
+
+            <!-- Promotion Banner -->
+            {% if promocao %}
+            <section class="promotion-banner">
+                <div class="promo-badge">Promoção</div>
+                <div class="promo-content">
+                    <div class="promo-text">
+                        <div class="promo-icons">
+                            <span>🍽️</span>
+                            <span>🍷</span>
+                            <span>🍔</span>
+                            <span>🍕</span>
+                        </div>
+                        <h2>{{ promocao.desconto_percentual }}% OFF</h2>
+                        <p>{{ promocao.titulo }}</p>
+                        <small>Em: {{ promocao.restaurante.nome }}</small>
+                    </div>
+                    <button class="reserve-btn">RESERVE AGORA</button>
+                </div>
+            </section>
+            {% endif %}
+            <section class="restaurants-section">
+                <h3>Restaurantes Próximos</h3>
+                <div class="restaurants-grid" id="restaurantesGrid">
+                    {% for restaurante in restaurantes_proximos %}
+                    <div class="restaurant-card">
+                        <div class="card-image"
+                            style="background-color: #ddd; height: 120px; display: flex; align-items: center; justify-content: center;">
+                            {% if restaurante.imagem %}
+                            <img src="{{ restaurante.imagem.url }}" alt="{{ restaurante.nome }}"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                            {% else %}
+                            <span style="font-size: 2rem;">🍽️</span>
+                            {% endif %}
+                        </div>
+                        <div class="card-info">
+                            <h4>{{ restaurante.nome }}</h4>
+                            <p class="card-desc">{{ restaurante.descricao|truncatechars:50 }}</p>
+                            <div class="card-meta">
+                                <span>⭐ {{ restaurante.avaliacao }}</span>
+                                <span>🕒 {{ restaurante.hora_funcionamento }}</span>
+
+                                {% if restaurante.distancia_temp %}
+                                <span style="color: #2ecc71; font-weight: bold;">
+                                    📍 {{ restaurante.distancia_temp }} km
+                                </span>
+                                {% endif %}
+                            </div>
+                            <a href="{% url 'detalhes' restaurante.id %}">
+                                <button class="btn-detalhes" data-id="{{ restaurante.id }}"
+                                    data-lat="{{ restaurante.latitude }}" data-lon="{{ restaurante.longitude }}"
+                                    data-nome="{{ restaurante.nome }}">
+                                    Ver Detalhes
+                                </button>
+                            </a>
+
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>Nenhum restaurante encontrado no momento.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Categorias -->
+            <section class="categories-section">
+                <h3>Categorias</h3>
+                <div class="categories-grid">
+                    {% for categoria in categorias %}
+                    <a href="?q={{ categoria.nome }}&lat={{ request.GET.lat }}&lon={{ request.GET.lon }}"
+                        style="text-decoration: none;">
+                        <button class="category-btn">
+                            {% if categoria.icone %}
+                            <i class="{{ categoria.icone }}"></i>
+                            {% else %}
+                            <span>🍴</span>
+                            {% endif %}
+                            {{ categoria.nome }}
+                        </button>
+                    </a>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Recommendations -->
+            <section class="recommendations-section">
+                <h3>Recomendações para você</h3>
+                <div class="recommendations-grid" id="recomendacoesGrid">
+                    {% for restaurante in recomendacoes %}
+                    <div class="recommendation-card">
+                        <div class="rec-badge">Top Escolha</div>
+                        <div class="rec-content">
+                            <h4>{{ restaurante.nome }}</h4>
+                            <p>{{ restaurante.endereco }}</p>
+                            <div class="rec-footer">
+                                <span class="price">⭐ {{ restaurante.avaliacao }}</span>
+                                <a href="{% url 'detalhes' restaurante.id %}" class="add-btn">+</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>Nenhuma recomendação especial hoje.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <!-- Modal Pop-up -->
+            <div class="modal-overlay" id="modalOverlay">
+                <div class="modal-popup">
+                    <button class="modal-close" id="modalClose">✕</button>
+
+                    <div class="modal-header">
+                        <div class="modal-restaurant-logo" id="modalLogo">🍝</div>
+                        <div class="modal-title-section">
+                            <h2 id="modalNome">{{restaurantes_proximos.nome}}</h2>
+                            <p class="modal-tipo" id="modalTipo">Italiano</p>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="modal-info-grid">
+                            <div class="modal-info-item">
+                                <span class="info-icon">⭐</span>
+                                <div>
+                                    <p class="info-label">Avaliação</p>
+                                    <p class="info-value" id="modalAvaliacao">4.5</p>
+                                </div>
+                            </div>
+                            <div class="modal-info-item">
+                                <span class="info-icon">🕐</span>
+                                <div>
+                                    <p class="info-label">Tempo</p>
+                                    <p class="info-value" id="modalTempo">15-20 min</p>
+                                </div>
+                            </div>
+                            <div class="modal-info-item">
+                                <span class="info-icon">📍</span>
+                                <div>
+                                    <p class="info-label">Distância</p>
+                                    <p class="info-value" id="modalDistancia">1.2 km</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-description">
+                            <p id="modalDescricao">Restaurante especializado em comida italiana com os melhores pratos
+                                da região.</p>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button class="modal-btn btn-route" id="btnVerRota">
+                                <span>📍</span> Ver Rota
+                            </button>
+                            <button class="modal-btn btn-reserve" id="btnFazerReserva">
+                                <span>📅</span> Fazer Reserva
+                            </button>
+                            <a href="detalhes/">
+
+                                <button class="modal-btn btn-more" id="btnVerMais">
+                                    <span>➡️</span> Ver Mais
+
+                                </button>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{% static 'js/main1.js' %}"></script>
+</body>
+
+</html>

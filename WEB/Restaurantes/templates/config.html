@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NearFood - Configurações</title>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/logos/Logo__icone__nearFood.png' %}">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="{% url 'index' %}" class="nav-icon"><i class="icon-home">🏠</i></a>
+            <a href="{% url 'favoritos' %}" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
+            <a href="" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="{% url 'config' %}" class="nav-icon active settings-icon"><i class="icon-settings">⚙️</i></a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button class="menu-btn" id="menuBtn">☰</button>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span
+                            class="heart">❤️</span></span>d</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar" id="searchInput">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle">☀️</button>
+                {% if user.is_authenticated%}
+                <span style="margin-right: 10px; font-weight: bold;">{{ user.username }}</span>
+                <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="login-btn" style="background-color: #ff4757;">Logout</button>
+                </form>{% else %}
+                <a href="{% url 'login' %}">
+                    <button class="login-btn">Fazer login</button>
+                </a>
+                {% endif %}
+            </header>
+
+            <!-- Settings Content -->
+            <section class="settings-section">
+                <button class="back-btn" onclick="history.back()">← Voltar</button>
+                <h1>Configurações</h1>
+
+                <!-- Account Settings -->
+                <div class="settings-card">
+                    <h2>Configurações da Conta</h2>
+                    <form id="accountForm">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seu-email@exemplo.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senhaAtual">Senha Atual</label>
+                            <input type="password" id="senhaAtual" name="senha_atual"
+                                placeholder="Digite sua senha atual">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="novaSenha">Nova Senha</label>
+                            <input type="password" id="novaSenha" name="nova_senha" placeholder="Digite a nova senha">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmarSenha">Confirmar Nova Senha</label>
+                            <input type="password" id="confirmarSenha" name="confirmar_senha"
+                                placeholder="Confirme a nova senha">
+                        </div>
+
+                        <button type="submit" class="btn-primary">Salvar Alterações</button>
+                    </form>
+                </div>
+
+                <!-- Theme Settings -->
+                <div class="settings-card">
+                    <h2>Tema da Aplicação</h2>
+                    <div class="theme-options">
+                        <div class="theme-option">
+                            <input type="radio" id="temaClaro" name="tema" value="light" checked>
+                            <label for="temaClaro" class="theme-label">
+                                <div class="theme-preview light-theme">☀️</div>
+                                <span>Claro</span>
+                            </label>
+                        </div>
+
+                        <div class="theme-option">
+                            <input type="radio" id="temaEscuro" name="tema" value="dark">
+                            <label for="temaEscuro" class="theme-label">
+                                <div class="theme-preview dark-theme">🌙</div>
+                                <span>Escuro</span>
+                            </label>
+                        </div>
+
+                        <div class="theme-option">
+                            <input type="radio" id="temaAuto" name="tema" value="auto">
+                            <label for="temaAuto" class="theme-label">
+                                <div class="theme-preview auto-theme">🔄</div>
+                                <span>Automático</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification Settings -->
+                <div class="settings-card">
+                    <h2>Notificações</h2>
+                    <div class="toggle-group">
+                        <label class="toggle-label">
+                            <span>Promoções e Ofertas</span>
+                            <input type="checkbox" class="toggle-input" id="notifPromocoes" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+
+                        <label class="toggle-label">
+                            <span>Confirmação de Reservas</span>
+                            <input type="checkbox" class="toggle-input" id="notifReservas" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+
+                        <label class="toggle-label">
+                            <span>Novos Restaurantes</span>
+                            <input type="checkbox" class="toggle-input" id="notifNovos">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage" style="display: none;">
+                    ✓ Configurações salvas com sucesso!
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{% static 'js/config.js' %}"></script>
+</body>
+
+</html>

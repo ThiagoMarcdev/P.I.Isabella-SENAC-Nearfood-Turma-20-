@@ -1,76 +1,37 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import RegexValidator
-
-from django.db import models
-# Importe também Group e Permission
-from django.contrib.auth.models import AbstractUser, Group, Permission
-from django.core.validators import RegexValidator
+from django.contrib.auth import get_user_model
+import uuid
+from datetime import timedelta
+from django.utils import timezone
 
 class Usuario(AbstractUser):
-    TIPOS_USUARIO = [
-        ('cliente', 'Cliente'),
-        ('admin', 'Administrador'),
-        ('root', 'Root'),
-    ]
+    tipo = models.CharField(max_length=10, choices=[('cliente', 'Cliente'), ('dono', 'Dono')])
+    telefone = models.CharField(max_length=20, blank=True, null=True)
+    favoritos = models.ManyToManyField('Restaurantes.Restaurant', related_name='favoritado_por', blank=True)
 
-    tipo = models.CharField(max_length=20, choices=TIPOS_USUARIO, default='cliente')
-    # para cadastrar usuario é necessario usar especificar se é um usuario do tipo cliente ou administrador = dono
-    
-    groups = models.ManyToManyField(
-        Group,
-        verbose_name='groups',
-        blank=True,
-        help_text='Os grupos aos quais este usuário pertence.',
-        related_name="usuario_set",
-        related_query_name="user",
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        verbose_name='user permissions',
-        blank=True,
-        help_text='Permissões específicas deste usuário.',
-        related_name="usuario_permission_set",
-        related_query_name="user",
-    )
-    
     class Meta:
-        db_table='tbl_Usuarios'
+        db_table = 'tbl_usuarios'
 
     def __str__(self):
-        # Corrigi o f-string para usar self.username, que é o campo padrão de login
-        return f"{self.username} ({self.get_tipo_display()})"
+        return self.username
 
-class Cliente(models.Model): # usando o abstract ja herda campos como username email e senha
-    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
-    
-    validador_cpf = RegexValidator(
-        regex=r'^\d{3}\.\d{3}\.\d{3}-\d{2}$',
-        message='CPF deve estar no formato XXX.XXX.XXX-XX'
-    )
-    #cpf = models.CharField(max_length=14, unique=True, validators=[validador_cpf])
-    telefone = models.CharField(max_length=20, blank=True)
-    endereco = models.TextField(blank=True)
-    
-    
+class Dono(Usuario):
+    cnpj = models.CharField(max_length=128, unique=True, blank=True, null=True)
+    restaurante = models.CharField(max_length=255, blank=True, null=True)
+
     class Meta:
-        db_table='tbl_Clientes'
-        # campos: id, username, email, password; herdado| custom; cpf, telefone, endereco
+        db_table = 'tbl_donos'
 
     def __str__(self):
-        return self.usuario.username
+        return self.username
 
+User = get_user_model()
 
+class TokenResetSenha(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=200, unique=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
 
-class Administrador(models.Model):
-    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
-    telefone = models.CharField(max_length=20, blank=True)
-    cargo = models.CharField(max_length=50, blank=True)
-    cnpj = models.CharField(max_length=30, blank=True)
-    
-    
-    class Meta:
-        db_table='tbl_Administradores'
-
-    def __str__(self):
-        return f"Administrador: {self.usuario.username}"
+    def expirado(self):
+        return self.criado_em < timezone.now() - timedelta(hours=1)

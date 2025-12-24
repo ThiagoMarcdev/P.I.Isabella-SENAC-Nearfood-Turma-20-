@@ -16,14 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Restaurantes.views import buscar_restaurantes
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('Restaurantes.urls')),
     path('admin/', admin.site.urls),
-    path('buscar/', include ('Restaurantes.urls'), name='buscar_restaurantes'),
-    path('restaurantes/', include('Restaurantes.urls')), # quando o usuario acessar o endereço restaurantes ele vai ser redirecionado para o app "Restaurantes" e o arquivo que gerenciara isso é o urls do app Restaurantes
-    path('home/', include('Restaurantes.urls')),
-    #path('auth/', include('Usuarios.urls') ),
-    path('', include('Usuarios.urls')),
-    path('api/usuarios', include('Usuarios.urls'), name='logar_usuario'),
+    path('usuarios/', include('Usuarios.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

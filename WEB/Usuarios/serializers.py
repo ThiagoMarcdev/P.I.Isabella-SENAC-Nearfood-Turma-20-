@@ -1,50 +1,26 @@
 from rest_framework import serializers
-from .models import Usuario, Cliente
+from .models import Usuario # Importando seu modelo correto
 
-class UsuarioSerializer(serializers.ModelSerializer):    
-    telefone = serializers.CharField(write_only=True, required=False)
-    #endereco = serializers.CharField(write_only=True, required=False)
-    
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['id', 'username', 'first_name', 'last_name','password', 'email', 'tipo', 'telefone']
+        # Listamos os campos exatos que o Java envia/recebe
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'telefone', 'password']
+        
+        # Configuramos a senha para não ser devolvida no GET (segurança)
+        # e não ser obrigatória no PUT (caso o usuário edite só o telefone)
         extra_kwargs = {
-            'password': {'write_only': True}
+            'password': {'write_only': True, 'required': False},
+            'username': {'read_only': True}, # Geralmente não deixamos mudar o username
         }
 
-    def create(self, validated_data):
-        telefone = validated_data.pop('telefone', '')
-        #endereco = validated_data.pop('endereco', '')
+    def update(self, instance, validated_data):
+        # Capturamos a senha separadamente para criptografar
+        password = validated_data.pop('password', None)
         
-        user = Usuario.objects.create_user(
-            username=validated_data['username'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            password=validated_data['password'],
-            email=validated_data.get('email', ''),           
-            tipo=validated_data.get('tipo', 'cliente'),           
-        )
-        
-        if user.tipo == 'cliente':
-            Cliente.objects.create(usuario=user, telefone=telefone) #endereco=endereco)
-        return user
+        # Se o Java enviou uma nova senha, criptografamos e salvamos
+        if password:
+            instance.set_password(password)
 
-
-class ClienteSerializer(serializers.ModelSerializer):
-    usuario = UsuarioSerializer()
-
-    class Meta:
-        model = Cliente
-        fields = ['usuario', 'cpf', 'telefone']
-
-    def create(self, validated_data):
-        usuario_data = validated_data.pop('usuario')
-        user = Usuario.objects.create_user(**usuario_data)
-        cliente = Cliente.objects.create(usuario=user, **validated_data)
-        return cliente
-
-
-class UsuarioRetornoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario
-        fields = ['id', 'username', 'email', 'first_name', 'last_name']  # ajuste conforme seu model
+        # Atualiza os outros campos (telefone, nome, email) automaticamente
+        return super().update(instance, validated_data)

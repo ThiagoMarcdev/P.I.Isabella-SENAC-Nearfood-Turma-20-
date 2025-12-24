@@ -1,4 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.conf import settings
+import uuid
+from django.utils import timezone
+from datetime import timedelta
+from geopy.geocoders import Nominatim
 
 # Create your models here.
 
@@ -17,6 +23,7 @@ class Restaurant(models.Model):
     #id = models.AutoField (primary_key=True) # O Django cria automaticamente
     nome = models.CharField(max_length=100)
     descricao = models.CharField(max_length=255, blank=True, null=True) # Mudado para CharField
+    cep = models.CharField(max_length=9, blank=True, null=True) 
     estado = models.CharField(max_length=100)
     endereco = models.CharField(max_length=100)
     hora_funcionamento = models.CharField(max_length=50)
@@ -26,17 +33,53 @@ class Restaurant(models.Model):
     avaliacao = models.DecimalField(max_digits=3, decimal_places=1, default=0.0) # Mudado para DecimalField
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True) # Mudado para DecimalField
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True) # Mudado para DecimalField
-    categorias = models.ManyToManyField('Categoria') # Perfeito usando a string!
-    #recomendado = models.BooleanField(default=False)
-    
+    categorias = models.ManyToManyField('Categoria') 
+    recomendado = models.BooleanField(default=False)    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    imagem = models.ImageField(upload_to='restaurantes/', blank=True, null=True) # imagem do restaurante
     
+    
+    favoritos = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, 
+        blank=True, 
+        related_name='restaurantes_favoritos'
+    )
     class Meta:
         db_table='tbl_Restaurantes'
 
     def __str__(self):
         return self.nome
+    
+# função para sobrescrever o que o botão salvar na hora de cadastrar um restaurante
+    def save(self, *args, **kwargs):
+        if not self.latitude or not self.longitude:
+            try:
+                geolocator = Nominatim(user_agent="nearfood_app_v3_cep")
+            
+                if self.cep:
+                    # Limpa o CEP (tira traço)
+                    cep_limpo = self.cep.replace('-', '').strip()
+                    
+                    busca = f"{self.endereco}, {self.cep} - {self.estado}, Brasil"
+                else:
+                    busca = f"{self.endereco} - {self.estado}, Brasil"
+
+                print(f" BUSCANDO: '{busca}'")
+                location = geolocator.geocode(busca, timeout=10)
+                
+                if location:
+                    self.latitude = location.latitude
+                    self.longitude = location.longitude
+                else:
+                    print(" Endereço exato falhou no geocoding.")
+                    # Fallback continua aqui se quiser...
+
+            except Exception as e:
+                print(f" Erro Geopy: {e}")
+
+        super(Restaurant, self).save(*args, **kwargs)
+
 
 class Promocao(models.Model):
     titulo = models.CharField(max_length=100) # Ex: "NA SUA PRÓXIMA RESERVA"
@@ -51,3 +94,49 @@ class Promocao(models.Model):
 
     def __str__(self):
         return f"{self.desconto_percentual}% OFF em {self.restaurante.nome}"
+    
+class PasswordResetToken(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    token = models.UUIDField(default=uuid.uuid4, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    used = models.BooleanField(default=False)
+
+    def is_valid(self):
+        expiration_time = self.created_at + timedelta(hours=1)
+        return not self.used and timezone.now() < expiration_time
+
+    def __str__(self):
+        return f"Token para {self.user.email}"
+    
+    
+class ItemCardapio(models.Model):
+    restaurante = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='itens_cardapio')
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField(blank=True, null=True)
+    preco = models.DecimalField(max_digits=6, decimal_places=2) # Ex: 1500.50
+    imagem = models.ImageField(upload_to='cardapio/', blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.nome} - {self.restaurante.nome}"
+    
+class Avaliacao(models.Model):
+    restaurante = models.ForeignKey('Restaurant', on_delete=models.CASCADE, related_name='avaliacoes')
+    
+    # 2. CORREÇÃO AQUI:
+    # Em vez de 'User', usamos 'settings.AUTH_USER_MODEL'
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    
+    nota = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+    comentario = models.TextField()
+    data = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-data']
+        # db_table = 'tbl_Avaliacoes' # Opcional, se quiser manter padrão
+
+    def __str__(self):
+        # Como o usuário agora é genérico, acessamos o campo que representa o nome (geralmente username ou email)
+        return f"{self.usuario} - {self.restaurante.nome} ({self.nota}⭐)"

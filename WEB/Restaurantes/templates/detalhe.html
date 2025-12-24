@@ -1,0 +1,281 @@
+{% load static %}
+{% load l10n %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NearFood - Detalhes do Restaurante</title>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/logos/Logo__icone__nearFood.png' %}">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <a href="{% url 'index' %}" class="nav-icon"><i class="icon-home">🏠</i></a>
+            <a href="{% url 'favoritos' %}" class="nav-icon"><i class="icon-bookmark">🔖</i></a>
+            <a href="#" class="nav-icon"><i class="icon-receipt">🧾</i></a>
+            <a href="{% url 'config' %}" class="nav-icon settings-icon"><i class="icon-settings">⚙️</i></a>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+
+                <button class="menu-btn" id="menuBtn">☰</button>
+                <div class="logo">Near<span class="logo-highlight">F<span class="heart">❤️</span><span
+                            class="heart">❤️</span></span>d</div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar" id="searchInput">
+                    <button class="search-btn">🔍</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle">☀️</button>
+                {% if user.is_authenticated %}
+                <span style="margin-right: 10px; font-weight: bold;">{{ user.username }}</span>
+                <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="login-btn"
+                        style="background-color: #ff4757; padding: 5px 15px;">Sair</button>
+                </form>
+                {% else %}
+                <a href="{% url 'login' %}">
+                    <button class="login-btn">Fazer Login</button>
+                </a>
+                {% endif %}
+            </header>
+
+            {% if messages %}
+            <div class="messages-container" style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }}"
+                    style="padding: 15px; border-radius: 8px; margin-bottom: 10px; 
+                {% if message.tags == 'success' %}
+                    background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;{% endif %}
+                {% if message.tags == 'info' %}background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb;{% endif %}
+                {% if message.tags == 'error' %}background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;{% endif %}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <section class="restaurant-details">
+                <div class="details-content">
+                    <div class="details-info">
+                        <button class="back-btn" onclick="history.back()">← Voltar</button>
+                        <button class="favorite-btn" id="favoritoBtn">
+                            <span class="star">⭐</span> Reportar
+                        </button>
+
+                        <h1 class="restaurant-name">{{ restaurante.nome }}</h1>
+                        <p class="restaurant-rating">
+                            <span class="rating-number">{{ restaurante.avaliacao }}</span>
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                        </p>
+                        <p class="restaurant-address">{{ restaurante.endereco }}</p>
+
+                        <div class="restaurant-description">
+                            {{ restaurante.descricao }}
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn-primary reserve-detail-btn">FAZER RESERVA</button>
+
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'toggle_favorito' restaurante.id %}" style="text-decoration: none;">
+                                {% if is_favorito %}
+                                <button class="btn-secondary favorite-toggle-btn"
+                                    style="background-color: #ff4757; color: white; border-color: #ff4757;">
+                                    <span>❤️</span> REMOVER DOS FAVORITOS
+                                </button>
+                                {% else %}
+                                <button class="btn-secondary favorite-toggle-btn">
+                                    <span>🤍</span> ADICIONAR AOS FAVORITOS
+                                </button>
+                                {% endif %}
+                            </a>
+                            {% else %}
+                            <a href="{% url 'login' %}">
+                                <button class="btn-secondary favorite-toggle-btn">
+                                    <span>🤍</span> FAZER LOGIN PARA FAVORITAR
+                                </button>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="details-image">
+                        {% if restaurante.imagem %}
+                        <img src="{{ restaurante.imagem.url }}" alt="{{ restaurante.nome }}" id="restauranteImagem">
+                        {% else %}
+                        <img src="https://via.placeholder.com/600x400?text=Sem+Foto" alt="Sem imagem">
+                        {% endif %}
+                    </div>
+                </div>
+
+                <section class="menu-section">
+                    <h2>📋 Cardápio</h2>
+                    <div class="menu-grid" id="menuGrid">
+
+                        {% for item in cardapio %}
+                        <div class="menu-item"
+                            style="display: flex; gap: 15px; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+
+                            <div class="menu-img-wrapper"
+                                style="width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: #eee; display: flex; align-items: center; justify-content: center;">
+                                {% if item.imagem %}
+                                <img src="{{ item.imagem.url }}" alt="{{ item.nome }}"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                                {% else %}
+                                <span style="font-size: 2rem;">🍔</span>
+                                {% endif %}
+                            </div>
+
+                            <div class="menu-info" style="flex: 1;">
+                                <h4 style="margin: 0; font-size: 1.1rem; color: #333;">{{ item.nome }}</h4>
+
+                                <p style="margin: 5px 0; color: #666; font-size: 0.9rem;">
+                                    {{ item.descricao|truncatechars:80 }}
+                                </p>
+
+                                <span class="price" style="color: #ff4500; font-weight: bold; font-size: 1.1rem;">
+                                    R$ {{ item.preco }}
+                                </span>
+                            </div>
+
+                            <div class="menu-action" style="display: flex; align-items: center;">
+                                <button
+                                    style="background: #ff4500; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;">+</button>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div style="grid-column: 1/-1; text-align: center; padding: 20px; color: #666;">
+                            <p>Este restaurante ainda não cadastrou itens no cardápio.</p>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </section>
+
+                <section class="route-section">
+                    <h2>🗺️ Como Chegar</h2>
+                    <div class="route-info">
+                        <div class="route-address">
+                            <h3 id="enderecoCompleto">{{ restaurante.endereco }}</h3>
+                            <small style="color: #666; font-size: 0.8rem;">
+                                Lat: {{ restaurante.latitude|default:"N/A" }} | Lon: {{
+                                restaurante.longitude|default:"N/A" }}
+                            </small>
+                        </div>
+
+                        <a href="https://www.google.com/maps/dir/?api=1&destination={{ restaurante.latitude|unlocalize }},{{ restaurante.longitude|unlocalize }}"
+                            target="_blank" style="text-decoration: none;">
+                            <button class="btn-route-large" id="btnAbrirMaps" style="width: 100%; cursor: pointer;">
+                                📍 Traçar Rota no Google Maps
+                            </button>
+                        </a>
+
+                        <div id="map"
+                            style="height: 350px; width: 100%; margin-top: 20px; border-radius: 12px; z-index: 1;">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="reviews-section">
+                    <h2>Avaliações</h2>
+
+                    <div class="review-form-container"
+                        style="background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        {% if user.is_authenticated %}
+                        <h3>Deixe sua opinião</h3>
+                        <form method="POST" action="">
+                            {% csrf_token %}
+
+                            <div class="rating-input">
+                                <input type="radio" id="star5" name="nota" value="5" required /><label for="star5"
+                                    title="5 estrelas">★</label>
+                                <input type="radio" id="star4" name="nota" value="4" /><label for="star4"
+                                    title="4 estrelas">★</label>
+                                <input type="radio" id="star3" name="nota" value="3" /><label for="star3"
+                                    title="3 estrelas">★</label>
+                                <input type="radio" id="star2" name="nota" value="2" /><label for="star2"
+                                    title="2 estrelas">★</label>
+                                <input type="radio" id="star1" name="nota" value="1" /><label for="star1"
+                                    title="1 estrela">★</label>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 15px;">
+                                <textarea name="comentario" placeholder="Conte como foi sua experiência..." rows="4"
+                                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; resize: vertical;"
+                                    required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary" style="margin-top: 10px;">Enviar
+                                Avaliação</button>
+                        </form>
+                        {% else %}
+                        <div style="text-align: center; padding: 20px;">
+                            <p>Você precisa estar logado para avaliar.</p>
+                            <a href="{% url 'login' %}"><button class="login-btn">Fazer Login</button></a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="reviews-list" id="avaliacoesList">
+                        {% for avaliacao in avaliacoes %}
+                        <div class="review-card"
+                            style="background: #fff; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-bottom: 1px solid #eee;">
+                            <div class="review-header"
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar"
+                                        style="width: 40px; height: 40px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                        👤
+                                    </div>
+                                    <div>
+                                        <h4 style="margin: 0; color: #333;">{{avaliacao.usuario.first_name|default:avaliacao.usuario.username }}</h4>
+                                            
+                                        <small style="color: #888;">{{ avaliacao.data|date:"d/m/Y \à\s H:i" }}</small>
+                                    </div>
+                                </div>
+                                <div class="stars" style="color: #ffc107;">
+                                    {% if avaliacao.nota == 5 %}⭐⭐⭐⭐⭐{% endif %}
+                                    {% if avaliacao.nota == 4 %}⭐⭐⭐⭐{% endif %}
+                                    {% if avaliacao.nota == 3 %}⭐⭐⭐{% endif %}
+                                    {% if avaliacao.nota == 2 %}⭐⭐{% endif %}
+                                    {% if avaliacao.nota == 1 %}⭐{% endif %}
+                                </div>
+                            </div>
+                            <p class="review-text" style="color: #555; line-height: 1.5;">{{ avaliacao.comentario }}</p>
+                        </div>
+                        {% empty %}
+                        <p style="text-align: center; color: #777;">Seja o primeiro a avaliar este restaurante!</p>
+                        {% endfor %}
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        const latRaw = "{{ restaurante.latitude|unlocalize|default_if_none:'' }}";
+        const lonRaw = "{{ restaurante.longitude|unlocalize|default_if_none:'' }}";
+
+        const RESTAURANTE_DATA = {
+            nome: "{{ restaurante.nome|escapejs }}",
+            lat: latRaw ? parseFloat(latRaw.replace(',', '.')) : null,
+            lon: lonRaw ? parseFloat(lonRaw.replace(',', '.')) : null
+        };
+    </script>
+
+    <script src="{% static 'js/detalhes.js' %}"></script>
+</body>
+
+</html>
